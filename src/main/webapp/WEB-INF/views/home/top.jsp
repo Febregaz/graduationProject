@@ -1,5 +1,5 @@
 <%@ page language="java"
-	import="java.util.*,yuzhaoLiu.project.entity.Users,java.io.*" pageEncoding="UTF-8"%>
+         import="java.util.*,yuzhaoLiu.project.neo4j.entity.Users,java.io.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();

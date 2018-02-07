@@ -121,6 +121,7 @@
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.3.6" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.3.3" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.2.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">

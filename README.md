@@ -1,2 +1,2 @@
 # graduationProject
-This project is used for my graduation thesis
+This is the Version of development.
