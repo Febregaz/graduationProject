@@ -123,6 +123,7 @@
       <find>css</find>
       <find>sdn</find>
       <find>smartMenu</find>
+      <find>mapper</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -792,7 +793,7 @@
       <workItem from="1517283208261" duration="741000" />
       <workItem from="1517792673829" duration="5661000" />
       <workItem from="1517888223333" duration="4465000" />
-      <workItem from="1517922238807" duration="1564000" />
+      <workItem from="1517922238807" duration="1974000" />
     </task>
     <servers />
   </component>
@@ -829,7 +830,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102563000" />
+    <option name="totallyTimeSpent" value="102973000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -1251,8 +1252,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3312">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="257">
+          <caret line="64" column="18" lean-forward="false" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
           <folding />
         </state>
       </provider>
