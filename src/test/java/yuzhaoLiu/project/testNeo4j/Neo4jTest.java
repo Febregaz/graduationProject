@@ -1,10 +1,11 @@
 package yuzhaoLiu.project.testNeo4j;
 
-import yuzhaoLiu.project.entity.Actor;
-import yuzhaoLiu.project.entity.Movies;
-import yuzhaoLiu.project.repository.ActorRepository;
-import yuzhaoLiu.project.repository.MovieRepository;
-import yuzhaoLiu.project.service.neo4J.Neo4jDBCleaner;
+import yuzhaoLiu.project.neo4j.entity.Actor;
+import yuzhaoLiu.project.neo4j.entity.Movies;
+import yuzhaoLiu.project.neo4j.neo4jConfiguration.neoConfig;
+import yuzhaoLiu.project.neo4j.repository.ActorRepository;
+import yuzhaoLiu.project.neo4j.repository.MovieRepository;
+import yuzhaoLiu.project.neo4j.service.Neo4jDBCleaner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {PersistenceContext.class})
+@ContextConfiguration(classes = {neoConfig.class})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class Neo4jTest {
 

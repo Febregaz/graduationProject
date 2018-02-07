@@ -1,4 +1,4 @@
-package yuzhaoLiu.project.service.neo4J;
+package yuzhaoLiu.project.neo4j.service;
 
 import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;

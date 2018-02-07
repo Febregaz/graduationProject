@@ -1,4 +1,4 @@
-package yuzhaoLiu.project.entity;
+package yuzhaoLiu.project.neo4j.entity;
 
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;

@@ -1,6 +1,6 @@
-package yuzhaoLiu.project.repository;
+package yuzhaoLiu.project.neo4j.repository;
 
-import yuzhaoLiu.project.entity.Actor;
+import yuzhaoLiu.project.neo4j.entity.Actor;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 /**
