@@ -1,4 +1,4 @@
-package yuzhaoLiu.project.controller;
+package yuzhaoLiu.project.mybatis.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
