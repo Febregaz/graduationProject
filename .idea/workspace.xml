@@ -8,27 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="885dc1eb-5727-4a3e-8002-35df88eb156b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/entity/Actor.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/entity/Actor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/entity/Movies.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/entity/Movies.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/entity/Users.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/entity/Users.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/mybatis/run/TestMyBatis.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/mybatis/run/TestMyBatis.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4jConfiguration/neoConfig.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/neo4jConfiguration/neoConfig.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/repository/ActorRepository.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/repository/ActorRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/repository/MovieRepository.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/repository/MovieRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/service/neo4J/Neo4jDBCleaner.java" afterPath="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/service/Neo4jDBCleaner.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/top.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/top.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/Neo4jTest.java" afterPath="$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/Neo4jTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/PersistenceContext.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/entity/Actor.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/entity/Movies.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/entity/Users.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/mybatis/run/TestMyBatis.class" afterPath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/mybatis/run/TestMyBatis.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/neo4jConfiguration/neoConfig.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/repository/ActorRepository.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/repository/MovieRepository.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/yuzhaoLiu/project/service/neo4J/Neo4jDBCleaner.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/yuzhaoLiu/project/testNeo4j/Neo4jTest.class" afterPath="$PROJECT_DIR$/target/test-classes/yuzhaoLiu/project/testNeo4j/Neo4jTest.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/yuzhaoLiu/project/testNeo4j/PersistenceContext.class" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -63,7 +42,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Neo4jTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Neo4jTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/Neo4jTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
@@ -71,6 +50,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Java.gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Java.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -164,6 +153,7 @@
         <option value="$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/PersistenceContext.java" />
         <option value="$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/Neo4jTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/neo4jConfiguration/neoConfig.java" />
+        <option value="$PROJECT_DIR$/Java.gitignore" />
       </list>
     </option>
   </component>
@@ -241,6 +231,11 @@
             <path>
               <item name="graduationProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="graduationProject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduationProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduationProject" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="graduationProject" type="b2602c69:ProjectViewProjectNode" />
@@ -767,7 +762,7 @@
       <workItem from="1517792673829" duration="5661000" />
       <workItem from="1517888223333" duration="4465000" />
       <workItem from="1517922238807" duration="1974000" />
-      <workItem from="1517971063963" duration="2564000" />
+      <workItem from="1517971063963" duration="3654000" />
     </task>
     <servers />
   </component>
@@ -804,7 +799,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108246000" />
+    <option name="totallyTimeSpent" value="109336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -892,7 +887,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/statics/rightClick/rightClickContent.js" />
     <entry file="file://$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/ogmContext.java" />
     <entry file="jar://$USER_HOME$/.m2/graduationProjectRepo/org/springframework/data/spring-data-neo4j/4.1.0.RELEASE/spring-data-neo4j-4.1.0.RELEASE.jar!/org/springframework/data/neo4j/config/Neo4jConfiguration.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1131,13 +1125,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="64" column="18" lean-forward="false" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/yuzhaoLiu/project/neo4j/entity/Users.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -1248,6 +1235,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1536">
+          <caret line="64" column="11" lean-forward="true" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/yuzhaoLiu/project/testNeo4j/Neo4jTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1255,6 +1250,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Java.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
