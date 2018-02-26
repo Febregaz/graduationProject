@@ -27,7 +27,7 @@
     <mvc:resources mapping="/images/**" location="/WEB-INF/statics/images/" />
     <mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/" />
     <mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/" />
-    <mvc:resources mapping="/rightClick/**" location="/WEB-INF/statics/rightClick/" />
+    <mvc:resources mapping="/home/**" location="/WEB-INF/views/home" />
 
     <!-- 配置注解驱动 可以将request参数与绑定到controller参数上 -->
     <mvc:annotation-driven/>

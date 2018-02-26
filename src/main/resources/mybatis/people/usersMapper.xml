@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yuzhaoLiu.project.mybatis.mapper.people.usersMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
+
+    <select id="readUsers" resultType="Users">
+        SELECT * FROM t_user
+    </select>
+    <select id="userLogin" resultType="Users" parameterType="String">
+        SELECT * FROM t_user WHERE username = #{username}
+    </select>
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+</mapper>
