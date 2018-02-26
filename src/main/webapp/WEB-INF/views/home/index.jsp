@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -21,7 +22,7 @@
     <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
     <script type="text/javascript">
         function checkLogin() {
-            var msg = '<s:property value="#session.tu.username"/>';
+            var msg = '<c:out value="${userInfo.nickname}"></c:out>';
             if (!msg) {
                 var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
                 if (returnVal) {
@@ -99,12 +100,12 @@
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;color: #6699CC">
-                        <a href="topic_GetHotTopic.action">More&gt;&gt;</a>
+                        <a href="">More&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="hotContent">
                     <iframe width="740px" height="335px" frameborder="0" scrolling="no"
-                            src="test/print" ></iframe>
+                            src="topics/getTheHotestTopics" ></iframe>
                 </div>
             </div>
             <div class="fresh">
@@ -114,12 +115,12 @@
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;">
-                        <a href="topic_getAllTopic.action">More&gt;&gt;</a>
+                        <a href="">More&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="freshContent">
                     <iframe width="740px" height="335px" frameborder="0" scrolling="no"
-                            src="topic_getIndexFreshTopic.action"></iframe>
+                            src="topics/getTheNewestTopics"></iframe>
                 </div>
             </div>
             <div class="classics">
@@ -129,12 +130,12 @@
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;color: #6699CC">
-                        <a href="topic_GetNiceTopic.action">More&gt;&gt;</a>
+                        <a href="">More&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="classicsContent">
                     <iframe width="740px" height="335px" frameborder=0 scrolling="no"
-                            src="topic_getIndexNiceTopic.action"></iframe>
+                            src="topics/getTheNicestTopics"></iframe>
                 </div>
             </div>
         </div>
@@ -144,11 +145,11 @@
                 </div>
                 <div class="announcesContent">
                     <iframe width="200px" height="220px" frameborder=0 scrolling="no"
-                            src="anno_getIndexAnno.action"></iframe>
+                            src="announcements/getTheAnnouncements"></iframe>
                 </div>
             </div>
             <div class="newButton">
-                <form action="cate_new_getAll.action" method="get"
+                <form action="" method="get"
                       onsubmit="return checkLogin();">
                     <input type="submit" value="我要发帖">
                 </form>
@@ -163,7 +164,7 @@
                 </div>
                 <div class="announcesContent">
                     <iframe width="200px" style="min-height: 220px;" frameborder=0
-                            scrolling="no" src="help_getIndexHelp.action"></iframe>
+                            scrolling="no" src="helps/getTheHelps"></iframe>
                 </div>
             </div>
             <div class="friendLink">
@@ -171,7 +172,7 @@
                 </div>
                 <div class="announcesContent">
                     <iframe width="200px" height="170px" frameborder=0 scrolling="no"
-                            src="indexFriend.jsp"> </iframe>
+                            src="NC-JSP/home/indexFriend.jsp"> </iframe>
                 </div>
             </div>
         </div>

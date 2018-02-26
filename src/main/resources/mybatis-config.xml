@@ -11,14 +11,22 @@
         <setting name="defaultExecutorType" value="REUSE" />
     </settings>
     <typeAliases>
-        <typeAlias alias="User" type="yuzhaoLiu.project.mybatis.entity.User"/>
+        <typeAlias alias="User" type="yuzhaoLiu.project.mybatis.entity.people.User"/>
+        <typeAlias alias="Users" type="yuzhaoLiu.project.mybatis.entity.people.Users"/>
+        <typeAlias alias="Grades" type="yuzhaoLiu.project.mybatis.entity.people.Grades"/>
+        <typeAlias alias="Topics" type="yuzhaoLiu.project.mybatis.entity.topic.content.Topics"/>
+        <typeAlias alias="Comments" type="yuzhaoLiu.project.mybatis.entity.topic.content.Comments"/>
+        <typeAlias alias="Categorys" type="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys"/>
+        <typeAlias alias="Types" type="yuzhaoLiu.project.mybatis.entity.topic.category.Types"/>
+        <typeAlias alias="Announces" type="yuzhaoLiu.project.mybatis.entity.announcement.Announces"/>
+        <typeAlias alias="Helps" type="yuzhaoLiu.project.mybatis.entity.help.Helps"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="jdbc"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/graduationProject"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/gp"/>
                 <property name="username" value="root"/>
                 <property name="password" value="617130"/>
             </dataSource>
@@ -26,5 +34,13 @@
     </environments>
     <mappers>
         <mapper resource="mybatis/UserMapper.xml" />
+        <mapper resource="mybatis/people/usersMapper.xml" />
+        <mapper resource="mybatis/people/gradesMapper.xml" />
+        <mapper resource="mybatis/topic/content/topicsMapper.xml" />
+        <mapper resource="mybatis/topic/content/commentsMapper.xml" />
+        <mapper resource="mybatis/topic/category/categorysMapper.xml" />
+        <mapper resource="mybatis/topic/category/typesMapper.xml" />
+        <mapper resource="mybatis/announcement/announcementsMapper.xml" />
+        <mapper resource="mybatis/help/helpsMapper.xml" />
     </mappers>
 </configuration>

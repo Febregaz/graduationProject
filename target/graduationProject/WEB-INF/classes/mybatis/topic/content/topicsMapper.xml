@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yuzhaoLiu.project.mybatis.mapper.topic.content.topicsMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
+
+    <resultMap id="topicsBean" type="yuzhaoLiu.project.mybatis.entity.topic.content.Topics">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="comment_count" property="countComment" />
+        <result column="nice_topic" property="niceTopic" />
+        <result column="topic_time" property="topicTime" />
+        <result column="integral" property="integral" />
+        <result column="status" property="status" />
+
+        <association property="topicsType" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Types">
+            <id column="idd" property="idd" />
+            <result column="name" property="name" />
+            <result column="count_topics" property="countTopics" />
+            <result column="count_comments" property="countComments" />
+            <association property="typesCategory" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys">
+                <id column="id" property="id" />
+                <result column="namee" property="namee" />
+                <result column="count_topics" property="countTopics" />
+                <result column="count_comments" property="countComments" />
+            </association>
+        </association>
+        <association property="topicsUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
+            <result column="nickname" property="nickname" /><!--需要哪个字段的值就写哪个字段，不用全部写出来-->
+        </association>
+    </resultMap>
+
+    <select id="readTopics" resultType="Topics">
+        SELECT * FROM t_topic
+    </select>
+    <select id="getTheNewestTopics" resultMap="topicsBean">
+        SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d ORDER BY  a.id DESC LIMIT 10
+    </select>
+    <select id="getTheHotestTopics" resultMap="topicsBean">
+        SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.comment_count >= 3 ORDER BY a.comment_count DESC LIMIT 10
+    </select>
+    <select id="getTheNicestTopics" resultMap="topicsBean">
+        SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.nice_topic = 1 ORDER BY a.id DESC LIMIT 10
+    </select>
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+</mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java"
-	import="java.util.*,yuzhaoLiu.project.entity.Users,java.io.*" pageEncoding="UTF-8"%>
+         import="java.util.*,yuzhaoLiu.project.neo4j.entity.Actor,java.io.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -132,7 +133,7 @@ a img {
 </style>
 <script type="text/javascript">
 	function checkLogin() {
-		var msg = '<s:property value="#session.tu.username"/>';
+		var msg = '<c:out value="${userInfo.nickname}"></c:out>';
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
@@ -202,27 +203,25 @@ a img {
 				onClick="toDesktop('http://giun.vxg197.10000net.cn','DS-Java论坛')"
 				name="btn" id="btn" class="font-color">将本站放到桌面</a>
 		</div>
-		<s:if test="#session.tu==null">
+		<c:if test="${userInfo==null}">
 			<div
 				style="width: 300px;height: 30px;line-height: 30px;float: left;text-align: right;font-weight: bold;font-size: 16px;font-family: 微软雅黑 /* background-color: red; */"
 				id="loginRegisterText">
-				<a href="login.jsp">登录</a>&nbsp;&nbsp;<a href="register.jsp">注册</a>
+				<a href="NC-JSP/home/login.jsp">登录</a>&nbsp;&nbsp;<a href="register.jsp">注册</a>
 			</div>
-		</s:if>
-		<s:else>
+		</c:if>
+		<c:if test="${userInfo!=null}">
 			<div
 				style="width: 300px;height: 30px;line-height: 30px;float: left;text-align: right;font-weight: bold;font-size: 16px;font-family: 微软雅黑/* background-color: red; */">
-				<font color="#6699CC"><s:property
-						value="#session.tu.nickname" /> </font>
-				<s:if test="#session.tu.clock==0"></s:if>
-				<s:else>
-					<sup style="color: red;font-size: 14px;"><s:property
-							value="#session.tu.clock" /> </sup>
-				</s:else>
-				[ <a href="user_Logout.action" onclick="return logout()"
+				<font color="#6699CC"><c:out value="${userInfo.nickname}"></c:out> </font>
+				<c:if test="${userInfo.clock==0}"></c:if>
+				<c:if test="${userInfo.clock>0}">
+					<sup style="color: red;font-size: 14px;"><c:out value="${userInfo.clock}"></c:out></sup>
+				</c:if>
+				[ <a href="users/usersLogout" onclick="return logout()"
 					style="color:red">安全退出</a> ]
 			</div>
-		</s:else>
+		</c:if>
 		<div
 			style="width: 120px;height: 30px;line-height: 30px;float: left;font-weight: bold;text-align: center;font-size: 16px;font-family: 微软雅黑">
 			<a href="user_GoHome.action" onclick="return checkLogin()">个人中心</a>
@@ -234,7 +233,7 @@ a img {
 </div>
 <div id="nav" align="center">
 	<ul id="menuNav">
-		<li><a href="index.jsp">首页</a>
+		<li><a href="NC-JSP/home/index.jsp">首页</a>
 		</li>
 		<li><a href="topic_getAllTopic.action">帖子</a>
 			<ul>
