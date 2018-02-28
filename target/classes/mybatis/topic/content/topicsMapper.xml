@@ -14,6 +14,7 @@
         <result column="integral" property="integral" />
         <result column="status" property="status" />
 
+        <!--property与实体类中的对应字段名必须相同-->
         <association property="topicsType" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Types">
             <id column="idd" property="idd" />
             <result column="name" property="name" />

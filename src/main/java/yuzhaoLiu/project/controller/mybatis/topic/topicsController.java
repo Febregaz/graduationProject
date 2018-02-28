@@ -26,6 +26,9 @@ public class topicsController extends topController {
         return "topic/indexFreshTopic";
     }
 
+    /*
+    obtain the 10 hotest result from t_topic
+    */
     @RequestMapping("/getTheHotestTopics")
     public String getTheHotestTopics(HttpServletRequest request){
         List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheHotestTopics();
@@ -35,10 +38,13 @@ public class topicsController extends topController {
         return "topic/indexHotTopic";
     }
 
+    /*
+    obtain the 10 nicest result from t_topic
+    */
     @RequestMapping("/getTheNicestTopics")
     public String getTheNicestTopics(HttpServletRequest request){
         List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNicestTopics();
-        //sqlUtil.closeTheSqlSession();
+        //sqlUtil.closeTheSqlSession();执行关闭的话*Mapper.xml在执行sql操作的时候有时会报错
         request.setAttribute("niceTopicsList",topicsList);
         logger.info("I am good and in getTheNicestTopics");
         return "topic/indexNiceTopic";
@@ -46,8 +52,8 @@ public class topicsController extends topController {
 
     //TODO:帖子详情页功能未实现.
     @RequestMapping("/toTheDetailPage")
-    public String toTheDetailPage(int id){
-
+    public String toTheDetailPage(int topicId){
+        logger.info("topicId:"+topicId);
         return "";
     }
 

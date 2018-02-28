@@ -53,7 +53,7 @@
 								target="_top" style="font-size: 14px;"><c:out value="${hot.topicsType.typesCategory.namee}"></c:out> </a>-<a
 							href="type_goType.action?type.id=<c:out value="${hot}"></c:out>"
 							target="_top" style="font-size: 14px;"><c:out value="${hot.topicsType.name}"></c:out> </a>||&nbsp;<a
-							href="topic_goTopic.action?topic.id=<c:out value="${hot}"></c:out>"
+							href="toTheDetailPage?topicId=<c:out value="${hot.id}"></c:out>"
 							target="_top" class="topicTitle"><c:out value="${hot.title}"></c:out> </a>
 					</div>
 					<div style="float: left;font-size: 12px;color: #4C9ED9">
