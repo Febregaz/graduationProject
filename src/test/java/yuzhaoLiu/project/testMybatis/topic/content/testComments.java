@@ -25,7 +25,7 @@ public class testComments {
             commentsMapper usersMapper = sqlSession.getMapper(commentsMapper.class);
             List<Comments> commentsList = usersMapper.readComments();
             for(Comments c : commentsList){
-                System.out.println("topic:"+c.getContent());
+                System.out.println("topic:"+c.getFloor());
             }
             logger.info("display successfully !");
         } finally {
