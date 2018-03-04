@@ -28,7 +28,13 @@
             </association>
         </association>
         <association property="topicsUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
+            <result column="userId" property="userId" />
             <result column="nickname" property="nickname" /><!--需要哪个字段的值就写哪个字段，不用全部写出来-->
+            <result column="picture" property="picture"/>
+            <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades">
+                <id column="gradeId" property="gradeId" />
+                <result column="honor" property="honor"></result>
+            </association>
         </association>
     </resultMap>
 
@@ -43,6 +49,9 @@
     </select>
     <select id="getTheNicestTopics" resultMap="topicsBean">
         SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.nice_topic = 1 ORDER BY a.id DESC LIMIT 10
+    </select>
+    <select id="getTheTopicById" parameterType="int" resultMap="topicsBean">
+        SELECT a.*,b.*,c.*,d.*,e.* FROM t_topic a,t_type b,t_category c,t_user d,t_grade e WHERE a.id = #{id}
     </select>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

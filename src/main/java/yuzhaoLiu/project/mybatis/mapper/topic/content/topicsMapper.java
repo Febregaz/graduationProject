@@ -16,8 +16,19 @@ public interface topicsMapper{
     */
     public List<Topics> getTheNewestTopics();
 
+    /*
+     * return ten hot data from t_topic
+     */
     public List<Topics> getTheHotestTopics();
 
+    /*
+     * return ten nicest data from t_topic
+     */
     public List<Topics> getTheNicestTopics();
+
+    /*
+    * search the topic by id
+    * */
+    public Topics getTheTopicById(int id);
 
 }

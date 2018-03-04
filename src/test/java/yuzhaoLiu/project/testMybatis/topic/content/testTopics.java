@@ -5,7 +5,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
+import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
+import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
 import yuzhaoLiu.project.mybatis.mapper.topic.content.topicsMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
 import yuzhaoLiu.project.mybatis.util.sqlUtil;
@@ -79,6 +81,13 @@ public class testTopics {
             System.out.println("nickname:"+t.getTopicsUser().getNickname());
         }
         sqlUtil.closeTheSqlSession();
+    }
+
+    @Test
+    public void getTheTopicById(){
+        Topics topics = getTopicsMapper.getTheTopicsMapper().getTheTopicById(8);
+        topics.setContent(topics.getContent().replace("<p>",""));
+        logger.info("topic:"+topics.getContent());
     }
 }
 /*SELECT
