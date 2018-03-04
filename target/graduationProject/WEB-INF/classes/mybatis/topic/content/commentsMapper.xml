@@ -4,8 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
 
+    <resultMap id="commentBean" type="yuzhaoLiu.project.mybatis.entity.topic.content.Comments">
+        <id column="id" property="id" />
+        <result column="content" property="content"/>
+        <result column="floor" property="floor"/>
+        <result column="comment_time" property="commentTime"/>
+        <result column="integral" property="integral"/>
+        <result column="status" property="status"/>
+        <association property="commentsUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
+            <id column="userId" property="userId" />
+            <result column="username" property="username"></result>
+            <result column="nickname" property="nickname"></result>
+            <result column="picture" property="picture"></result>
+            <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades">
+                <id column="gradeId" property="gradeId" />
+                <result column="honor" property="honor"></result>
+            </association>
+        </association>
+    </resultMap>
+
     <select id="readComments" resultType="Comments">
         SELECT * FROM t_comment
+    </select>
+    <select id="getTheCommentsByTopicId" parameterType="int" resultMap="commentBean">
+        SELECT a.*,b.*,c.* FROM t_comment a,t_user b,t_grade c WHERE a.comments_topic_id = #{id}
     </select>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

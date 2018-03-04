@@ -16,7 +16,7 @@ import java.util.Set;
  * 
  */
 public class Users {
-	private int id;
+	private int userId;
 	private String username;
 	private String password;
 	private String nickname; // 昵称
@@ -43,11 +43,11 @@ public class Users {
 	private Set<News> userCommentNews = new HashSet<News>();
 
 	public int getId() {
-		return id;
+		return userId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.userId = id;
 	}
 
 	public String getUsername() {
