@@ -7,6 +7,7 @@ import org.junit.Test;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
+import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import java.util.List;
 
@@ -30,6 +31,15 @@ public class testComments {
             logger.info("display successfully !");
         } finally {
             sqlSession.close();
+        }
+    }
+
+    @Test
+    public void getCommentsByTopicId(){
+        commentsMapper commentsMapper = sqlUtil.getSql().getMapper(commentsMapper.class);
+        List<Comments> commentsList = commentsMapper.getTheCommentsByTopicId(8);
+        for(Comments c : commentsList){
+            logger.info("comments:"+c.getCommentTime());
         }
     }
 }

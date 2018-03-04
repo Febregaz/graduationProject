@@ -53,7 +53,7 @@ a:hover {
 								target="_top" style="font-size: 14px;"><c:out value="${test.topicsType.typesCategory.namee}"></c:out> </a>-<a
 							href="type_goType.action?type.id=<c:out value="${test}"></c:out>"
 							target="_top" style="font-size: 14px;"><c:out value="${test.topicsType.name}"></c:out> </a>||&nbsp;<a
-							href="toTheDetailPage?id=<c:out value="${test.id}"></c:out>"
+							href="toTheDetailPage?topicId=<c:out value="${test.id}"></c:out>&&nowPage=1"
 							target="_top" class="topicTitle"><c:out value="${test.title}"></c:out> </a>
 					</div>
 					<div style="float: left;font-size: 12px;color: #4C9ED9">

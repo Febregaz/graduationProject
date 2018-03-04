@@ -8,4 +8,6 @@ public interface commentsMapper {
 
     public List<Comments> readComments();
 
+    public List<Comments> getTheCommentsByTopicId(int id);
+
 }

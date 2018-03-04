@@ -8,15 +8,15 @@ package yuzhaoLiu.project.mybatis.entity.people;
  * @email phnlove@163.com
  */
 public class Grades {
-	private int id;
+	private int gradeId;
 	private String honor;
 
 	public int getId() {
-		return id;
+		return gradeId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.gradeId = id;
 	}
 
 	public String getHonor() {

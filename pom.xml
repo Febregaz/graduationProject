@@ -170,6 +170,14 @@
 
     <!--redis-->
 
+    <!-- https://mvnrepository.com/artifact/cn.songxinqiang/com.baidu.ueditor -->
+    <dependency>
+      <groupId>cn.songxinqiang</groupId>
+      <artifactId>com.baidu.ueditor</artifactId>
+      <version>1.1.2-offical</version>
+    </dependency>
+
+
   </dependencies>
   <build>
     <finalName>graduationProject</finalName>
