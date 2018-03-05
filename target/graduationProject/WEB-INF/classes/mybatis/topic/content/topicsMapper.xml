@@ -54,5 +54,9 @@
         SELECT a.*,b.*,c.*,d.*,e.* FROM t_topic a,t_type b,t_category c,t_user d,t_grade e WHERE a.id = #{id}
     </select>
 
+    <update id="updateTopicComment">
+        UPDATE t_topic a SET a.comment_count = #{1} WHERE a.id = #{0}
+    </update>
+
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

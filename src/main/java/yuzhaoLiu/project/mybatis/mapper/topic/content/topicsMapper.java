@@ -31,4 +31,9 @@ public interface topicsMapper{
     * */
     public Topics getTheTopicById(int id);
 
+    /*
+    * update the topic's comment+1
+    * */
+    public void updateTopicComment(int id , int commentCount);
+
 }

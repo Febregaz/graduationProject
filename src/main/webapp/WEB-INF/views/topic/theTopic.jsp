@@ -359,18 +359,18 @@
 				</div>
 				<div style="float: left;line-height:24px;">
 					&nbsp;&gt;&nbsp;<a href="./index.jsp">论坛</a>&nbsp;&gt;&nbsp;<a
-						href="cate_goCate.action?category.id=<c:out value="${topic.topicsType.typesCategory.id}" />"><c:out value="${topic.topicsType.typesCategory.namee}"></c:out> </a>&nbsp;&gt;&nbsp;<a
+						href="cate_goCate.action?category.id=<c:out value="${sessionScope.topic.topicsType.typesCategory.id}" />"><c:out value="${sessionScope.topic.topicsType.typesCategory.namee}"></c:out> </a>&nbsp;&gt;&nbsp;<a
 						href="type_goType.action?type.id=<c:out
-								value="${topic.topicsType.id}" />"><c:out value="${topic.topicsType.name}"></c:out> </a>&nbsp;&gt;&nbsp;
-					<c:out value="${topic.title}"></c:out>
+								value="${sessionScope.topic.topicsType.id}" />"><c:out value="${sessionScope.topic.topicsType.name}"></c:out> </a>&nbsp;&gt;&nbsp;
+					<c:out value="${sessionScope.topic.title}"></c:out>
 				</div>
 			</div>
 			<div class="editMenu">
-				<c:if test="topic.status==0">
+				<c:if test="${sessionScope.topic.status==0}">
 					<input onclick="goEndTopic();" type="button" value="结帖"
 						class="butt" style="width: 60px;" />
 				</c:if>
-				<c:if test="topic.status==1"></c:if>
+				<c:if test="${sessionScope.topic.status==1}"></c:if>
 				<input type="button" value="发帖" onclick="checkNewTop()" class="butt"
 					style="width: 60px;" /> <input type="button" value="回复"
 					class="butt" style="width: 60px;" onclick="goDiv('newComment')" />
@@ -388,10 +388,10 @@
 							<button disabled="disabled" style="width: 80px;">上一页</button>
 							<button disabled="disabled">1</button>
 							<a
-								href="toTheDetailPage?topicId=<c:out value="topic.id" />&&nowPage=2"><button>2</button>
+								href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=2"><button>2</button>
 							</a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
+								href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
 									style="width: 80px;">下一页</button> </a>
 						</c:if>
 						<c:if test="${page.currentPage==2}">
@@ -511,11 +511,11 @@
 			<div class="titleStyle" align="left">
 				<div style="width:800px;float: left;font-size: 13px; ">
 					&nbsp; <font style="font-size: 13px;color: white"><c:if
-							test="${topic.niceTopic==1}">[<font color="red">精品</font>]</c:if> <c:if test="${topic.niceTopic==0}"></c:if>
-						<c:if test="${topic.status==0}">[未结帖]</c:if> <c:if test="${topic.status==1}">[已结帖]</c:if> </font>
-					<c:out value="${topic.title}"/>
+							test="${sessionScope.topic.niceTopic==1}">[<font color="red">精品</font>]</c:if> <c:if test="${sessionScope.topic.niceTopic==0}"></c:if>
+						<c:if test="${sessionScope.topic.status==0}">[未结帖]</c:if> <c:if test="${sessionScope.topic.status==1}">[已结帖]</c:if> </font>
+					<c:out value="${sessionScope.topic.title}"/>
 					<font style="font-size: 13px;color: white">[积分: <c:out
-							value="${topic.integral}" /> 分]</font>
+							value="${sessionScope.topic.integral}" /> 分]</font>
 				</div>
 				<div style="width:140px;float: left;height: 40px;line-height: 40px;"
 					align="center">
@@ -525,10 +525,10 @@
 						<option value="0">不显示被删除回复</option>
 						<option value="1">显示所有回复</option>
 						<option value="2">只看楼主</option>
-						<c:if test="${topic.status==1}">
+						<c:if test="${sessionScope.topic.status==1}">
 							<option value="3">显示得分回复</option>
 						</c:if>
-						<c:if test="${topic.status==0}"></c:if>
+						<c:if test="${sessionScope.topic.status==0}"></c:if>
 					</select>
 					<script type="text/javascript">
 						var obj = document.getElementById("selectComment"); 
@@ -538,24 +538,24 @@
 				</div>
 			</div>
 			<div class="topicStyle">
-				<input id="topicId" value="<c:out value="${topic.id}" />"
+				<input id="topicId" value="<c:out value="${sessionScope.topic.id}" />"
 					style="display: none;"> <input id="topicUserId"
-					value="<c:out value="${topic.topicsUser.id}" />"
+					value="<c:out value="${sessionScope.topic.topicsUser.id}" />"
 					style="display: none;"> <input id="currentUserId"
 					value="<c:out value="${userInfo.id}" />"
 					style="display: none;">
 				<div class="userInfo">
 					<div style="height:180px;" align="center">
 						<img width="120px;" height="160px;" style="padding-top: 20px;"
-							src="<c:out value="${topic.topicsUser.picture}"/>">
+							src="<c:out value="${sessionScope.topic.topicsUser.picture}"/>">
 					</div>
 					<div style="height:80px;padding-top: 20px" align="center">
 						<a
 							href="user_GoUser.action"><c:out
-								value="${topic.topicsUser.nickname}" /> </a> <br />
-						<c:out value="${topic.topicsUser.usersGrade.id}" />
+								value="${sessionScope.topic.topicsUser.nickname}" /> </a> <br />
+						<c:out value="${sessionScope.topic.topicsUser.usersGrade.id}" />
 						:
-						<c:out value="${topic.topicsUser.usersGrade.honor}" />
+						<c:out value="${sessionScope.topic.topicsUser.usersGrade.honor}" />
 					</div>
 				</div>
 				<div
@@ -565,7 +565,7 @@
 							style="height: 28px;line-height:28px;font-size:13px;width:440px;text-align: left;float: left;border-bottom:1px solid  #C2D5E3;"
 							align="left">
 							&nbsp;&nbsp;发表于：
-							<fmt:formatDate value="${topic.topicTime}" type="date"/>
+							<fmt:formatDate value="${sessionScope.topic.topicTime}" type="date"/>
 						</div>
 						<div
 							style="height: 28px;line-height:28px;font-size:14px;width:320px;text-align: right;float: left;border-bottom:1px solid  #C2D5E3;"
@@ -575,7 +575,7 @@
 						style="width: 766px;min-height:270px;background-color: #F8F8F8;float: left;">
 						<div
 							style="text-align: left;width: 728px;float: left;padding:10px 20px 20px 20px;word-break: break-all;">
-							<c:out value="${topic.content}" />
+							<c:out value="${sessionScope.topic.content}" />
 						</div>
 					</div>
 				</div>
@@ -644,11 +644,11 @@
 				</c:forEach>
 			</div>
 			<div class="editMenu">
-				<c:if test="topic.status==0">
+				<c:if test="${sessionScope.topic.status==0}">
 					<input onclick="goEndTopic();" type="button" value="结帖"
 						class="butt" style="width: 60px;" />
 				</c:if>
-				<c:if test="topic.status==1"></c:if>
+				<c:if test="${sessionScope.topic.status==1}"></c:if>
 				<input type="button" value="发帖" onclick="checkNewTop()" class="butt"
 					style="width: 60px;" /> <input type="button" value="回复"
 					class="butt" style="width: 60px;" onclick="goDiv('newComment')" />
@@ -666,10 +666,10 @@
                         <button disabled="disabled" style="width: 80px;">上一页</button>
                         <button disabled="disabled">1</button>
                         <a
-                                href="toTheDetailPage?topicId=<c:out value="topic.id" />&&nowPage=2"><button>2</button>
+                                href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=2"><button>2</button>
                         </a>
                         <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
+                                href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
                                 style="width: 80px;">下一页</button> </a>
                     </c:if>
                     <c:if test="${page.currentPage==2}">
@@ -788,7 +788,7 @@
 			</div>
 			<div class="newComment" id="newComment">
 
-				<form action="comment_newComment.action" method="post"
+				<form action="postedComment" method="post"
 					style="float:left;">
 					<input name="topic.id" value="<c:out value="${topic.id}" />"
 						style="display: none;"> <input name="pageBean.allRecords"
@@ -798,15 +798,15 @@
 						style="display: none;">
 					<div class="userInfo">
 						<%
-							Users user = (Users) request.getAttribute("userInfo");
+							Users user = (Users) session.getAttribute("userInfo");
 							if (user != null) {
 						%>
 						<div style="height:180px;" align="center">
 							<img width="120px;" height="160px;" style="padding-top: 20px;"
-								src="<c:out value="${userInfo.picture}"/>">
+								src="<c:out value="${sessionScope.userInfo.picture}"/>">
 						</div>
 						<div style="height:80px;padding-top: 20px" align="center">
-							<c:out value="${userInfo.nickname}" />
+							<c:out value="${sessionScope.userInfo.nickname}" />
 						</div>
 						<%
 							} else {
@@ -817,7 +817,7 @@
 								style="padding-top: 20px;"></img>
 						</div>
 						<div style="height:80px;padding-top: 20px" align="center">
-							游客(未<a href="./login.jsp" style="color: red">登录</a>)
+							游客(未<a href="NC-JSP/home/login.jsp" style="color: red">登录</a>)
 						</div>
 						<%
 							}
@@ -825,7 +825,7 @@
 					</div>
 					<div style="float:left;width:740px;">
 						<textarea id="content" style="display: none;"
-							name="comment.content"></textarea>
+							name="commentContent" />"></textarea>
 						<script id="container" type="text/plain"></script>
 					</div>
 					<script type="text/javascript">

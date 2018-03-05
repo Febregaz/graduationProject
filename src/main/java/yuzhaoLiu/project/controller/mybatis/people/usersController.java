@@ -8,6 +8,7 @@ import yuzhaoLiu.project.mybatis.mapper.people.usersMapper;
 import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/users")
@@ -18,24 +19,26 @@ public class usersController extends topController {
         logger.info("Logining..."+username+" "+password);
         usersMapper usersMapper = sqlUtil.getSql().getMapper(usersMapper.class);
         Users users = usersMapper.userLogin(username);
+        HttpSession session = request.getSession();
         if(users.getPassword().equals(password)){
             if(users.getStatus()==1){
                 String message = "该账号目前处于被禁用状态!无法进行此操作！";
-                request.setAttribute("tipMessage", message);
+                session.setAttribute("tipMessage", message);
                 return "home/error";
             }
-            request.setAttribute("userInfo",users);
+            session.setAttribute("userInfo",users);
             logger.info("Where");
             return "home/index";
         }
         String message = "用户名或密码错误！";
-        request.setAttribute("tipMessage", message);
+        session.setAttribute("tipMessage", message);
         return "home/error";
     }
 
     @RequestMapping("/usersLogout")
     public String usersLogout(HttpServletRequest request){
-        request.removeAttribute("userInfo");
+        HttpSession session = request.getSession();
+        session.removeAttribute("userInfo");
         return "home/login";
     }
 }

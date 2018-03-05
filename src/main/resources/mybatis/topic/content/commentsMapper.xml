@@ -21,6 +21,9 @@
                 <result column="honor" property="honor"></result>
             </association>
         </association>
+        <association property="commentsTopic" javaType="yuzhaoLiu.project.mybatis.entity.topic.content.Topics">
+            <id column="id" property="id" />
+        </association>
     </resultMap>
 
     <select id="readComments" resultType="Comments">
@@ -29,6 +32,10 @@
     <select id="getTheCommentsByTopicId" parameterType="int" resultMap="commentBean">
         SELECT a.*,b.*,c.* FROM t_comment a,t_user b,t_grade c WHERE a.comments_topic_id = #{id}
     </select>
+
+    <insert id="addTheComment" parameterType="Comments" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_comment(content , floor , integral , status , comment_time , comments_user_id , comments_topic_id) VALUES (#{content} , #{floor} , #{integral} , #{status} , #{commentTime} , #{commentsUser.userId} , #{commentsTopic.id})
+    </insert>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

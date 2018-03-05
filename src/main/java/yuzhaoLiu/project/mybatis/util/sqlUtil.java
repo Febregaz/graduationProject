@@ -20,6 +20,10 @@ public class sqlUtil {
         return sqlSession;
     }
 
+    public static void sqlCommit(){
+        sqlSession.commit();
+    }
+
     public static void closeTheSqlSession(){
         sqlSession.close();
     }

@@ -11,6 +11,7 @@ import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
 import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.awt.image.TileObserver;
 import java.util.List;
 
@@ -62,13 +63,14 @@ public class topicsController extends topController {
     public String toTheDetailPage(int topicId , int nowPage , HttpServletRequest request){
         logger.info("id+nowpage:"+topicId+" "+nowPage);
         Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
-        List<Comments> commentsList = getCommentsMapper.getTheTopicsMapper().getTheCommentsByTopicId(topicId);
+        List<Comments> commentsList = getCommentsMapper.getTheCommentsMapper().getTheCommentsByTopicId(topicId);
         nowPage = (nowPage == 0) ? 1 : nowPage;
         this.pageBean = this.QueryCommentsForPage(10, nowPage, commentsList);
         this.listComment = pageBean.getListComments();
         topic.setContent(ignoreTopicHtml(topic.getContent()));;/*忽略<p></p>*/
         listComment = ignoreListCommentHtml(listComment);/*忽略<p></p>*/
-        request.setAttribute("topic" , topic);
+        HttpSession session = request.getSession();
+        session.setAttribute("topic" , topic);
         request.setAttribute("nowPage" , nowPage);
         request.setAttribute("page" , pageBean);
         request.setAttribute("listComment" , listComment);

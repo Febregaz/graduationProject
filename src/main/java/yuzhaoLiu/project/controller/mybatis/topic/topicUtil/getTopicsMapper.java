@@ -12,4 +12,8 @@ public class getTopicsMapper {
         return topicsMapper;
     }
 
+    public static void sqlCommit(){
+        sqlUtil.sqlCommit();
+    }
+
 }

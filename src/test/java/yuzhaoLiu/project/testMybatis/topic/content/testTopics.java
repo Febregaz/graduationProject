@@ -85,9 +85,21 @@ public class testTopics {
 
     @Test
     public void getTheTopicById(){
+        /*SqlSession sqlSession = sqlSessionFactory.openSession();
+        try{
+            topicsMapper topicsMapper = sqlSession.getMapper(topicsMapper.class);
+            Topics topic = topicsMapper.getTheTopicById(8);
+            topic.setCountComment(35);
+            topicsMapper.updateTopicComment(topic.getId() , topic.getCountComment());
+            sqlSession.commit();
+        }
+        finally {
+            sqlSession.close();
+        }*/
         Topics topics = getTopicsMapper.getTheTopicsMapper().getTheTopicById(8);
-        topics.setContent(topics.getContent().replace("<p>",""));
-        logger.info("topic:"+topics.getContent());
+        topics.setCountComment(34);
+        getTopicsMapper.getTheTopicsMapper().updateTopicComment(topics.getId() , topics.getCountComment());
+        getTopicsMapper.sqlCommit();
     }
 }
 /*SELECT

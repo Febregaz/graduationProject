@@ -213,10 +213,10 @@ a img {
 		<c:if test="${userInfo!=null}">
 			<div
 				style="width: 300px;height: 30px;line-height: 30px;float: left;text-align: right;font-weight: bold;font-size: 16px;font-family: 微软雅黑/* background-color: red; */">
-				<font color="#6699CC"><c:out value="${userInfo.nickname}"></c:out> </font>
-				<c:if test="${userInfo.clock==0}"></c:if>
-				<c:if test="${userInfo.clock>0}">
-					<sup style="color: red;font-size: 14px;"><c:out value="${userInfo.clock}"></c:out></sup>
+				<font color="#6699CC"><c:out value="${sessionScope.userInfo.nickname}"></c:out> </font>
+				<c:if test="${sessionScope.userInfo.clock==0}"></c:if>
+				<c:if test="${sessionScope.userInfo.clock>0}">
+					<sup style="color: red;font-size: 14px;"><c:out value="${sessionScope.userInfo.clock}"></c:out></sup>
 				</c:if>
 				[ <a href="users/usersLogout" onclick="return logout()"
 					style="color:red">安全退出</a> ]

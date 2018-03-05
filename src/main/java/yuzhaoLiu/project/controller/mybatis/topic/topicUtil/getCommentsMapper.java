@@ -6,8 +6,12 @@ import yuzhaoLiu.project.mybatis.util.sqlUtil;
 public class getCommentsMapper {
     public static commentsMapper commentsMapper;
 
-    public static commentsMapper getTheTopicsMapper(){
+    public static commentsMapper getTheCommentsMapper(){
         commentsMapper = sqlUtil.getSql().getMapper(commentsMapper.class);
         return commentsMapper;
+    }
+
+    public static void sqlCommit(){
+        sqlUtil.sqlCommit();
     }
 }
