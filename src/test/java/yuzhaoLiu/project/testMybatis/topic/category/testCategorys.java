@@ -25,7 +25,7 @@ public class testCategorys {
             categorysMapper categorysMapper = sqlSession.getMapper(categorysMapper.class);
             List<Categorys> categorysList = categorysMapper.readCategorys();
             for(Categorys c : categorysList){
-                System.out.println("category:"+c.getNamee());
+                System.out.println("category:"+c.getId());
             }
             logger.info("display successfully !");
         } finally {

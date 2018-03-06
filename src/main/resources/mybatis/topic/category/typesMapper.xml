@@ -4,8 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yuzhaoLiu.project.mybatis.mapper.topic.category.typesMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
 
+    <resultMap id="typeBean" type="yuzhaoLiu.project.mybatis.entity.topic.category.Types">
+        <id column="idd" property="idd"></id>
+        <result column="name" property="name" />
+        <result column="count_topics" property="countTopics" />
+        <result column="count_comments" property="countComments" />
+        <association property="typesCategory" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys">
+            <id column="id" property="id" />
+            <result column="namee" property="namee" />
+            <result column="count_topics" property="countTopics" />
+            <result column="count_comments" property="countComments" />
+        </association>
+    </resultMap>
+
     <select id="readTypes" resultType="Types">
         SELECT * FROM t_type
+    </select>
+    <select id="getTypeById" resultMap="typeBean">
+        SELECT * FROM t_type a , t_category b WHERE a.idd = #{id}
+    </select>
+    <select id="getAllTypesByCategoryId" parameterType="int" resultMap="typeBean">
+        SELECT * FROM t_type a , t_category b WHERE a.types_category_id = #{id}
     </select>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

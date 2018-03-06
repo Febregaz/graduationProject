@@ -7,6 +7,7 @@ import org.junit.Test;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getCommentsMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.methodForToTheDetailPage;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
@@ -29,8 +30,9 @@ public class testComments {
         try {
             commentsMapper usersMapper = sqlSession.getMapper(commentsMapper.class);
             List<Comments> commentsList = usersMapper.readComments();
+            commentsList = methodForToTheDetailPage.ignoreListCommentHtml(commentsList);
             for(Comments c : commentsList){
-                System.out.println("topic:"+c.getFloor());
+                System.out.println("topic:"+c.getContent());
             }
             logger.info("display successfully !");
         } finally {

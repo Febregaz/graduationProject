@@ -8,4 +8,8 @@ public interface typesMapper {
 
     public List<Types> readTypes();
 
+    public List<Types> getAllTypesByCategoryId(int id);
+
+    public Types getTypeById(int id);
+
 }

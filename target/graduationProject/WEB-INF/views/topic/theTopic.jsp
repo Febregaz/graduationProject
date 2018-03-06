@@ -55,7 +55,7 @@
 		}, 'slow');
 	};
 	function validComment() {
-		var msg = '<c:out value="${userInfo.nickname}"></c:out>';
+		var msg = '<c:out value="${sessionScope.userInfo.nickname}"></c:out>';
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
@@ -117,15 +117,15 @@
 		window.location.href = "topic_goTopic.action?comFlag="
 					+ selectValue+"&&topic.id="+topic_id;
 	}
-		function checkNewTop() {
-		var msg = '<c:out value="${userInfo.nickname}"></c:out>';
+	function checkNewTop() {
+		var msg = '<c:out value="${sessionScope.userInfo.nickname}"></c:out>';
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
 				location.href = 'login.jsp';
 			}
 		} else {
-			window.location.href = 'cate_new_getAll.action';
+			window.location.href = 'category/getAllCategory';
 		}
 	}
 </script>
@@ -825,7 +825,7 @@
 					</div>
 					<div style="float:left;width:740px;">
 						<textarea id="content" style="display: none;"
-							name="commentContent" />"></textarea>
+							name="commentContent" /></textarea>
 						<script id="container" type="text/plain"></script>
 					</div>
 					<script type="text/javascript">

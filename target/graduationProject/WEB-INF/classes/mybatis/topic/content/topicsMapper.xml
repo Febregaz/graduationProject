@@ -58,5 +58,9 @@
         UPDATE t_topic a SET a.comment_count = #{1} WHERE a.id = #{0}
     </update>
 
+    <insert id="addTopic" parameterType="Topics" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_topic(title , content , comment_count , nice_topic , topic_time , integral , status ,topics_user_id ,topics_type_id) VALUES (#{title} , #{content} , #{countComment} , #{niceTopic} , #{topicTime} , #{integral} , #{status} ,#{topicsUser.userId} ,#{topicsType.idd})
+    </insert>
+
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

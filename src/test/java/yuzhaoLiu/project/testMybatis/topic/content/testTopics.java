@@ -4,7 +4,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
+import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.methodForToTheDetailPage;
+import yuzhaoLiu.project.mybatis.entity.people.Users;
+import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
 import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
@@ -12,6 +17,7 @@ import yuzhaoLiu.project.mybatis.mapper.topic.content.topicsMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
 import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
+import java.util.Date;
 import java.util.List;
 
 public class testTopics {
@@ -28,13 +34,14 @@ public class testTopics {
     * obtain all data from t_topic
     */
     @Test
-    public void readUsers(){
+    public void readTopics(){
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
             topicsMapper topicsMapper = sqlSession.getMapper(topicsMapper.class);
             List<Topics> topicsList = topicsMapper.readTopics();
             for(Topics t : topicsList){
-                System.out.println("topic:"+t.getTitle());
+                t.setContent(methodForToTheDetailPage.ignoreTopicHtml(t.getContent()));
+                System.out.println("topic:"+t.getContent());
             }
             logger.info("display successfully !");
         } finally {
@@ -101,6 +108,19 @@ public class testTopics {
         getTopicsMapper.getTheTopicsMapper().updateTopicComment(topics.getId() , topics.getCountComment());
         getTopicsMapper.sqlCommit();
     }
+
+    @Test
+    public void addTopic(){
+        Users user = getPeopleMapper.getTheUsersMapper().userLogin("Aragami");
+        Types type = getTypeMapper.getTheTypesMapper().getTypeById(1);
+        Topics topic = new Topics();
+        topic.setTitle("习近平");topic.setContent("连任犯得上反对");topic.setCountComment(0);topic.setNiceTopic(0);
+        topic.setTopicTime(new Date());topic.setIntegral(20);topic.setStatus(0);topic.setTopicsUser(user);
+        topic.setTopicsType(type);
+        getTopicsMapper.getTheTopicsMapper().addTopic(topic);
+        getTopicsMapper.sqlCommit();
+    }
+
 }
 /*SELECT
 	a.*, b.`name` as bname,c.`name` as cname
