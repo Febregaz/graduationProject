@@ -133,7 +133,7 @@ a img {
 </style>
 <script type="text/javascript">
 	function checkLogin() {
-		var msg = '<c:out value="${userInfo.nickname}"></c:out>';
+		var msg = '<c:out value="${sessionScope.userInfo.nickname}"></c:out>';
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
@@ -203,14 +203,14 @@ a img {
 				onClick="toDesktop('http://giun.vxg197.10000net.cn','DS-Java论坛')"
 				name="btn" id="btn" class="font-color">将本站放到桌面</a>
 		</div>
-		<c:if test="${userInfo==null}">
+		<c:if test="${sessionScope.userInfo==null}">
 			<div
 				style="width: 300px;height: 30px;line-height: 30px;float: left;text-align: right;font-weight: bold;font-size: 16px;font-family: 微软雅黑 /* background-color: red; */"
 				id="loginRegisterText">
 				<a href="NC-JSP/home/login.jsp">登录</a>&nbsp;&nbsp;<a href="register.jsp">注册</a>
 			</div>
 		</c:if>
-		<c:if test="${userInfo!=null}">
+		<c:if test="${sessionScope.userInfo!=null}">
 			<div
 				style="width: 300px;height: 30px;line-height: 30px;float: left;text-align: right;font-weight: bold;font-size: 16px;font-family: 微软雅黑/* background-color: red; */">
 				<font color="#6699CC"><c:out value="${sessionScope.userInfo.nickname}"></c:out> </font>

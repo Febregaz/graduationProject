@@ -1,10 +1,16 @@
 package yuzhaoLiu.project.controller.mybatis.topic;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yuzhaoLiu.project.controller.chiefController.topController;
+import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getCommentsMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.methodForPostedTopic;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.methodForToTheDetailPage;
+import yuzhaoLiu.project.mybatis.entity.people.Users;
+import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
@@ -13,6 +19,8 @@ import yuzhaoLiu.project.mybatis.util.sqlUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.image.TileObserver;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -58,17 +66,16 @@ public class topicsController extends topController {
         return "topic/indexNiceTopic";
     }
 
-    //TODO:帖子详情页功能未实现.
     @RequestMapping("/toTheDetailPage")
     public String toTheDetailPage(int topicId , int nowPage , HttpServletRequest request){
         logger.info("id+nowpage:"+topicId+" "+nowPage);
         Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
         List<Comments> commentsList = getCommentsMapper.getTheCommentsMapper().getTheCommentsByTopicId(topicId);
         nowPage = (nowPage == 0) ? 1 : nowPage;
-        this.pageBean = this.QueryCommentsForPage(10, nowPage, commentsList);
+        this.pageBean = methodForToTheDetailPage.QueryCommentsForPage(10, nowPage, commentsList);
         this.listComment = pageBean.getListComments();
-        topic.setContent(ignoreTopicHtml(topic.getContent()));;/*忽略<p></p>*/
-        listComment = ignoreListCommentHtml(listComment);/*忽略<p></p>*/
+        topic.setContent(methodForToTheDetailPage.ignoreTopicHtml(topic.getContent()));;/*忽略<p></p>*/
+        listComment = methodForToTheDetailPage.ignoreListCommentHtml(listComment);/*忽略<p></p>*/
         HttpSession session = request.getSession();
         session.setAttribute("topic" , topic);
         request.setAttribute("nowPage" , nowPage);
@@ -77,46 +84,16 @@ public class topicsController extends topController {
         return "topic/theTopic";
     }
 
-    public Pages QueryCommentsForPage(int pageSize, int nowPage,
-                                      List<Comments> listComment) {
-        int allRecords = listComment.size();
-        int totalPage = Pages.calculateTotalPage(pageSize, allRecords);// 总页数
-        final int currentoffset = Pages.currentPage_startRecord(pageSize,
-                nowPage);// 当前页的开始记录
-        final int length = pageSize;
-        final int currentPage = Pages.judgeCurrentPage(nowPage);
-        int toIndex = 0;
-        if (allRecords >= length + currentoffset) {
-            toIndex = currentoffset + length;
-        } else {
-            toIndex = allRecords;
-        }
-        List<Comments> subListComment = listComment.subList(currentoffset,
-                toIndex);
-        Pages pagebean = new Pages();
-        pagebean.setPageSize(pageSize);
-        pagebean.setAllRecords(allRecords);
-        pagebean.setCurrentPage(currentPage);
-        pagebean.setTotalPages(totalPage);
-        pagebean.setListComments(subListComment);
-        pagebean.init();
-        return pagebean;
-    }
-
-    public String ignoreTopicHtml(String msg){
-        msg = msg.replace("<p>","");
-        msg = msg.replace("</p>","");
-        return msg;
-    }
-
-    public List<Comments> ignoreListCommentHtml(List<Comments> listComment){
-        for(Comments c : listComment){
-            String msg = c.getContent();
-            msg = msg.replace("<p>","");
-            msg = msg.replace("</p>","");
-            c.setContent(msg);
-        }
-        return listComment;
+    @RequestMapping("/postedTopic")
+    public String postedTopic(int typeId , String topicTitle , String tcontent , int topicIntegral ,HttpServletRequest request ) throws IOException{
+        String strTopicContent = new String(tcontent.getBytes("iso-8859-1"),"UTF-8") ;
+        String strTopicTitle = new String(topicTitle.getBytes("iso-8859-1"),"UTF-8") ;
+        HttpSession session = request.getSession();
+        Users user = (Users)session.getAttribute("userInfo");
+        Topics topic = new Topics();
+        int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , strTopicTitle , strTopicContent);
+        logger.info("topicId:"+id);
+        return "redirect:toTheDetailPage?topicId="+id+"&&nowPage=1";
     }
 
 }
