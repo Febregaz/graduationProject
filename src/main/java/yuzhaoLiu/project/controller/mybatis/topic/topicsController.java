@@ -74,8 +74,6 @@ public class topicsController extends topController {
         nowPage = (nowPage == 0) ? 1 : nowPage;
         this.pageBean = methodForToTheDetailPage.QueryCommentsForPage(10, nowPage, commentsList);
         this.listComment = pageBean.getListComments();
-        topic.setContent(methodForToTheDetailPage.ignoreTopicHtml(topic.getContent()));;/*忽略<p></p>*/
-        listComment = methodForToTheDetailPage.ignoreListCommentHtml(listComment);/*忽略<p></p>*/
         HttpSession session = request.getSession();
         session.setAttribute("topic" , topic);
         request.setAttribute("nowPage" , nowPage);

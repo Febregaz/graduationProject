@@ -575,7 +575,7 @@
 						style="width: 766px;min-height:270px;background-color: #F8F8F8;float: left;">
 						<div
 							style="text-align: left;width: 728px;float: left;padding:10px 20px 20px 20px;word-break: break-all;">
-							<c:out value="${sessionScope.topic.content}" />
+							<c:out value="${sessionScope.topic.content}" default="expression" escapeXml="false" />
 						</div>
 					</div>
 				</div>
@@ -622,7 +622,7 @@
 									style="width: 766px;min-height:260px;background-color: #F8F8F8;float: left;">
 									<div class="theComment"
 										id="comment<c:out value="${comment.floor}" />">
-										<c:out value="${comment.content}" />
+										<c:out value="${comment.content}" default="expression" escapeXml="false" />
 									</div>
 								</div>
 								<div class="commentEditLeftBlank"></div>

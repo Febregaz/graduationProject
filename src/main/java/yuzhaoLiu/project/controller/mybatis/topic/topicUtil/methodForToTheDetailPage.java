@@ -34,11 +34,11 @@ public class methodForToTheDetailPage {
     }
 
     /*
-    * 去掉topic的html标签
+    * 去掉topic的html标签/将&nbsp转换为空格
     * */
     public static String ignoreTopicHtml(String msg){
-        msg = msg.replaceAll("<[.[^>]]*>","");
-        msg = msg.replaceAll(" ", "");
+        msg = msg.replaceAll("<p>","");
+        msg = msg.replaceAll("</p>", "");
         return msg;
     }
 
