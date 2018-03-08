@@ -49,9 +49,10 @@ a:hover {
 					<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 400px;float: left;">
 						<a
-								href="cate_goCate.action?category.id=<c:out value="${test}"></c:out>"
+								href="/category/goCategory?categoryId=<c:out value="${test.topicsType.typesCategory.id}" />&&nowPage=1"
 								target="_top" style="font-size: 14px;"><c:out value="${test.topicsType.typesCategory.namee}"></c:out> </a>-<a
-							href="type_goType.action?type.id=<c:out value="${test}"></c:out>"
+							href="getTopicsByTypeId?typeId=<c:out
+								value="${test.topicsType.id}" />&&nowPage=1"
 							target="_top" style="font-size: 14px;"><c:out value="${test.topicsType.name}"></c:out> </a>||&nbsp;<a
 							href="toTheDetailPage?topicId=<c:out value="${test.id}"></c:out>&&nowPage=1"
 							target="_top" class="topicTitle"><c:out value="${test.title}"></c:out> </a>

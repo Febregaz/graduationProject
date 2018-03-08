@@ -49,11 +49,12 @@
 					<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 400px;float: left;">
 						<a
-								href="cate_goCate.action?category.id=<c:out value="${hot}"></c:out>"
+								href="/category/goCategory?categoryId=<c:out value="${hot.topicsType.typesCategory.id}" />&&nowPage=1"
 								target="_top" style="font-size: 14px;"><c:out value="${hot.topicsType.typesCategory.namee}"></c:out> </a>-<a
-							href="type_goType.action?type.id=<c:out value="${hot}"></c:out>"
+							href="getTopicsByTypeId?typeId=<c:out
+								value="${hot.topicsType.id}" />&&nowPage=1"
 							target="_top" style="font-size: 14px;"><c:out value="${hot.topicsType.name}"></c:out> </a>||&nbsp;<a
-							href="toTheDetailPage?topicId=<c:out value="${hot.id}"></c:out>"
+							href="toTheDetailPage?topicId=<c:out value="${hot.id}"></c:out>&&nowPage=1"
 							target="_top" class="topicTitle"><c:out value="${hot.title}"></c:out> </a>
 					</div>
 					<div style="float: left;font-size: 12px;color: #4C9ED9">

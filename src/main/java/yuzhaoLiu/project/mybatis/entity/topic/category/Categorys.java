@@ -11,18 +11,18 @@ import java.util.Set;
  * 
  */
 public class Categorys {
-	private int id;
+	private int categoryId;
 	private String namee;
 	private int countTopics = 0;
 	private int countComments = 0;
 	private Set<Types> categoryTypes = new HashSet<Types>();
 
 	public int getId() {
-		return id;
+		return categoryId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.categoryId = id;
 	}
 
 	public String getNamee() {

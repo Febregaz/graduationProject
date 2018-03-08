@@ -28,7 +28,7 @@ public class testUsers {
             usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
             List<Users> userList = usersMapper.readUsers();
             for(Users u : userList){
-                System.out.println("name:"+u.getUsername());
+                System.out.println("name:"+u.getRoleId());
             }
             logger.info("display successfully !");
         } finally {

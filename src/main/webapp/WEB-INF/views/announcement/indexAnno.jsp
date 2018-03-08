@@ -32,7 +32,7 @@ a:hover {
 				<td width="110px" height="30px" style="font-size: 14px;"><div
 						style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 100px;float: left;">
 						<a
-							href="anno_getAll.action?annoId=" target="_top"><c:out value="${announcements.title}"></c:out></a>
+							href="getAllAnnouncements?annoId=<c:out value="${announcements.id}" />" target="_top"><c:out value="${announcements.title}"></c:out></a>
 					</div>
 				</td>
 				<td style="font-size: 10px;">

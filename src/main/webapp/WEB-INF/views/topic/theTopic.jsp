@@ -95,7 +95,7 @@
 		if (current_user_id == "" || current_user_id == null) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
-				location.href = 'login.jsp';
+				location.href = 'NC-JSP/home/login.jsp';
 			}
 		} else if (topic_user_id == current_user_id) {
 			window.location.href = "topic_GoEnd.action?topic.id=" + topic_id;
@@ -354,14 +354,14 @@
 		<div class="tBody">
 			<div class="smallNav" align="left">
 				<div style="float: left;">
-					<a href="index.jsp" title="论坛首页"><img
+					<a href="NC-JSP/home/index.jsp" title="论坛首页"><img
 						src="images/homepage_24.png"></img> </a>
 				</div>
 				<div style="float: left;line-height:24px;">
-					&nbsp;&gt;&nbsp;<a href="./index.jsp">论坛</a>&nbsp;&gt;&nbsp;<a
-						href="cate_goCate.action?category.id=<c:out value="${sessionScope.topic.topicsType.typesCategory.id}" />"><c:out value="${sessionScope.topic.topicsType.typesCategory.namee}"></c:out> </a>&nbsp;&gt;&nbsp;<a
-						href="type_goType.action?type.id=<c:out
-								value="${sessionScope.topic.topicsType.id}" />"><c:out value="${sessionScope.topic.topicsType.name}"></c:out> </a>&nbsp;&gt;&nbsp;
+					&nbsp;&gt;&nbsp;<a href="NC-JSP/home/index.jsp">论坛</a>&nbsp;&gt;&nbsp;<a
+						href="category/goCategory?categoryId=<c:out value="${sessionScope.topic.topicsType.typesCategory.id}" />&&nowPage=1"><c:out value="${sessionScope.topic.topicsType.typesCategory.namee}"></c:out> </a>&nbsp;&gt;&nbsp;<a
+						href="topics/getTopicsByTypeId?typeId=<c:out
+								value="${sessionScope.topic.topicsType.id}" />&&nowPage=1"><c:out value="${sessionScope.topic.topicsType.name}"></c:out> </a>&nbsp;&gt;&nbsp;
 					<c:out value="${sessionScope.topic.title}"></c:out>
 				</div>
 			</div>
@@ -628,11 +628,12 @@
 								<div class="commentEditLeftBlank"></div>
 								<div class="commentEdit" align="right">
 									<c:if
-										test="${comment.status==0&&userInfo.roleId==6||comment.status==0&&userInfo.roleId==16}">
+										test="${sessionScope.userInfo.roleId==6}">
 										<input type="button" value="删除"
 											onclick="deleteComment(<c:out value="${comment.id}" />);" />
 									</c:if>
-									<c:if test="${comment.status!=0&&userInfo.roleId!=6||comment.status!=0&&userInfo.roleId!=16}">
+									<c:if test="${comment.status==1}&&${sessionScope.userInfo.roleId!=6}">
+										123
 									</c:if>
 									<input type="button" value="引用"
 										onclick="reference('comment<c:out value="${comment.floor}" />','<c:out value="${comment.floor}" />','<c:out value="${u.nickname}" />')" />

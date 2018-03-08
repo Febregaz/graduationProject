@@ -49,11 +49,12 @@
 					<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 400px;float: left;">
 						<a
-								href="cate_goCate.action?category.id=<c:out value="${nice}"></c:out>"
+								href="/category/goCategory?categoryId=<c:out value="${nice.topicsType.typesCategory.id}" />&&nowPage=1"
 								target="_top" style="font-size: 14px;"><c:out value="${nice.topicsType.typesCategory.namee}"></c:out> </a>-<a
-							href="type_goType.action?type.id=<c:out value="${nice}"></c:out>"
+							href="getTopicsByTypeId?typeId=<c:out
+								value="${nice.topicsType.id}" />&&nowPage=1"
 							target="_top" style="font-size: 14px;"><c:out value="${nice.topicsType.name}"></c:out> </a>||&nbsp;<a
-							href="topic_goTopic.action?topic.id=<c:out value="${nice}"></c:out>"
+							href="toTheDetailPage?topicId=<c:out value="${nice.id}"></c:out>&&nowPage=1"
 							target="_top" class="topicTitle"><c:out value="${nice.title}"></c:out> </a>
 					</div>
 					<div style="float: left;font-size: 12px;color: #4C9ED9">

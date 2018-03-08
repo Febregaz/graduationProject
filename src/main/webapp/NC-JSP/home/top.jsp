@@ -228,24 +228,24 @@ a img {
 		</div>
 	</div>
 	<div>
-		<img src="images/topLogo.jpg" />
+		<img src="images/70logo.png" />
 	</div>
 </div>
 <div id="nav" align="center">
 	<ul id="menuNav">
 		<li><a href="NC-JSP/home/index.jsp">首页</a>
 		</li>
-		<li><a href="topic_getAllTopic.action">帖子</a>
+		<li><a href="topics/getAllFreshTopics?nowPage=1">帖子</a>
 			<ul>
-				<li><a href="topic_GetHotTopic.action" target="_top">热门帖子</a></li>
-				<li><a href="topic_GetNiceTopic.action" target="_top">精品帖子</a>
+				<li><a href="topics/getAllHotTopics?nowPage=1" target="_top">热门帖子</a></li>
+				<li><a href="topics/getAllNiceTopics?nowPage=1" target="_top">精品帖子</a>
 				</li>
 			</ul>
 		</li>
-		<li><a href="cate_getAll.action">版块</a>
+		<li><a href="category/getAllCategoryAndGoTypeJsp">版块</a>
 		</li>
 
-		<li><a onfocus="this.blur()" href="help_getAll.action">帮助</a></li>
+		<li><a onfocus="this.blur()" href="helps/getAllHelps?helpId=1">帮助</a></li>
 	</ul>
 </div>
 <div class="search" align="left">

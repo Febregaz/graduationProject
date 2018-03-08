@@ -8,4 +8,6 @@ public interface categorysMapper {
 
     public List<Categorys> readCategorys();
 
+    public Categorys getCategoryById(int id);
+
 }

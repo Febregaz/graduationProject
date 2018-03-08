@@ -24,4 +24,16 @@ public class helpsController extends topController {
         return "help/indexHelp";
     }
 
+    @RequestMapping("/getAllHelps")
+    public String getAllHelps(int helpId , HttpServletRequest request){
+        helpsMapper helpsMapper = sqlUtil.getSql().getMapper(helpsMapper.class);
+        List<Helps> helpsList = helpsMapper.getTheHelps();
+        //sqlUtil.closeTheSqlSession();
+        request.setAttribute("listHelp",helpsList);
+        request.setAttribute("helpSize" , helpsList.size());
+        request.setAttribute("helpId" , helpId);
+        logger.info("I am good and in helpsController");
+        return "help/help";
+    }
+
 }

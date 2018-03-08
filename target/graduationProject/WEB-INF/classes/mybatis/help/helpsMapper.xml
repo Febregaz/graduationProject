@@ -13,6 +13,9 @@
     <select id="getTheHelps" resultMap="helpBean">
         SELECT * FROM t_help
     </select>
+    <select id="getOneHelp" resultMap="helpBean">
+        SELECT * FROM t_help a WHERE a.id = #{id}
+    </select>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

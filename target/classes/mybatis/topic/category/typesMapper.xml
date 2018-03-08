@@ -10,7 +10,7 @@
         <result column="count_topics" property="countTopics" />
         <result column="count_comments" property="countComments" />
         <association property="typesCategory" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys">
-            <id column="id" property="id" />
+            <id column="categoryId" property="categoryId" />
             <result column="namee" property="namee" />
             <result column="count_topics" property="countTopics" />
             <result column="count_comments" property="countComments" />
@@ -21,10 +21,10 @@
         SELECT * FROM t_type
     </select>
     <select id="getTypeById" resultMap="typeBean">
-        SELECT * FROM t_type a , t_category b WHERE a.idd = #{id}
+        SELECT a.* , b.* FROM t_type a , t_category b WHERE a.idd = #{id}
     </select>
     <select id="getAllTypesByCategoryId" parameterType="int" resultMap="typeBean">
-        SELECT * FROM t_type a , t_category b WHERE a.types_category_id = #{id}
+        SELECT a.* , b.* FROM t_type a , t_category b WHERE a.types_category_id = #{id}
     </select>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

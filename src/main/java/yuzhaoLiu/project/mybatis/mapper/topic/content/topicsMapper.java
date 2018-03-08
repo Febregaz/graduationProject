@@ -41,4 +41,18 @@ public interface topicsMapper{
     * */
     public void addTopic(Topics topic);
 
+    /*
+    * obtain the topics by typeId
+    * */
+    public List<Topics> getTopicsByTypeId(int id);
+
+    /*
+     *以下三个分别是首页的三个more按钮的方法
+     * */
+    public List<Topics> getAllHotTopics();
+
+    public List<Topics> getAllFreshTopics();
+
+    public List<Topics> getAllNiceTopics();
+
 }

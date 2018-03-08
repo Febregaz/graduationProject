@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yuzhaoLiu.project.controller.chiefController.topController;
 import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
-import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getCommentsMapper;
-import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
-import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.methodForPostedTopic;
-import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.methodForToTheDetailPage;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.*;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
@@ -29,6 +26,7 @@ public class topicsController extends topController {
 
     private Pages pageBean;
     private List<Comments> listComment;
+    private List<Topics> listTopic;
 
     /*
     obtain the 10 newest result from t_topic
@@ -92,6 +90,44 @@ public class topicsController extends topController {
         int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , strTopicTitle , strTopicContent);
         logger.info("topicId:"+id);
         return "redirect:toTheDetailPage?topicId="+id+"&&nowPage=1";
+    }
+
+    @RequestMapping("/getTopicsByTypeId")
+    public String getTopicsByTypeId(int typeId , int nowPage , HttpServletRequest request){
+        Types type = getTypeMapper.getTheTypesMapper().getTypeById(typeId);
+        this.pageBean = methodForGetTopicsByTypeId.getAllForPages(10 , nowPage , typeId);
+        listTopic = pageBean.getListTopics();
+        request.setAttribute("type" , type);
+        request.setAttribute("pageBean" , pageBean);
+        request.setAttribute("listTopic" , listTopic);
+        return "type/theType";
+    }
+
+    @RequestMapping("/getAllHotTopics")
+    public String getAllHotTopics(int nowPage , HttpServletRequest request){
+        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getAllHotTopics();
+        this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
+        request.setAttribute("listTopic" , pageBean.getListTopics());
+        request.setAttribute("pageBean" , pageBean);
+        return "topic/hotTopic";
+    }
+
+    @RequestMapping("/getAllFreshTopics")
+    public String getAllFreshTopics(int nowPage , HttpServletRequest request){
+        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getAllFreshTopics();
+        this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
+        request.setAttribute("listTopic" , pageBean.getListTopics());
+        request.setAttribute("pageBean" , pageBean);
+        return "topic/allTopic";
+    }
+
+    @RequestMapping("/getAllNiceTopics")
+    public String getAllNiceTopics(int nowPage , HttpServletRequest request){
+        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getAllNiceTopics();
+        this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
+        request.setAttribute("listTopic" , pageBean.getListTopics());
+        request.setAttribute("pageBean" , pageBean);
+        return "topic/niceTopic";
     }
 
 }

@@ -100,7 +100,7 @@
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;color: #6699CC">
-                        <a href="">More&gt;&gt;</a>
+                        <a href="topics/getAllHotTopics?nowPage=1">More&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="hotContent">
@@ -115,7 +115,7 @@
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;">
-                        <a href="">More&gt;&gt;</a>
+                        <a href="topics/getAllFreshTopics?nowPage=1">More&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="freshContent">
@@ -130,7 +130,7 @@
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;color: #6699CC">
-                        <a href="">More&gt;&gt;</a>
+                        <a href="topics/getAllNiceTopics?nowPage=1">More&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="classicsContent">
