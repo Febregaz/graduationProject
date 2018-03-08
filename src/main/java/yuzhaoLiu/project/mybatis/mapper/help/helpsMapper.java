@@ -8,4 +8,6 @@ public interface helpsMapper {
 
     public List<Helps> getTheHelps();
 
+    public List<Helps> getOneHelp(int id);
+
 }

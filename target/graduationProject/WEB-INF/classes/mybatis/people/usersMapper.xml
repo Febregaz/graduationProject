@@ -4,10 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yuzhaoLiu.project.mybatis.mapper.people.usersMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
 
-    <select id="readUsers" resultType="Users">
+    <resultMap id="userBean" type="yuzhaoLiu.project.mybatis.entity.people.Users">
+        <id column="userId" property="userId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="nickname" property="nickname" />
+        <result column="picture" property="picture" />
+        <result column="integral" property="integral" />
+        <result column="clock" property="clock" />
+        <result column="role_id" property="roleId" />
+    </resultMap>
+
+    <select id="readUsers" resultMap="userBean">
         SELECT * FROM t_user
     </select>
-    <select id="userLogin" resultType="Users" parameterType="String">
+    <select id="userLogin" resultMap="userBean" parameterType="String">
         SELECT * FROM t_user WHERE username = #{username}
     </select>
 

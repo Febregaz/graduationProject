@@ -23,4 +23,14 @@ public class AnnouncementController extends topController {
         logger.info("I am good and in AnnouncementController");
         return "announcement/indexAnno";
     }
+
+    @RequestMapping("/getAllAnnouncements")
+    public String getAllAnnos(int annoId , HttpServletRequest request){
+        announcementsMapper announcementsMapper = sqlUtil.getSql().getMapper(announcementsMapper.class);
+        List<Announces> annosList = announcementsMapper.getTheAnnouncements();
+        request.setAttribute("listAnno",annosList);
+        request.setAttribute("annoSize" , annosList.size());
+        request.setAttribute("annoId" , annoId);
+        return "announcement/announce";
+    }
 }

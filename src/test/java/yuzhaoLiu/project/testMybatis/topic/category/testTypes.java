@@ -23,11 +23,10 @@ public class testTypes {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
             typesMapper typesMapper = sqlSession.getMapper(typesMapper.class);
-            Types type = typesMapper.getTypeById(1);
-            /*for(Types t : typesList){
-                System.out.println("types:"+t.getTypesCategory().getNamee());
-            }*/
-            logger.info(type.getName());
+            List<Types> typesList = typesMapper.getAllTypesByCategoryId(1);
+            for(Types t : typesList){
+                logger.info("types:"+t.getName());
+            }
             logger.info("display successfully !");
         } finally {
             sqlSession.close();

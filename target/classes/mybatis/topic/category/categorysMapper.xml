@@ -4,8 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yuzhaoLiu.project.mybatis.mapper.topic.category.categorysMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
 
-    <select id="readCategorys" resultType="Categorys">
+    <resultMap id="categoryBean" type="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys" >
+        <id column="categoryId" property="categoryId"></id>
+        <result column="namee" property="namee"/>
+        <result column="count_topics" property="countTopics"/>
+        <result column="count_comments" property="countComments"/>
+    </resultMap>
+
+    <select id="readCategorys" resultMap="categoryBean">
         SELECT * FROM t_category
+    </select>
+    <select id="getCategoryById" parameterType="int" resultMap="categoryBean">
+        SELECT * FROM t_category a WHERE a.categoryId = #{id}
     </select>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

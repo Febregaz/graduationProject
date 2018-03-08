@@ -59,7 +59,7 @@ public class testTopics {
             topicsMapper topicsMapper = sqlSession.getMapper(topicsMapper.class);
             List<Topics> topicsList = topicsMapper.getTheNewestTopics();
             for(Topics t : topicsList){
-                System.out.println("topic:"+t.getTitle());
+                System.out.println("topic:"+t.getTopicsType().getName());
             }
             logger.info("display successfully !");
         } finally {

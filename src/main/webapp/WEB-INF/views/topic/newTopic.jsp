@@ -17,7 +17,7 @@
 	Users user = (Users) session.getAttribute("userInfo");
 	if (user == null) {
 		PrintWriter pw = response.getWriter();
-		pw.println("<script type='text/javascript'>alert('未登录或登录已失效！请登录！');location.href = 'login.jsp';</script>");
+		pw.println("<script type='text/javascript'>alert('未登录或登录已失效！请登录！');location.href = 'NC-JSP/home/login.jsp';</script>");
 
 	} else {
 %>
@@ -103,7 +103,7 @@
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
-				location.href = 'login.jsp';
+				location.href = 'NC-JSP/home/login.jsp';
 			}
 			return false;
 		}
@@ -200,7 +200,7 @@
 		<div class="newToic" align="center">
 			<div class="smallNav" align="left">
 				<div style="float: left;">
-					<a href="index.jsp" title="论坛首页"><img
+					<a href="NC-JSP/home/index.jsp" title="论坛首页"><img
 						src="images/homepage_24.png"></img> </a>
 				</div>
 				<div style="float: left;line-height:24px;">

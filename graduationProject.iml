@@ -186,5 +186,6 @@
     <orderEntry type="library" name="Maven: cn.songxinqiang:com.baidu.ueditor:1.1.2-offical" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20160212" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.9.5" level="project" />
   </component>
 </module>

@@ -30,12 +30,12 @@ a:hover {
 
 <div class="friendLink">
 	<div style="height: 24px;font-size: 15px;font-weight: bolder">
-		<a href="http://www.dreamstation.cn" target="_blank">梦之站</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-			href="http://www.csust.edu.cn" target="_blank">长沙理工大学</a>
+		<a href="http://www.dreamstation.cn" target="_blank">'70'</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+			href="http://www.zqu.edu.cn/" target="_blank">肇庆学院</a>
 	</div>
 	<div style="height: 24px;">
-		<a href="http://www.csust.edu.cn/pub/cslg/jgsz/yxsz/jsjytxgcxy/"
-			target="_blank">长理计算机与通信工程学院</a>
+		<a href="http://www.zqu.edu.cn/xyfg/hpsp.htm"
+			target="_blank">航拍校园</a>
 	</div>
 	<div style="height: 24px;">
 		<a href="http://www.csdn.net/" target="_blank"
