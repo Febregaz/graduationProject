@@ -15,4 +15,6 @@ public interface usersMapper {
     public void updateTopicsCount(Users user);
 
     public void registeruser(Users user);
+
+    public void updateUserPic(Users user);
 }

@@ -41,6 +41,12 @@
     <update id="updateTopicsCount" parameterType="Users">
         UPDATE t_user a SET a.topic_count = #{topCount} , a.integral = #{integral} WHERE a.userId = #{userId}
     </update>
+<<<<<<< HEAD
+=======
+    <update id="updateUserPic" parameterType="Users">
+        UPDATE t_user a SET a.picture = #{picture} WHERE a.userId = #{userId}
+    </update>
+>>>>>>> developVersion
 
     <insert id="registeruser" parameterType="Users" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO t_user (username , password , picture , email , grade_integal , integral , role_id , nickname , clock , topic_count , comment_count , register_time , status , users_grade_id ) VALUES ( #{username} , #{password} , #{picture} , #{email} , #{gradeIntegral} , #{integral} , #{roleId} , #{nickname} , #{clock} , #{topCount} ,#{comCount} , #{registerTime} , #{status} , #{usersGrade.gradeId}  )
