@@ -21,7 +21,7 @@ public class Users {
 	private String password;
 	private String nickname; // 昵称
 	private String sex = "男";
-	private String picture = "/DS-Java/image/ds-java.png"; // 头像
+	private String picture = "images/java.jpg"; // 头像
 	private String email = "";
 	private String comefrom = ""; // 来自
 	private String introduction = ""; // 个人简介
@@ -33,7 +33,7 @@ public class Users {
 	private int topCount = 0; // 帖子数
 	private int comCount = 0; // 评论数
 	private Date registerTime;
-	private int status; // 0表示未禁用，1表示禁用
+	private int status = 0; // 0表示未禁用，1表示禁用
 
 	private Grades usersGrade; // 等级
 

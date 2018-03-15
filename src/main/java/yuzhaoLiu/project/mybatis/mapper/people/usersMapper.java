@@ -9,4 +9,10 @@ public interface usersMapper {
     public List<Users> readUsers();
 
     public Users userLogin(String username);
+
+    public void updateIntegralAndComment(Users user);
+
+    public void updateTopicsCount(Users user);
+
+    public void registeruser(Users user);
 }

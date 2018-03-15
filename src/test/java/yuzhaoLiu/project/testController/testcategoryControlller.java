@@ -39,9 +39,9 @@ public class testcategoryControlller {
          * 5..andDo(print())打印信息
          */
         String result = this.mockMvc
-                .perform(get("/category/goCategory")
-                        .param("categoryId", "1")
-                        .param("nowPage" , "1"))
+                .perform(get("/users/usersRegister")
+                        .param("nowPage", "1")
+                        .param("content" , "国"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn().getResponse().getContentAsString();

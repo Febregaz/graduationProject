@@ -22,11 +22,11 @@
     <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
     <script type="text/javascript">
         function checkLogin() {
-            var msg = '<c:out value="${userInfo.nickname}"></c:out>';
+            var msg = '<c:out value="${sessionScope.userInfo.nickname}"></c:out>';
             if (!msg) {
                 var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
                 if (returnVal) {
-                    location.href = 'login.jsp';
+                    location.href = 'NC-JSP/home/login.jsp';
                 }
                 return false;
             }
@@ -86,7 +86,7 @@
     <div class="tBody">
         <div class="topBody" align="left">
             <div style="float: left;">
-                <a href="index.jsp" title="论坛首页"><img
+                <a href="NC-JSP/home/index.jsp" title="论坛首页"><img
                         src="images/homepage_24.png"/> </a>
             </div>
             <div style="float: left;line-height:24px;">&nbsp;&gt;&nbsp;论坛
@@ -148,12 +148,14 @@
                             src="announcements/getTheAnnouncements"></iframe>
                 </div>
             </div>
-            <div class="newButton">
-                <form action="" method="get"
-                      onsubmit="return checkLogin();">
-                    <input type="submit" value="我要发帖">
-                </form>
-            </div>
+            <c:if test="${sessionScope.userInfo!=null}">
+                <div class="newButton">
+                    <form action="category/getAllCategory" method="get">
+                        <input type="submit" value="我要发帖">
+                    </form>
+                </div>
+            </c:if>
+            <c:if test="${sessionScope.userInfo==null}"></c:if>
             <!-- <div class="hero">
                 <div class="rtitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;论坛牛人
                 </div>

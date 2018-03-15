@@ -10,4 +10,8 @@ public interface categorysMapper {
 
     public Categorys getCategoryById(int id);
 
+    public void updateTopicCount(Categorys categorys);
+
+    public void updateCommentCount(Categorys categorys);
+
 }

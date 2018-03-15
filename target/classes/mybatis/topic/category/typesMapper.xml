@@ -27,5 +27,12 @@
         SELECT a.* , b.* FROM t_type a , t_category b WHERE a.types_category_id = #{id}
     </select>
 
+    <update id="updateTopicsCount" parameterType="Types" >
+        UPDATE t_type a SET a.count_topics = #{countTopics} WHERE a.idd = #{idd}
+    </update>
+    <update id="updateCommentsCount" parameterType="Types" >
+        UPDATE t_type a SET a.count_comments = #{countComments} WHERE a.idd = #{idd}
+    </update>
+
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>
