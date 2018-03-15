@@ -10,9 +10,7 @@ import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.methodForToTheDetailPage;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
-import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
-import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
 import yuzhaoLiu.project.mybatis.mapper.topic.content.topicsMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
 import yuzhaoLiu.project.mybatis.util.sqlUtil;
@@ -82,10 +80,10 @@ public class testTopics {
     @Test
     public void testTheToolForMybatis(){
         topicsMapper = sqlUtil.getSql().getMapper(topicsMapper.class);
-        List<Topics> topicsList = topicsMapper.getTheNewestTopics();
+        List<Topics> topicsList = topicsMapper.searchTopics("国");
+        System.out.println(topicsList.size());
         for(Topics t : topicsList){
-            System.out.println("topic:"+t.getTopicsType().getTypesCategory().getNamee());
-            System.out.println("nickname:"+t.getTopicsUser().getNickname());
+            System.out.println("topic:"+t.getTitle());
         }
         sqlUtil.closeTheSqlSession();
     }
@@ -120,6 +118,7 @@ public class testTopics {
         getTopicsMapper.getTheTopicsMapper().addTopic(topic);
         getTopicsMapper.sqlCommit();
     }
+
 
 }
 /*SELECT

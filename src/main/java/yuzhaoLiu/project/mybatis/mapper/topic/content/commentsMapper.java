@@ -13,4 +13,6 @@ public interface commentsMapper {
 
     public void addTheComment(Comments comment);
 
+    public List<Comments> getTheCommentsByUserId(int id);
+
 }

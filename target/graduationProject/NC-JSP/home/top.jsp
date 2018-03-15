@@ -249,7 +249,7 @@ a img {
 	</ul>
 </div>
 <div class="search" align="left">
-	<form action="topic_Search.action" method="post"
+	<form action="topics/searchTopics?nowPage=1" method="post"
 		onsubmit="return checkContent();">
 		<input type="text" name="content" id="searchContent"
 			style="width:180px;height:22px;font-size:12px;background-color: white;border: 0;padding-left: 6px;" />

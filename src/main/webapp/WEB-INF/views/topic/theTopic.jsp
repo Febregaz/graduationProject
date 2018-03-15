@@ -59,7 +59,7 @@
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
-				location.href = 'login.jsp';
+				location.href = 'NC-JSP/home/login.jsp';
 			}
 			return false;
 		} else if (editor.hasContents()) {
@@ -517,25 +517,7 @@
 					<font style="font-size: 13px;color: white">[积分: <c:out
 							value="${sessionScope.topic.integral}" /> 分]</font>
 				</div>
-				<div style="width:140px;float: left;height: 40px;line-height: 40px;"
-					align="center">
-					<select onchange="selectComment(this.value)" name="selectComment"
-						id="selectComment"
-						style="height:26px;width:140px;font-size:14px;margin-top:7px">
-						<option value="0">不显示被删除回复</option>
-						<option value="1">显示所有回复</option>
-						<option value="2">只看楼主</option>
-						<c:if test="${sessionScope.topic.status==1}">
-							<option value="3">显示得分回复</option>
-						</c:if>
-						<c:if test="${sessionScope.topic.status==0}"></c:if>
-					</select>
-					<script type="text/javascript">
-						var obj = document.getElementById("selectComment"); 
-						var com='<c:out value="${comFlag}" />';
-						obj.options[com].selected = true;
-					</script>
-				</div>
+
 			</div>
 			<div class="topicStyle">
 				<input id="topicId" value="<c:out value="${sessionScope.topic.id}" />"

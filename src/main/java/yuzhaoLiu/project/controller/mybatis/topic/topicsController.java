@@ -82,12 +82,12 @@ public class topicsController extends topController {
 
     @RequestMapping("/postedTopic")
     public String postedTopic(int typeId , String topicTitle , String tcontent , int topicIntegral ,HttpServletRequest request ) throws IOException{
-        String strTopicContent = new String(tcontent.getBytes("iso-8859-1"),"UTF-8") ;
-        String strTopicTitle = new String(topicTitle.getBytes("iso-8859-1"),"UTF-8") ;
+        //String strTopicContent = new String(tcontent.getBytes("iso-8859-1"),"UTF-8") ;
+        //String strTopicTitle = new String(topicTitle.getBytes("iso-8859-1"),"UTF-8") ;
         HttpSession session = request.getSession();
         Users user = (Users)session.getAttribute("userInfo");
         Topics topic = new Topics();
-        int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , strTopicTitle , strTopicContent);
+        int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , topicTitle , tcontent);
         logger.info("topicId:"+id);
         return "redirect:toTheDetailPage?topicId="+id+"&&nowPage=1";
     }
@@ -128,6 +128,17 @@ public class topicsController extends topController {
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
         return "topic/niceTopic";
+    }
+
+    @RequestMapping("/searchTopics")
+    public String searchTopics(String content , int nowPage , HttpServletRequest request) throws IOException{
+        //String strContent = new String(content.getBytes("iso-8859-1"),"UTF-8") ;
+        logger.info(content+" "+nowPage);
+        pageBean = methodForSearchResult.search(content , 5 , nowPage);
+        request.setAttribute("pageBean" , pageBean);
+        request.setAttribute("listTopic" , pageBean.getListTopics());
+        request.setAttribute("content" , content);
+        return "topic/searchResult";
     }
 
 }

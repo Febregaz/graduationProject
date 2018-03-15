@@ -6,7 +6,6 @@ package yuzhaoLiu.project.mybatis.entity.topic.content;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.News;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
-import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 
 import java.util.Date;
 import java.util.HashSet;

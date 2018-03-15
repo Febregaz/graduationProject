@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.mapper.people.usersMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
@@ -45,4 +46,14 @@ public class testUsers {
         Users users = usersMapper.userLogin("Aragami");
         System.out.println(users.getStatus());
     }
+
+    @Test
+    public void updateUser(){
+        Users user = getPeopleMapper.getTheUsersMapper().userLogin("Aragami");
+        user.setIntegral(300);
+        user.setTopCount(0);
+        getPeopleMapper.getTheUsersMapper().updateTopicsCount(user);
+        getPeopleMapper.sqlCommit();
+    }
+
 }

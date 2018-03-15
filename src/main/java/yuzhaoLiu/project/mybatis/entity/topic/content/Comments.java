@@ -12,7 +12,7 @@ import java.util.Date;
  * 
  */
 public class Comments {
-	private int id;
+	private int commentId;
 	private String content;
 	private int floor;
 	private Date commentTime;
@@ -23,11 +23,11 @@ public class Comments {
 	private Users commentsUser;
 
 	public int getId() {
-		return id;
+		return commentId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.commentId = id;
 	}
 
 	public String getContent() {

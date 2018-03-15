@@ -18,5 +18,12 @@
         SELECT * FROM t_category a WHERE a.categoryId = #{id}
     </select>
 
+    <update id="updateTopicCount" parameterType="Categorys">
+        UPDATE t_category a SET a.count_topics = #{countTopics} WHERE a.categoryId = #{categoryId}
+    </update>
+    <update id="updateCommentCount" parameterType="Categorys">
+        UPDATE t_category a SET a.count_comments = #{countComments} WHERE a.categoryId = #{categoryId}
+    </update>
+
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

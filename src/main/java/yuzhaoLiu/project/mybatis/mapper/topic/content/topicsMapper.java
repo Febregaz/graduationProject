@@ -55,4 +55,8 @@ public interface topicsMapper{
 
     public List<Topics> getAllNiceTopics();
 
+    public List<Topics> searchTopics(String content);
+
+    public List<Topics> getTopicsByUserId(int id);
+
 }

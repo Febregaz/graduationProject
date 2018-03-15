@@ -137,7 +137,7 @@ a img {
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
-				location.href = 'login.jsp';
+				location.href = 'NC-JSP/home/login.jsp';
 			}
 			return false;
 		}
@@ -207,7 +207,7 @@ a img {
 			<div
 				style="width: 300px;height: 30px;line-height: 30px;float: left;text-align: right;font-weight: bold;font-size: 16px;font-family: 微软雅黑 /* background-color: red; */"
 				id="loginRegisterText">
-				<a href="NC-JSP/home/login.jsp">登录</a>&nbsp;&nbsp;<a href="register.jsp">注册</a>
+				<a href="NC-JSP/home/login.jsp">登录</a>&nbsp;&nbsp;<a href="NC-JSP/home/register.jsp">注册</a>
 			</div>
 		</c:if>
 		<c:if test="${sessionScope.userInfo!=null}">
@@ -224,11 +224,11 @@ a img {
 		</c:if>
 		<div
 			style="width: 120px;height: 30px;line-height: 30px;float: left;font-weight: bold;text-align: center;font-size: 16px;font-family: 微软雅黑">
-			<a href="user_GoHome.action" onclick="return checkLogin()">个人中心</a>
+			<a href="NC-JSP/user/home.jsp" onclick="return checkLogin()">个人中心</a>
 		</div>
 	</div>
 	<div>
-		<img src="images/70logo.png" />
+		<img id="logoImg" src="images/70logo.png" />
 	</div>
 </div>
 <div id="nav" align="center">
@@ -249,7 +249,7 @@ a img {
 	</ul>
 </div>
 <div class="search" align="left">
-	<form action="topic_Search.action" method="post"
+	<form action="topics/searchTopics?nowPage=1" method="post"
 		onsubmit="return checkContent();">
 		<input type="text" name="content" id="searchContent"
 			style="width:180px;height:22px;font-size:12px;background-color: white;border: 0;padding-left: 6px;" />
