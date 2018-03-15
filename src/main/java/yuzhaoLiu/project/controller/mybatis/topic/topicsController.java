@@ -89,7 +89,7 @@ public class topicsController extends topController {
         Topics topic = new Topics();
         int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , topicTitle , tcontent);
         logger.info("topicId:"+id);
-        return "redirect:toTheDetailPage?topicId="+id+"&&nowPage=1";
+        return "redirect:toTheDetailPage?topicId="+id+"&&`nowPage=1";
     }
 
     @RequestMapping("/getTopicsByTypeId")
@@ -139,6 +139,15 @@ public class topicsController extends topController {
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("content" , content);
         return "topic/searchResult";
+    }
+
+    @RequestMapping("/manageAll")
+    public String manageAll(HttpServletRequest request , int nowPage){
+        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().readTopics();
+        this.pageBean = methodForGetAllHotTopics.getHotForPages(12 , nowPage , topicsList);
+        request.setAttribute("listTopic" , pageBean.getListTopics());
+        request.setAttribute("pageBean" , pageBean);
+        return "admin/manageTopics";
     }
 
 }

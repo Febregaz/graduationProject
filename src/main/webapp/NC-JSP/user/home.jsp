@@ -165,6 +165,14 @@
 	}
 	
 </script>
+<script type="text/javascript">
+	${document}.ready(function () {
+        var msg=""+'<c:out value="${updateMessage}" />';
+        if(msg!=""){
+            alert(msg);
+        }
+    })
+</script>
 </head>
 
 <body>

@@ -17,4 +17,8 @@ public interface usersMapper {
     public void registeruser(Users user);
 
     public void updateUserPic(Users user);
+
+    public void updateUserInfo(Users user);
+
+    public void updateUserPass(Users user);
 }

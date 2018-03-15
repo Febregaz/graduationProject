@@ -44,7 +44,10 @@ public class testUsers {
     public void userLogin(){
         usersMapper usersMapper = sqlUtil.getSql().getMapper(usersMapper.class);
         Users users = usersMapper.userLogin("Aragami");
-        System.out.println(users.getStatus());
+        users.setPassword("5688956565");
+        getPeopleMapper.getTheUsersMapper().updateUserPass(users);
+        getPeopleMapper.sqlCommit();
+        //System.out.println(users.getPassword());
     }
 
     @Test
