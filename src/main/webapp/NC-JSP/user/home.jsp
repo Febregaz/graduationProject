@@ -251,7 +251,7 @@
 							<p>
 								&nbsp;&nbsp;&nbsp;&nbsp;<img alt="我的头像"
 									style="width: 140px;height: 200px;"
-									src="upload/chuishi.jpg">
+									src="<c:out value="${sessionScope.userInfo.picture}" />">
 							<p>
 								个人简介：<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<c:out value="${sessionScope.userInfo.introduction}" />

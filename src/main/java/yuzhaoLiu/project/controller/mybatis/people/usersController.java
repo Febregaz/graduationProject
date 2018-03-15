@@ -101,6 +101,7 @@ public class usersController extends topController {
     @RequestMapping("/uploadUserPic")
     public String uploadUserPic(HttpServletRequest request) throws IllegalStateException, IOException{
         //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
+        String fileName = null;
         CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(
                 request.getSession().getServletContext());
         //检查form中是否有enctype="multipart/form-data"
@@ -117,14 +118,27 @@ public class usersController extends topController {
                 MultipartFile file=multiRequest.getFile(iter.next().toString());
                 if(file!=null)
                 {
+
                     String path="F:/graduationProject/src/main/webapp/upload/"+file.getOriginalFilename();
                     //上传
                     file.transferTo(new File(path));
+                    fileName = file.getOriginalFilename();
                 }
 
             }
 
         }
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("userInfo");
+        user.setPicture("upload/"+fileName);
+        getPeopleMapper.getTheUsersMapper().updateUserPic(user);
+        getPeopleMapper.sqlCommit();
+        return "";
+    }
+
+    @RequestMapping("/updateUserInfo")
+    public String updateUserInfo(String userNic , String userSex , String userEmail , String userProfe , String userFrom , String userIntro){
+        logger.info(userNic+userSex+userEmail+userProfe+userFrom+userIntro);
         return "";
     }
 
