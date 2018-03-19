@@ -89,7 +89,7 @@ public class topicsController extends topController {
         Topics topic = new Topics();
         int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , topicTitle , tcontent);
         logger.info("topicId:"+id);
-        return "redirect:toTheDetailPage?topicId="+id+"&&`nowPage=1";
+        return "redirect:toTheDetailPage?topicId="+id+"&&nowPage=1";
     }
 
     @RequestMapping("/getTopicsByTypeId")

@@ -260,7 +260,7 @@
 							<th align="center" style="height: 40px;">帖子分数</th>
 							<td>&nbsp;给分<input type="text" id="tGrade"
 								name="topicIntegral"
-								style="width: 40px;height: 30px;padding-left: 6px;" />&nbsp;(5-<%=user.getClock() * 100%>)&nbsp;&nbsp;当前可用分:
+								style="width: 40px;height: 30px;padding-left: 6px;" />&nbsp;(5-<%=user.getUsersGrade().getId() * 100%>)&nbsp;&nbsp;当前可用分:
 								<c:out value="${sessionScope.userInfo.integral}" />&nbsp;&nbsp;<span
 								style="margin-left: 5px;color:red">结帖后系统返还本帖50%的可用分！</span></td>
 						</tr>

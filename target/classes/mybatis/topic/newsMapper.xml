@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yuzhaoLiu.project.mybatis.mapper.topic.newsMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
+
+    <resultMap id="newBean" type="yuzhaoLiu.project.mybatis.entity.topic.News">
+        <result column="newId" property="newId" />
+        <result column="new_time" property="newTime" />
+        <result column="status" property="status" />
+        <association property="newsCommentUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users" >
+            <result column="userId" property="userId" />
+            <result column="nickname" property="nickname" /><!--需要哪个字段的值就写哪个字段，不用全部写出来-->
+            <result column="picture" property="picture"/>
+            <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades">
+                <id column="gradeId" property="gradeId" />
+                <result column="honor" property="honor"></result>
+            </association>
+        </association>
+        <association property="newsTopic" javaType="yuzhaoLiu.project.mybatis.entity.topic.content.Topics">
+            <id column="id" property="id" />
+            <result column="title" property="title" />
+            <result column="content" property="content" />
+        </association>
+    </resultMap>
+
+    <insert id="addNew" parameterType="News" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_new (new_time , status , news_comment_user_id , news_topic_id) VALUES (#{newTime} , #{status} , #{newsCommentUser.userId} , #{newsTopic.id} )
+    </insert>
+
+    <select id="getNewsByUserId" parameterType="int" resultMap="newBean">
+        SELECT a.* , b.* , c.* FROM t_new a , t_topic b , t_user c WHERE b.topics_user_id = #{id} AND a.news_topic_id = b.id
+    </select>
+    <select id="getNewById" parameterType="int" resultMap="newBean">
+        SELECT a.* FROM t_new a WHERE a.newId = #{id}
+    </select>
+
+    <update id="updateStatus" parameterType="News" >
+        UPDATE t_new a SET a.status = #{status} WHERE a.newId = #{newId}
+    </update>
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+</mapper>

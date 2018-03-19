@@ -22,6 +22,7 @@
         <result column="introduction" property="introduction" />
         <result column="profession" property="profession" />
         <result column="status" property="status" />
+        <result column="sex" property="sex" />
         <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades" >
             <id column="gradeId" property="gradeId" />
             <result column="honor" property="honor" />
@@ -50,9 +51,12 @@
     <update id="updateUserPass" parameterType="Users">
         UPDATE t_user a SET a.password = #{password} WHERE a.userId = #{userId}
     </update>
+    <update id="updateClock" parameterType="Users">
+        UPDATE t_user a SET a.clock = #{clock} WHERE a.userId = #{userId}
+    </update>
 
     <insert id="registeruser" parameterType="Users" useGeneratedKeys="true" keyProperty="id" >
-        INSERT INTO t_user (username , password , picture , email , grade_integal , integral , role_id , nickname , clock , topic_count , comment_count , register_time , status , users_grade_id ) VALUES ( #{username} , #{password} , #{picture} , #{email} , #{gradeIntegral} , #{integral} , #{roleId} , #{nickname} , #{clock} , #{topCount} ,#{comCount} , #{registerTime} , #{status} , #{usersGrade.gradeId}  )
+        INSERT INTO t_user (username , password , sex , picture , email , grade_integal , integral , role_id , nickname , clock , topic_count , comment_count , register_time , status , users_grade_id ) VALUES ( #{username} , #{password} , #{sex} , #{picture} , #{email} , #{gradeIntegral} , #{integral} , #{roleId} , #{nickname} , #{clock} , #{topCount} ,#{comCount} , #{registerTime} , #{status} , #{usersGrade.gradeId}  )
     </insert>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

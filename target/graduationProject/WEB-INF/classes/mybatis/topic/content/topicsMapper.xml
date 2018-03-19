@@ -31,6 +31,7 @@
             <result column="userId" property="userId" />
             <result column="nickname" property="nickname" /><!--需要哪个字段的值就写哪个字段，不用全部写出来-->
             <result column="picture" property="picture"/>
+            <result column="clock" property="clock" />
             <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades">
                 <id column="gradeId" property="gradeId" />
                 <result column="honor" property="honor"></result>

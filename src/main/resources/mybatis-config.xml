@@ -20,13 +20,14 @@
         <typeAlias alias="Types" type="yuzhaoLiu.project.mybatis.entity.topic.category.Types"/>
         <typeAlias alias="Announces" type="yuzhaoLiu.project.mybatis.entity.announcement.Announces"/>
         <typeAlias alias="Helps" type="yuzhaoLiu.project.mybatis.entity.help.Helps"/>
+        <typeAlias alias="News" type="yuzhaoLiu.project.mybatis.entity.topic.News"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="jdbc"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/graduationproject?useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/gp?useUnicode=true&amp;characterEncoding=UTF-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="617130"/>
             </dataSource>
@@ -42,5 +43,6 @@
         <mapper resource="mybatis/topic/category/typesMapper.xml" />
         <mapper resource="mybatis/announcement/announcementsMapper.xml" />
         <mapper resource="mybatis/help/helpsMapper.xml" />
+        <mapper resource="mybatis/topic/newsMapper.xml" />
     </mappers>
 </configuration>

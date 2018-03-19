@@ -12,6 +12,8 @@ public interface usersMapper {
 
     public void updateIntegralAndComment(Users user);
 
+    public void updateClock(Users user);
+
     public void updateTopicsCount(Users user);
 
     public void registeruser(Users user);
