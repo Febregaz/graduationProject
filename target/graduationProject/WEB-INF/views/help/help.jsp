@@ -174,8 +174,8 @@
 				showDiv(helpId);
 				function showDiv(DivId) {
 					$("#" + DivId).show();
-					$("#title" + DivId).css("font-weight", "bolder")
-					$("#title" + DivId).css("font-size", "16px");;
+					$("#title" + DivId).css("font-weight", "bolder");
+					$("#title" + DivId).css("font-size", "16px");
 				}
 			</script>
 		</div>

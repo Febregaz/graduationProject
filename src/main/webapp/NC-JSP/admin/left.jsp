@@ -27,16 +27,16 @@
 	</a>
 </div>
 <div class="links">
-	<a href="cate_ManageAll.action"><span style=" line-height:50px;"><font
+	<a href="category/manageAll"><span style=" line-height:50px;"><font
 			color="white">版 块 管 理</font> </span> </a>
 </div>
 <div class="links">
-	<a href="anno_ManageAll.action"><span
+	<a href="announcements/manageAll?nowPage=1"><span
 		style=" line-height:50px;"><font color="white">公 告 管 理</font> </span>
 	</a>
 </div>
 <div class="links">
-	<a href="help_ManageAll.action"><span style="line-height:50px;"><font
+	<a href="helps/manageAll?nowPage=1"><span style="line-height:50px;"><font
 			color="white">帮 助 管 理</font> </span> </a>
 </div>
 <div class="links">

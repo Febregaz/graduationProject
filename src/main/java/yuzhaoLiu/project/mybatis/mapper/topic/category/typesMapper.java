@@ -17,4 +17,8 @@ public interface typesMapper {
 
     public void updateCommentsCount(Types type);
 
+    public void updateTypeName(Types type);
+
+    public void addType(Types type);
+
 }

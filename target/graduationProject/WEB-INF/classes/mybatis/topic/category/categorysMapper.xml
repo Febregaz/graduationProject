@@ -24,6 +24,13 @@
     <update id="updateCommentCount" parameterType="Categorys">
         UPDATE t_category a SET a.count_comments = #{countComments} WHERE a.categoryId = #{categoryId}
     </update>
+    <update id="updateCategoryName" parameterType="Categorys">
+        UPDATE t_category a SET a.namee = #{namee} WHERE a.categoryId = #{categoryId}
+    </update>
+
+    <insert id="addCategory" parameterType="Categorys" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_category (namee , count_topics , count_comments) VALUE (#{namee} , #{countTopics} , #{countComments})
+    </insert>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

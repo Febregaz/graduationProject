@@ -119,7 +119,7 @@
 			<c:forEach items="${listAnno}" var="anno">
 				<ul>
 					<li><a id="title<c:out value="${anno.id}" />"
-						   href="announcements/getAllAnnouncements?helpId=<c:out value="${anno.id}" />"
+						   href="announcements/getAllAnnouncements?annoId=<c:out value="${anno.id}" />"
 						   target="_top"><c:out value="${anno.title}" /> </a></li>
 				</ul>
 			</c:forEach>
@@ -154,14 +154,14 @@
 						<c:if test="${anno.id==1}"></c:if>
 						<c:if test="${anno.id!=1}">
 							<a
-									href="helps/getAllHelps?helpId=<c:out value="${anno.id-1}" />">&lt;&lt;上一篇</a>
+									href="announcements/getAllAnnouncements?annoId=<c:out value="${anno.id-1}" />">&lt;&lt;上一篇</a>
 						</c:if>
 					</div>
 					<div class="pageNav" align="right">
 						<c:if test="${anno.id==annoSize}"></c:if>
 						<c:if test="${anno.id!=annoSize}">
 							<a
-									href="helps/getAllHelps?helpId=<c:out value="${anno.id+1}" />">下一篇&gt;&gt;</a>
+									href="announcements/getAllAnnouncements?annoId=<c:out value="${anno.id+1}" />">下一篇&gt;&gt;</a>
 						</c:if>
 					</div>
 				</div>
