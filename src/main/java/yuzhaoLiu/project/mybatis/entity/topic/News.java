@@ -13,7 +13,7 @@ import java.util.Date;
  * 
  */
 public class News {
-	private int id;
+	private int newId;
 	private Date newTime;
 	private int status; // 0表示未读，1表示已读
 	// 多对一
@@ -22,11 +22,11 @@ public class News {
 	private Topics newsTopic;
 
 	public int getId() {
-		return id;
+		return newId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.newId = id;
 	}
 
 	public int getStatus() {

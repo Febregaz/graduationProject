@@ -165,6 +165,14 @@
 	}
 	
 </script>
+<script type="text/javascript">
+	${document}.ready(function () {
+        var msg=""+'<c:out value="${updateMessage}" />';
+        if(msg!=""){
+            alert(msg);
+        }
+    })
+</script>
 </head>
 
 <body>
@@ -185,12 +193,12 @@
 			</div>
 			<div class="userStyle">
 				<div class="leftBodyNav" id="leftBodyNav">
-					<a href="user_GetNews.action" target="test1"
+					<a href="users/getUserNews?nowPage=1" target="test1"
 						onclick="return checkULogin()"><div class="leftBodyNavStyle"
 							id="leftBodyNavStyle_1" onclick="javascript:test_item(1);">
 							我的消息
 							<c:if test="${sessionScope.userInfo.clock==0}"></c:if>
-							<c:if test="${sessionScope.userInfo.clock==1}">
+							<c:if test="${sessionScope.userInfo.clock>=1}">
 								<sup style="color: red;font-size: 14px;"><c:out
 										value="${sessionScope.userInfo.clock}" /> </sup>
 							</c:if>

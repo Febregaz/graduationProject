@@ -12,9 +12,17 @@ public interface usersMapper {
 
     public void updateIntegralAndComment(Users user);
 
+    public void updateClock(Users user);
+
     public void updateTopicsCount(Users user);
 
     public void registeruser(Users user);
 
     public void updateUserPic(Users user);
+
+    public void updateUserInfo(Users user);
+
+    public void updateUserPass(Users user);
+
+    public Users getUserById(int id);
 }

@@ -2,16 +2,17 @@ package yuzhaoLiu.project.controller.mybatis.people;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import yuzhaoLiu.project.controller.chiefController.topController;
-import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getGradeMapper;
-import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
-import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.methodForGetUserComments;
-import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.methodForGetUserTopics;
+import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.*;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getNewsMapper;
 import yuzhaoLiu.project.mybatis.entity.people.Grades;
+import yuzhaoLiu.project.mybatis.entity.people.User;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
+import yuzhaoLiu.project.mybatis.entity.topic.News;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
@@ -118,6 +119,8 @@ public class usersController extends topController {
                 MultipartFile file=multiRequest.getFile(iter.next().toString());
                 if(file!=null)
                 {
+                    //F:/graduationProject/src/main/webapp/upload/
+                    //D:/graduationProject/graduationProject/src/main/webapp/upload/
                     String path="F:/graduationProject/src/main/webapp/upload/"+file.getOriginalFilename();
                     //上传
                     file.transferTo(new File(path));
@@ -132,13 +135,86 @@ public class usersController extends topController {
         user.setPicture("upload/"+fileName);
         getPeopleMapper.getTheUsersMapper().updateUserPic(user);
         getPeopleMapper.sqlCommit();
-        return "";
+        return "user/updateInfo";
     }
 
     @RequestMapping("/updateUserInfo")
-    public String updateUserInfo(String userNic , String userSex , String userEmail , String userProfe , String userFrom , String userIntro){
+    public String updateUserInfo(HttpServletRequest request , String userNic , String userSex , String userEmail , String userProfe , String userFrom , String userIntro){
         logger.info(userNic+userSex+userEmail+userProfe+userFrom+userIntro);
-        return "";
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("userInfo");
+        user.setNickname(userNic);user.setSex(userSex);user.setEmail(userEmail);user.setProfession(userProfe);
+        user.setComefrom(userFrom);user.setIntroduction(userIntro);
+        getPeopleMapper.getTheUsersMapper().updateUserInfo(user);
+        getPeopleMapper.sqlCommit();
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://"
+                + request.getServerName() + ":" + request.getServerPort()
+                + path + "/";
+        logger.info(basePath);
+        return "redirect:"+basePath+"NC-JSP/user/home.jsp";
+    }
+
+    @RequestMapping("/updateUserPass")
+    public String updateUserPass(HttpServletRequest request , String userPass){
+        logger.info("I am not good and in updateUserPass");
+        logger.info(userPass);
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("userInfo");
+        user.setPassword(userPass);
+        getPeopleMapper.getTheUsersMapper().updateUserPass(user);
+        getPeopleMapper.sqlCommit();
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://"
+                + request.getServerName() + ":" + request.getServerPort()
+                + path + "/";
+        logger.info(basePath);
+        return "redirect:"+basePath+"NC-JSP/user/home.jsp";
+    }
+
+    @RequestMapping("/manageAll")
+    public String manageAll(HttpServletRequest request , int nowPage){
+        List<Users> usersList = getPeopleMapper.getTheUsersMapper().readUsers();
+        this.pageBean = methodForManageAll.ManageUsersForPage(12 , nowPage , usersList);
+        request.setAttribute("listUser" , pageBean.getListUser());
+        request.setAttribute("pageBean"  , pageBean);
+        return "admin/manageUsers";
+    }
+
+    @RequestMapping("/getUserNews")
+    public String getUserNews(HttpServletRequest request , int nowPage){
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("userInfo");
+        List<News> newsList = getNewsMapper.getTheNewsMapper().getNewsByUserId(user.getId());
+        logger.info("size:"+newsList.size());
+        this.pageBean = methodForGetNews.ManageNewsForPage(5 , nowPage , newsList);
+        logger.info(pageBean.getListNews().size());
+        request.setAttribute("pageBean" , pageBean);
+        request.setAttribute("listNews" , pageBean.getListNews());
+        return "user/news";
+    }
+
+    @RequestMapping("/hadRead")
+    @ResponseBody
+    public News hadRead(int newStatus , int newId , HttpServletRequest request){
+        News news = getNewsMapper.getTheNewsMapper().getNewById(newId);
+        if(newStatus==0){
+            news.setStatus(1);
+        }
+        else if(newStatus==1){
+            news.setStatus(0);
+        }
+        getNewsMapper.getTheNewsMapper().updateStatus(news);
+        getNewsMapper.sqlCommit();
+        return news;
+    }
+
+    @RequestMapping("/getUserById")
+    public String getUserById(int userId , HttpServletRequest request){
+        Users user = getPeopleMapper.getTheUsersMapper().getUserById(userId);
+        HttpSession session = request.getSession();
+        session.setAttribute("user" , user);
+        return "user/user";
     }
 
 }

@@ -44,7 +44,10 @@ public class testUsers {
     public void userLogin(){
         usersMapper usersMapper = sqlUtil.getSql().getMapper(usersMapper.class);
         Users users = usersMapper.userLogin("Aragami");
-        System.out.println(users.getStatus());
+        users.setPassword("5688956565");
+        getPeopleMapper.getTheUsersMapper().updateUserPass(users);
+        getPeopleMapper.sqlCommit();
+        //System.out.println(users.getPassword());
     }
 
     @Test
@@ -54,6 +57,12 @@ public class testUsers {
         user.setTopCount(0);
         getPeopleMapper.getTheUsersMapper().updateTopicsCount(user);
         getPeopleMapper.sqlCommit();
+    }
+
+    @Test
+    public void commomTest(){
+        Users user = getPeopleMapper.getTheUsersMapper().getUserById(2);
+        logger.info(user.getNickname());
     }
 
 }

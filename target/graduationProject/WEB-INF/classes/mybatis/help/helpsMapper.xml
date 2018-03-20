@@ -16,6 +16,13 @@
     <select id="getOneHelp" resultMap="helpBean">
         SELECT * FROM t_help a WHERE a.id = #{id}
     </select>
+    <select id="getMaxId" resultType="int">
+        SELECT MAX(id) FROM t_help
+    </select>
+
+    <insert id="addHelp" parameterType="Helps" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_help (content , title , newtime) VALUE (#{content} , #{title} ,#{newtime})
+    </insert>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

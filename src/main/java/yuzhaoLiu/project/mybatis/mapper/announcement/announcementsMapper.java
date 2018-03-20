@@ -8,4 +8,8 @@ public interface announcementsMapper {
 
     public List<Announces> getTheAnnouncements();
 
+    public void addAnno(Announces announce);
+
+    public int getMaxId();
+
 }

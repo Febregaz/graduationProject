@@ -14,4 +14,8 @@ public interface categorysMapper {
 
     public void updateCommentCount(Categorys categorys);
 
+    public void updateCategoryName(Categorys categorys);
+
+    public void addCategory(Categorys categorys);
+
 }

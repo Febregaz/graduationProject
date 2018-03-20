@@ -4,10 +4,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getNewsMapper;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
 import yuzhaoLiu.project.mybatis.entity.people.User;
+import yuzhaoLiu.project.mybatis.entity.people.Users;
+import yuzhaoLiu.project.mybatis.entity.topic.News;
+import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
 import yuzhaoLiu.project.mybatis.mapper.UserMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
 
+import java.util.Date;
 import java.util.List;
 
 public class testMybatis {
@@ -118,6 +125,19 @@ public class testMybatis {
             logger.info("drop User successfully !");
         } finally {
             sqlSession.close();
+        }
+    }
+
+    @Test
+    public void addNews(){
+/*        News news = new News();
+        news.setNewTime(new Date());
+        news.setStatus(0);
+        news.setNewsCommentUser(new Users());
+        news.setNewsTopic(new Topics());*/
+        List<News> usersList = getNewsMapper.getTheNewsMapper().getNewsByUserId(1);
+        for(News news : usersList){
+            System.out.println(news.getNewsTopic().getTitle());
         }
     }
 

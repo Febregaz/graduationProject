@@ -50,4 +50,31 @@ public class CategorysController extends topController {
         return "category/type";
     }
 
+    @RequestMapping("/manageAll")
+    public String manageAll(HttpServletRequest request){
+        List<Categorys> categorysList = getCategoryMapper.getTheCategorysMapper().readCategorys();
+        request.setAttribute("listCate" , categorysList);
+        return "admin/manageCates";
+    }
+
+    @RequestMapping("/updateCategoryName")
+    public String updateCategoryName(String categoryName , int categoryId){
+        logger.info("categoryId:"+categoryId);
+        logger.info("categoryName:"+categoryName);
+        Categorys category = getCategoryMapper.getTheCategorysMapper().getCategoryById(categoryId);
+        category.setNamee(categoryName);
+        getCategoryMapper.getTheCategorysMapper().updateCategoryName(category);
+        getCategoryMapper.sqlCommit();
+        return "redirect:manageAll";
+    }
+
+    @RequestMapping("/addCategory")
+    public String addCategory(String categoryName){
+        Categorys category = new Categorys();
+        category.setNamee(categoryName);
+        getCategoryMapper.getTheCategorysMapper().addCategory(category);
+        getCategoryMapper.sqlCommit();
+        return "redirect:manageAll";
+    }
+
 }

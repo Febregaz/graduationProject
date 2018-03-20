@@ -10,4 +10,8 @@ public interface helpsMapper {
 
     public List<Helps> getOneHelp(int id);
 
+    public void addHelp(Helps help);
+
+    public int getMaxId();
+
 }

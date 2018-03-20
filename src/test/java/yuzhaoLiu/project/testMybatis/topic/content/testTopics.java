@@ -101,10 +101,8 @@ public class testTopics {
         finally {
             sqlSession.close();
         }*/
-        Topics topics = getTopicsMapper.getTheTopicsMapper().getTheTopicById(8);
-        topics.setCountComment(34);
-        getTopicsMapper.getTheTopicsMapper().updateTopicComment(topics.getId() , topics.getCountComment());
-        getTopicsMapper.sqlCommit();
+        Topics topics = getTopicsMapper.getTheTopicsMapper().getTheTopicById(1);
+        logger.info(topics.getTopicsType().getTypesCategory().getNamee());
     }
 
     @Test

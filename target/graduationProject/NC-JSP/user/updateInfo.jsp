@@ -149,7 +149,7 @@
 	return true;
 }
 	
- 	var msg=""+'${request.tipMessage}'; 
+ 	var msg=""+'<c:out value="${updateMessage}" />';
  	if(msg!=""){ 
    		alert(msg); 
  	} 

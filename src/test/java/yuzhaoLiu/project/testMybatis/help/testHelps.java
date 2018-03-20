@@ -12,10 +12,11 @@ public class testHelps {
     @Test
     public void getTheAnnouncements(){
         helpsMapper helpsMapper = sqlUtil.getSql().getMapper(helpsMapper.class);
-        List<Helps> helpsList = helpsMapper.getTheHelps();
-        for(Helps h : helpsList){
+        int i = helpsMapper.getMaxId();
+        /*for(Helps h : helpsList){
             System.out.println("announce:"+h.getTitle());
-        }
+        }*/
+        System.out.println(i);
         sqlUtil.closeTheSqlSession();
     }
 }

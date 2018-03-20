@@ -7,8 +7,10 @@ import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getCategoryMap
 import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getCommentsMapper;
+import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getNewsMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getTopicsMapper;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
+import yuzhaoLiu.project.mybatis.entity.topic.News;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Categorys;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
@@ -30,6 +32,7 @@ public class commentController extends topController {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("userInfo");
         Topics topic = (Topics) session.getAttribute("topic");
+        logger.info("cateName:"+topic.getTopicsType().getTypesCategory().getNamee());
         comment.setContent(commentContent);
         Boolean flag = newComment(comment , user , topic);
         int id = topic.getId();
@@ -42,11 +45,15 @@ public class commentController extends topController {
         //Topics tpc = this.topicDao.find(topic.getId());
         tpc.setCountComment(tpc.getCountComment() + 1); // 帖子评论数加1
         Types type = tpc.getTopicsType();
+        logger.info("type前:"+type.getCountComments());
         type.setCountComments(type.getCountComments() + 1); // 帖子小类型评论数加1
+        logger.info("type后:"+type.getCountComments());
         getTypeMapper.getTheTypesMapper().updateCommentsCount(type);
         getTypeMapper.sqlCommit();
         Categorys category = tpc.getTopicsType().getTypesCategory();
+        logger.info("category前:"+category.getCountComments());
         category.setCountComments(category.getCountComments() + 1); // 帖子大类型评论数加1
+        logger.info("category后:"+category.getCountComments());
         getCategoryMapper.getTheCategorysMapper().updateCommentCount(category);
         getCategoryMapper.sqlCommit();
         user.setIntegral(user.getIntegral()+1);  //回复帖子，用户积分加1
@@ -55,13 +62,16 @@ public class commentController extends topController {
         getPeopleMapper.sqlCommit();
         if (tpc.getTopicsUser().getId() != user.getId()) {
             tpc.getTopicsUser().setClock(tpc.getTopicsUser().getClock() + 1);//如果评论者不是帖子作者本人，则通知帖子作者有新评论
+            getPeopleMapper.getTheUsersMapper().updateClock(tpc.getTopicsUser());
+            getPeopleMapper.sqlCommit();
             //TODO:未读信息功能
-            /*News tnew = new News();
+            News tnew = new News();
             tnew.setNewsCommentUser(user);
             tnew.setNewsTopic(tpc);
             tnew.setStatus(0); // 将消息设为未读
             tnew.setNewTime(cTime);
-            this.newDao.add(tnew);*/
+            getNewsMapper.getTheNewsMapper().addNew(tnew);
+            getNewsMapper.sqlCommit();
         }
         /*更新topic的comment数目并且提交事务*/
         getTopicsMapper.getTheTopicsMapper().updateTopicComment(tpc.getId() , tpc.getCountComment());
