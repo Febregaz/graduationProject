@@ -59,4 +59,10 @@ public class testUsers {
         getPeopleMapper.sqlCommit();
     }
 
+    @Test
+    public void commomTest(){
+        Users user = getPeopleMapper.getTheUsersMapper().getUserById(2);
+        logger.info(user.getNickname());
+    }
+
 }

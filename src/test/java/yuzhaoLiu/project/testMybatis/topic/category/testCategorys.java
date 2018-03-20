@@ -4,6 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.springframework.web.bind.annotation.RequestMapping;
+import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getCategoryMapper;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Categorys;
 import yuzhaoLiu.project.mybatis.mapper.topic.category.categorysMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
@@ -31,5 +33,15 @@ public class testCategorys {
         } finally {
             sqlSession.close();
         }
+    }
+
+    @Test
+    public void updateCategoryComments(){
+        Categorys category = getCategoryMapper.getTheCategorysMapper().getCategoryById(1);
+        logger.info(category.getCountComments());
+        category.setCountComments(category.getCountComments()+1);
+        logger.info(category.getCountComments());
+        getCategoryMapper.getTheCategorysMapper().updateCommentCount(category);
+        getCategoryMapper.sqlCommit();
     }
 }

@@ -32,6 +32,7 @@ public class commentController extends topController {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("userInfo");
         Topics topic = (Topics) session.getAttribute("topic");
+        logger.info("cateName:"+topic.getTopicsType().getTypesCategory().getNamee());
         comment.setContent(commentContent);
         Boolean flag = newComment(comment , user , topic);
         int id = topic.getId();
@@ -44,11 +45,15 @@ public class commentController extends topController {
         //Topics tpc = this.topicDao.find(topic.getId());
         tpc.setCountComment(tpc.getCountComment() + 1); // 帖子评论数加1
         Types type = tpc.getTopicsType();
+        logger.info("type前:"+type.getCountComments());
         type.setCountComments(type.getCountComments() + 1); // 帖子小类型评论数加1
+        logger.info("type后:"+type.getCountComments());
         getTypeMapper.getTheTypesMapper().updateCommentsCount(type);
         getTypeMapper.sqlCommit();
         Categorys category = tpc.getTopicsType().getTypesCategory();
+        logger.info("category前:"+category.getCountComments());
         category.setCountComments(category.getCountComments() + 1); // 帖子大类型评论数加1
+        logger.info("category后:"+category.getCountComments());
         getCategoryMapper.getTheCategorysMapper().updateCommentCount(category);
         getCategoryMapper.sqlCommit();
         user.setIntegral(user.getIntegral()+1);  //回复帖子，用户积分加1

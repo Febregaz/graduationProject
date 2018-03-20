@@ -31,7 +31,7 @@
         UPDATE t_type a SET a.count_topics = #{countTopics} WHERE a.idd = #{idd}
     </update>
     <update id="updateCommentsCount" parameterType="Types" >
-        UPDATE t_type a SET a.name = #{name} WHERE a.idd = #{idd}
+        UPDATE t_type a SET a.count_comments = #{countComments} WHERE a.idd = #{idd}
     </update>
     <update id="updateTypeName" parameterType="Types" >
         UPDATE t_type a SET a.name = #{name} WHERE a.idd = #{idd}

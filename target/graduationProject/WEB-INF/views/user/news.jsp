@@ -160,7 +160,7 @@
 						<div style="width: 300px;text-align: left;float: left;">
 							<font style="font-size: 12px;color: #817E7E;">&nbsp;消息状态：</font>
 							<c:if test="${tnew.status==0}">
-								<font id="ff" style="font-size: 14px;color: red;"><a href="users/hadRead?newStatus=<c:out value="${tnew.status}"/>&&newId=<c:out value="${tnew.id}" />">未读</a></font>
+								<font id="ff" style="font-size: 14px;color: red;"><a href="" onclick="updateStatus(<c:out value="${tnew.status}"/> , <c:out value="${tnew.id}" />)">未读</a></font>
 							</c:if>
 							<c:if test="${tnew.status==1}">
 								<font id="ff" style="font-size: 14px;color: #817E7E;"><a href="" onclick="updateStatus(<c:out value="${tnew.status}"/> , <c:out value="${tnew.id}" />)">已读</a></font>

@@ -74,7 +74,7 @@
 				<td align="right" width="80px;"><div
 						style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 80px;">
 					<a class="topicTitle"
-					   href="user_GoUser.action?user.id=<c:out value="${test}"></c:out>"
+					   href="/users/getUserById?userId=<c:out value="${nice.topicsUser.id}"></c:out>"
 					   target="_top" style="font-size: 14px;"><c:out value="${nice.topicsUser.nickname}"></c:out> </a>&nbsp;&nbsp;
 				</div></td>
 			</tr>

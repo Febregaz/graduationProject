@@ -209,23 +209,12 @@ public class usersController extends topController {
         return news;
     }
 
-    /*@RequestMapping("/hadRead")
-    public String hadRead(int newStatus , int newId , HttpServletRequest request){
-        News news = getNewsMapper.getTheNewsMapper().getNewById(newId);
-        if(newStatus==0){
-            news.setStatus(1);
-        }
-        else if(newStatus==1){
-            news.setStatus(0);
-        }
-        getNewsMapper.getTheNewsMapper().updateStatus(news);
-        getNewsMapper.sqlCommit();
-        String path = request.getContextPath();
-        String basePath = request.getScheme() + "://"
-                + request.getServerName() + ":" + request.getServerPort()
-                + path + "/";
-        logger.info(basePath);
-        return "redirect:"+basePath+"NC-JSP/user/home.jsp";
-    }*/
+    @RequestMapping("/getUserById")
+    public String getUserById(int userId , HttpServletRequest request){
+        Users user = getPeopleMapper.getTheUsersMapper().getUserById(userId);
+        HttpSession session = request.getSession();
+        session.setAttribute("user" , user);
+        return "user/user";
+    }
 
 }

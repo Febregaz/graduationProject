@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yuzhaoLiu.project.controller.chiefController.topController;
 import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
+import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.*;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
@@ -148,6 +149,15 @@ public class topicsController extends topController {
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
         return "admin/manageTopics";
+    }
+
+    @RequestMapping("/getTopicsByUserId")
+    public String getTopicsByUserId(int userId , int nowPage , HttpServletRequest request){
+        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTopicsByUserId(userId);
+        this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
+        request.setAttribute("listTopic" , pageBean.getListTopics());
+        request.setAttribute("pageBean" , pageBean);
+        return "user/userTopics";
     }
 
 }
