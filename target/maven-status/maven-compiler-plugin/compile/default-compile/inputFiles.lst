@@ -10,8 +10,10 @@ F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\entity\people\Grade
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\announcement\AnnouncementController.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\testController.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\neo4j\service\Neo4jDBCleaner.java
+F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\topic\topicUtil\getNewsMapper.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\mapper\help\helpsMapper.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\help\helpsController.java
+F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\announcement\announcementUtil\methodForManageAll.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\topic\topicsController.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\category\categoryUtil\getCategoryMapper.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\category\categoryUtil\getTypeMapper.java
@@ -20,12 +22,16 @@ F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\topic\to
 F:\graduationProject\src\main\java\yuzhaoLiu\project\neo4j\entity\Actor.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\category\CategorysController.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\people\peopleUtil\getGradeMapper.java
+F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\people\peopleUtil\methodForGetNews.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\mapper\topic\category\typesMapper.java
+F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\mapper\topic\newsMapper.java
+F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\people\peopleUtil\methodForManageAll.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\topic\comment\commentController.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\entity\topic\content\Pages.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\entity\topic\category\Categorys.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\neo4j\repository\ActorRepository.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\people\peopleUtil\methodForGetUserTopics.java
+F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\help\helpUtil\methodForManageAll.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\entity\announcement\Announces.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\mapper\topic\category\categorysMapper.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\chiefController\topController.java
@@ -47,6 +53,7 @@ F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\mapper\announcement
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\mapper\topic\content\topicsMapper.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\entity\help\Helps.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\topic\topicUtil\getCommentsMapper.java
+F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\announcement\announcementUtil\getAnnounceMapper.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\topic\topicUtil\methodForPostedTopic.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\controller\mybatis\people\usersController.java
 F:\graduationProject\src\main\java\yuzhaoLiu\project\mybatis\entity\topic\content\Comments.java
