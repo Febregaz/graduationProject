@@ -57,6 +57,9 @@
     <update id="updateClock" parameterType="Users">
         UPDATE t_user a SET a.clock = #{clock} WHERE a.userId = #{userId}
     </update>
+    <update id="updateUserIntegral" parameterType="Users">
+        UPDATE t_user a SET a.integral = #{integral} WHERE a.userId = #{userId}
+    </update>
 
     <insert id="registeruser" parameterType="Users" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO t_user (username , password , sex , picture , email , grade_integal , integral , role_id , nickname , clock , topic_count , comment_count , register_time , status , users_grade_id ) VALUES ( #{username} , #{password} , #{sex} , #{picture} , #{email} , #{gradeIntegral} , #{integral} , #{roleId} , #{nickname} , #{clock} , #{topCount} ,#{comCount} , #{registerTime} , #{status} , #{usersGrade.gradeId}  )

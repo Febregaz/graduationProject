@@ -15,4 +15,6 @@ public interface commentsMapper {
 
     public List<Comments> getTheCommentsByUserId(int id);
 
+    public void updateCommentIntegral(Comments comment);
+
 }

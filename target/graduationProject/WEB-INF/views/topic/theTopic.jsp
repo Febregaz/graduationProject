@@ -98,7 +98,7 @@
 				location.href = 'NC-JSP/home/login.jsp';
 			}
 		} else if (topic_user_id == current_user_id) {
-			window.location.href = "topic_GoEnd.action?topic.id=" + topic_id;
+			window.location.href = "/topics/goEndTopic?topicId=" + topic_id;
 		} else if (topic_user_id != current_user_id) {
 			alert("您的账号不对，请切换账号登录!");
 		}

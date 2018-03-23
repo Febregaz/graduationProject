@@ -59,4 +59,6 @@ public interface topicsMapper{
 
     public List<Topics> getTopicsByUserId(int id);
 
+    public void updateTopicStatus(Topics topic);
+
 }

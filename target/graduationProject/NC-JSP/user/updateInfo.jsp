@@ -161,7 +161,10 @@
 	<div
 		style="float: left;background-color: white;width: 50px;height: 100%"></div>
 	<div style="float: left;width: 460px;height: 100%">
+<<<<<<< HEAD
+=======
 		<form action="users/updateUserInfo" method="post" onsubmit="return checkUpdate()">
+>>>>>>> developVersion
 			<div align="left"
 				style="float: left;background-color: white;width: 100%;height: 90%;line-height: 28px;">
 				<table>

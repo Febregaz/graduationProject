@@ -30,7 +30,7 @@ public class testComments {
         try {
             commentsMapper usersMapper = sqlSession.getMapper(commentsMapper.class);
             List<Comments> commentsList = usersMapper.readComments();
-            commentsList = methodForToTheDetailPage.ignoreListCommentHtml(commentsList);
+            //commentsList = methodForToTheDetailPage.ignoreListCommentHtml(commentsList);
             for(Comments c : commentsList){
                 System.out.println("topic:"+c.getContent());
             }

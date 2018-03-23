@@ -25,4 +25,6 @@ public interface usersMapper {
     public void updateUserPass(Users user);
 
     public Users getUserById(int id);
+
+    public void updateUserIntegral(Users user);
 }

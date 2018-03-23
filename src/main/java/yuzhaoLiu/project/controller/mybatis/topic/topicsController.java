@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.image.TileObserver;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -158,6 +159,46 @@ public class topicsController extends topController {
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
         return "user/userTopics";
+    }
+
+    @RequestMapping("/goEndTopic")
+    public String goEndTopic(int topicId , HttpServletRequest request){
+        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
+        List<Comments> commentsList = getCommentsMapper.getTheCommentsMapper().getTheCommentsByTopicId(topicId);
+        if (commentsList.size() > 1) {
+            methodForToTheDetailPage.QuickSort(commentsList , 0 , commentsList.size()-1);
+        }
+        request.setAttribute("listComment" , commentsList);
+        request.setAttribute("topic" , topic);
+        return "topic/endTopic";
+    }
+
+    @RequestMapping("/toDoEndTopic")
+    public String toDoEndTopic(String listfloor , int topicId , HttpServletRequest request){
+        String[] str = listfloor.split(",");
+        int[] listFloor = new int[str.length];
+        for (int i = 0; i < listFloor.length; i++) {
+            listFloor[i] = Integer.parseInt(str[i]);
+        }
+        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
+        List<Comments> list = new ArrayList<Comments>();
+        List<Comments> listTemp = new ArrayList<Comments>();
+        listTemp = getCommentsMapper.getTheCommentsMapper().getTheCommentsByTopicId(topicId);
+        for (int i = 0; i < listTemp.size(); i++) {
+            int m = listTemp.get(i).getCommentsUser().getId();
+            int n = topic.getTopicsUser().getId();
+            if (m != n) {
+                list.add(listTemp.get(i));
+            }
+        }
+        if (list.size() > 1) {
+            methodForToTheDetailPage.QuickSort(list, 0, list.size() - 1);
+        }
+        methodForToTheDetailPage.endTopic(listFloor, list);
+        topic.setStatus(1);
+        getTopicsMapper.getTheTopicsMapper().updateTopicStatus(topic);
+        getTopicsMapper.sqlCommit();
+        return "redirect:toTheDetailPage?topicId="+topicId+"&&nowPage=1";//toTheDetailPage
     }
 
 }

@@ -58,5 +58,9 @@
         INSERT INTO t_comment(content , floor , integral , status , comment_time , comments_user_id , comments_topic_id) VALUES (#{content} , #{floor} , #{integral} , #{status} , #{commentTime} , #{commentsUser.userId} , #{commentsTopic.id})
     </insert>
 
+    <update id="updateCommentIntegral" parameterType="Comments">
+        UPDATE t_comment a SET a.integral = #{integral} WHERE a.commentId = #{commentId}
+    </update>
+
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>

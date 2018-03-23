@@ -45,7 +45,6 @@
     <update id="updateTopicsCount" parameterType="Users">
         UPDATE t_user a SET a.topic_count = #{topCount} , a.integral = #{integral} WHERE a.userId = #{userId}
     </update>
-
     <update id="updateUserPic" parameterType="Users">
         UPDATE t_user a SET a.picture = #{picture} WHERE a.userId = #{userId}
     </update>
@@ -57,6 +56,9 @@
     </update>
     <update id="updateClock" parameterType="Users">
         UPDATE t_user a SET a.clock = #{clock} WHERE a.userId = #{userId}
+    </update>
+    <update id="updateUserIntegral" parameterType="Users">
+        UPDATE t_user a SET a.integral = #{integral} WHERE a.userId = #{userId}
     </update>
 
     <insert id="registeruser" parameterType="Users" useGeneratedKeys="true" keyProperty="id" >
