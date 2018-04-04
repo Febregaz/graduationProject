@@ -11,6 +11,8 @@ yuzhaoLiu\project\controller\methodForMany\theMethodForPage.class
 yuzhaoLiu\project\controller\mybatis\people\peopleUtil\getPeopleMapper.class
 yuzhaoLiu\project\neo4j\neo4jConfiguration\neoConfig.class
 yuzhaoLiu\project\neo4j\entity\Actor.class
+yuzhaoLiu\project\controller\mybatis\announcement\announcementUtil\methodForManageAll.class
+yuzhaoLiu\project\mybatis\mapper\topic\newsMapper.class
 yuzhaoLiu\project\controller\testController.class
 yuzhaoLiu\project\mybatis\mapper\topic\category\categorysMapper.class
 yuzhaoLiu\project\controller\mybatis\category\categoryUtil\getTypeMapper.class
@@ -27,6 +29,7 @@ yuzhaoLiu\project\controller\mybatis\category\categoryUtil\getCategoryMapper.cla
 yuzhaoLiu\project\mybatis\mapper\topic\content\commentsMapper.class
 yuzhaoLiu\project\controller\mybatis\announcement\AnnouncementController.class
 yuzhaoLiu\project\controller\mybatis\topic\topicUtil\getTopicsMapper.class
+yuzhaoLiu\project\controller\mybatis\help\helpUtil\methodForManageAll.class
 yuzhaoLiu\project\mybatis\mapper\topic\category\typesMapper.class
 yuzhaoLiu\project\controller\mybatis\topic\topicUtil\methodForSearchResult.class
 yuzhaoLiu\project\mybatis\mapper\help\helpsMapper.class
@@ -37,11 +40,15 @@ yuzhaoLiu\project\controller\mybatis\topic\comment\commentController.class
 yuzhaoLiu\project\controller\mybatis\category\categoryUtil\methodForGoCategory.class
 yuzhaoLiu\project\mybatis\entity\people\Users.class
 yuzhaoLiu\project\controller\mybatis\topic\topicsController.class
+yuzhaoLiu\project\controller\mybatis\topic\topicUtil\getNewsMapper.class
 yuzhaoLiu\project\mybatis\entity\topic\category\Categorys.class
 yuzhaoLiu\project\mybatis\entity\topic\content\Comments.class
 yuzhaoLiu\project\mybatis\entity\topic\News.class
+yuzhaoLiu\project\controller\mybatis\people\peopleUtil\methodForGetNews.class
 yuzhaoLiu\project\mybatis\entity\announcement\Announces.class
+yuzhaoLiu\project\controller\mybatis\people\peopleUtil\methodForManageAll.class
 yuzhaoLiu\project\controller\mybatis\topic\topicUtil\getCommentsMapper.class
+yuzhaoLiu\project\controller\mybatis\announcement\announcementUtil\getAnnounceMapper.class
 yuzhaoLiu\project\mybatis\mapper\announcement\announcementsMapper.class
 yuzhaoLiu\project\controller\mybatis\category\typesController.class
 yuzhaoLiu\project\mybatis\entity\help\Helps.class

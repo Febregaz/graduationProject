@@ -6,7 +6,7 @@
 <%@ page import="java.util.Iterator"%>
 <%@ page import="java.util.Arrays"%>
 <%@ page import="java.io.FileInputStream"%>
-<%@ page import="ueditor.Uploader"%>
+<%@ page import="yuzhaoLiu.project.ueditor.Uploader"%>
 <%@ page import="java.io.File"%>
 <%@ page import="java.util.Map"%>
 

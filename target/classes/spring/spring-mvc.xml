@@ -27,7 +27,7 @@
     <mvc:resources mapping="/images/**" location="/WEB-INF/statics/images/" />
     <mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/" />
     <mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/" />
-    <mvc:resources mapping="/ueditor/**" location="/WEB-INF/statics/ueditor/" />
+    <mvc:resources mapping="/ueditor/**" location="/ueditor/" />
     <mvc:resources mapping="/home/**" location="/WEB-INF/views/home/" />
     <mvc:resources mapping="/upload/**" location="/upload/" />
 
