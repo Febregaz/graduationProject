@@ -99,7 +99,7 @@ public class usersController extends topController {
         return "user/comments";
     }
 
-    @RequestMapping("/uploadUserPic")
+    @RequestMapping("/uploadUserPicNotUse")
     public String uploadUserPic(HttpServletRequest request) throws IllegalStateException, IOException{
         //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
         String fileName = null;
@@ -129,6 +129,46 @@ public class usersController extends topController {
 
             }
 
+        }
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("userInfo");
+        user.setPicture("upload/"+fileName);
+        getPeopleMapper.getTheUsersMapper().updateUserPic(user);
+        getPeopleMapper.sqlCommit();
+        return "user/updateInfo";
+    }
+
+    @RequestMapping("/uploadUserPic")
+    public String uploadUserPicTest(HttpServletRequest request){
+        String fileName="";
+        MultipartHttpServletRequest Murequest = (MultipartHttpServletRequest) request;
+        Map<String, MultipartFile> files = Murequest.getFileMap();// 得到文件map对象
+        String upaloadUrl = request.getSession().getServletContext()
+                .getRealPath("/")
+                + "upload/";// 得到当前工程路径拼接上文件名
+        File dir = new File(upaloadUrl);
+        int counter=0;
+        System.out.println(upaloadUrl);
+        if (!dir.exists())// 目录不存在则创建
+            dir.mkdirs();
+        for (MultipartFile file : files.values()) {
+            counter++;
+            fileName = file.getOriginalFilename();
+            File tagetFile = new File(upaloadUrl + fileName);// 创建文件对象
+            if (!tagetFile.exists()) {// 文件名不存在 则新建文件，并将文件复制到新建文件中
+                try {
+                    tagetFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    file.transferTo(tagetFile);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("userInfo");

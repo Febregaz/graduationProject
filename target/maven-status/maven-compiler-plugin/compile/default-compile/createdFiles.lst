@@ -17,6 +17,7 @@ yuzhaoLiu\project\controller\testController.class
 yuzhaoLiu\project\mybatis\mapper\topic\category\categorysMapper.class
 yuzhaoLiu\project\controller\mybatis\category\categoryUtil\getTypeMapper.class
 yuzhaoLiu\project\controller\mybatis\people\peopleUtil\getGradeMapper.class
+yuzhaoLiu\project\ueditor\Uploader.class
 yuzhaoLiu\project\mybatis\entity\topic\content\Topics.class
 yuzhaoLiu\project\controller\mybatis\topic\topicUtil\methodForToTheDetailPage.class
 yuzhaoLiu\project\mybatis\mapper\topic\content\topicsMapper.class

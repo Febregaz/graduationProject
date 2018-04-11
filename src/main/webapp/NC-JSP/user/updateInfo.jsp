@@ -161,10 +161,7 @@
 	<div
 		style="float: left;background-color: white;width: 50px;height: 100%"></div>
 	<div style="float: left;width: 460px;height: 100%">
-<<<<<<< HEAD
-=======
 		<form action="users/updateUserInfo" method="post" onsubmit="return checkUpdate()">
->>>>>>> developVersion
 			<div align="left"
 				style="float: left;background-color: white;width: 100%;height: 90%;line-height: 28px;">
 				<table>
@@ -231,7 +228,7 @@
 		style="float: left;background-color: white;width: 240px;height: 100%;border-left: 1px solid #C2D5E3;">
 		<p>
 			<img alt="我的头像" style="width: 160px;height: 220px;"
-				src="<c:out value="${sessionScope.userInfo.picture}" />">
+				src="${pageContext.request.contextPath}/<c:out value="${sessionScope.userInfo.picture}" />">
 		<form action="users/uploadUserPic" enctype="multipart/form-data"
 			method="POST" onsubmit="return uploadF();">
 			<div align="right">

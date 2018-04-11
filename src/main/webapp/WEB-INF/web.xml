@@ -10,7 +10,7 @@
   <display-name>Archetype Created Web Application</display-name>
   <!--welcome pages-->
   <welcome-file-list>
-    <welcome-file>WEB-INF\views\home\index.jsp</welcome-file>
+    <welcome-file>/WEB-INF/views/home/index.jsp</welcome-file>
   </welcome-file-list>
 
   <!--配置springmvc DispatcherServlet-->
