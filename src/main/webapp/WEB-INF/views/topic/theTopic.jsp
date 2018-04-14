@@ -533,7 +533,7 @@
 					</div>
 					<div style="height:80px;padding-top: 20px" align="center">
 						<a
-							href="user_GoUser.action"><c:out
+							href="/users/getUserById?userId=${sessionScope.topic.topicsUser.id}"><c:out
 								value="${sessionScope.topic.topicsUser.nickname}" /> </a> <br />
 						<c:out value="${sessionScope.topic.topicsUser.usersGrade.id}" />
 						:
@@ -575,8 +575,7 @@
 								<div style="width:200px;height:80px;padding-top: 20px"
 									align="center">
 									<a
-										href="user_GoUser.action?user.id=<c:out
-										value="${comment.commentsUser.id}" />"><c:out
+										href="/users/getUserById?userId=${comment.commentsUser.id}"><c:out
 											value="${comment.commentsUser.nickname}" /> </a> <br />
 									<c:out value="${comment.commentsUser.usersGrade.id}" />
 									:

@@ -16,4 +16,8 @@ public class getTopicsMapper {
         sqlUtil.sqlCommit();
     }
 
+    public static void sqlClose(){
+        sqlUtil.closeTheSqlSession();
+    }
+
 }

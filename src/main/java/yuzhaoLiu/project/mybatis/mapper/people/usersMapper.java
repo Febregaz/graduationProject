@@ -27,4 +27,6 @@ public interface usersMapper {
     public Users getUserById(int id);
 
     public void updateUserIntegral(Users user);
+
+    public void updateUserStatus(Users user);
 }

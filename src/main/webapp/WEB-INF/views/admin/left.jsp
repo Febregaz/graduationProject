@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/manager_left.css">
 <%
 	Users user = (Users) session.getAttribute("userInfo");
-	if (user.getRoleId() == 16) {
+	if (user.getRoleId() == 14) {
 %>
 <div class="links">
 	<a href="users/manageAll?nowPage=1"><span

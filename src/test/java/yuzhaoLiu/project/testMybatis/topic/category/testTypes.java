@@ -23,9 +23,9 @@ public class testTypes {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
             typesMapper typesMapper = sqlSession.getMapper(typesMapper.class);
-            List<Types> typesList = typesMapper.getAllTypesByCategoryId(1);
+            List<Types> typesList = typesMapper.readTypes();
             for(Types t : typesList){
-                logger.info("types:"+t.getName());
+                logger.info("types:"+t.getName()+" "+"category:"+t.getTypesCategory().getNamee()+" "+"topics:"+t.getTypesCategory().getCountTopics());
             }
             logger.info("display successfully !");
         } finally {

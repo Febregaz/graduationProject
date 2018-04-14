@@ -126,8 +126,8 @@ table tr td {
 	}
 	function checkDelete()
 	{
-		alert("不能进行此操作！");
-		return false;
+        alert("帖子删除功能暂时停用");
+        return false;
 	}
 </script>
 </head>
@@ -340,14 +340,14 @@ table tr td {
 						</td>
 						<td style="color: blue;"><c:if test="${topic.niceTopic==0}">
 								<a style="color: red" onclick="return nice()"
-									href="topic_ManageNice.action?topic.id=<c:out
+									href="/topics/niceOrNot?topicId=<c:out
 								value="${topic.id}" />">推荐精品</a>
 							</c:if> <c:if test="${topic.niceTopic==1}">
 								<a onclick="return unNice()"
-									href="topic_ManageUnNice.action?topic.id=<c:out
+									href="/topics/niceOrNot?topicId=<c:out
 								value="${topic.id}" />">取消精品</a>
 							</c:if>&nbsp;&nbsp;&nbsp;&nbsp;<a style="color: silver;"
-							onclick="return checkDelete()">删除</a>
+							onclick="return checkDelete()" href="">删除</a>
 						</td>
 					</tr>
 

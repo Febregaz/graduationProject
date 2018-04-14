@@ -16,4 +16,8 @@ public class getNewsMapper {
         sqlUtil.sqlCommit();
     }
 
+    public static void sqlClose(){
+        sqlUtil.closeTheSqlSession();
+    }
+
 }

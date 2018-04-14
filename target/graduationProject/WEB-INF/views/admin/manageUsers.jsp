@@ -325,7 +325,7 @@ table tr td {
 						</td>
 						<td><c:if test="${us.roleId==0}">普通用户</c:if> <c:if
 								test="${us.roleId==6}">普通管理员</c:if> <c:if
-								test="${us.roleId==16}">高级管理员</c:if>
+								test="${us.roleId==14}">高级管理员</c:if>
 						</td>
 						<td><c:if test="${us.status==0}">可用状态</c:if> <c:if test="${us.status==1}">禁用状态</c:if>
 						</td>
@@ -337,17 +337,17 @@ table tr td {
 						<td><c:out value="${us.gradeIntegral}" />
 						</td>
 						<td style="font-size: 12px;color: blue;"><a
-							href="user_ManageGoUser.action?user.id=<c:out value="${us.id}" />">查看详细&gt;&gt;</a>
+							href="/users/getUserById?userId=<c:out value="${us.id}" />">查看详细&gt;&gt;</a>
 						</td>
 						<td style="color: blue;"><c:if test="${us.roleId!=16}">
 								<c:if test="${us.status==1}">
 									<a style="color: red"
-										href="user_ManageUnDelete.action?user.id=<c:out value="${us.id}" />"
+										href="/users/disabledOrAbleUser?userId=<c:out value="${us.id}" />"
 										onclick="unDeleteUser();">解禁</a>
 								</c:if>
 								<c:if test="${us.status==0}">
 									<a
-										href="user_ManageDelete.action?user.id=<c:out value="${us.id}" />"
+										href="/users/disabledOrAbleUser?userId=<c:out value="${us.id}" />"
 										onclick="deleteUser(<c:out value="${us.id}" />);">禁用</a>
 								</c:if>
 							</c:if> <c:if test="${us.roleId==16}">

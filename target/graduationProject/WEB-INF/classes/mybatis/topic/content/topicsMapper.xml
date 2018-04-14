@@ -67,7 +67,7 @@
         SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.nice_topic = 1 AND b.idd = a.topics_type_id AND b.types_category_id = c.categoryId AND a.topics_user_id = d.userId ORDER BY a.id DESC
     </select>
     <select id="searchTopics" parameterType="String" resultMap="topicsBean" >
-        SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.title LIKE "%"#{content}"%" AND b.idd = a.topics_type_id OR a.content LIKE "%"#{content}"%" AND b.idd = a.topics_type_id AND b.types_category_id = c.categoryId ORDER BY a.id DESC
+        SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.title LIKE "%"#{content}"%" AND b.idd = a.topics_type_id AND b.types_category_id = c.categoryId OR a.content LIKE "%"#{content}"%" AND b.idd = a.topics_type_id AND b.types_category_id = c.categoryId ORDER BY a.id DESC
     </select>
     <select id="getTopicsByUserId" parameterType="int" resultMap="topicsBean" >
         SELECT a.*,b.*,c.* FROM t_topic a,t_type b,t_category c WHERE a.topics_user_id = #{id} AND a.topics_type_id = b.idd AND b.types_category_id = c.categoryId
@@ -78,6 +78,9 @@
     </update>
     <update id="updateTopicStatus">
         UPDATE t_topic a SET a.status = #{status} WHERE a.id = #{id}
+    </update>
+    <update id="updateTopicNice" parameterType="Topics">
+        UPDATE t_topic a SET a.nice_topic = #{niceTopic} WHERE a.id = #{id}
     </update>
 
     <insert id="addTopic" parameterType="Topics" useGeneratedKeys="true" keyProperty="id">

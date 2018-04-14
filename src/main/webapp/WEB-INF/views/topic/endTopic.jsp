@@ -227,7 +227,7 @@
 						src="images/homepage_24.png"></img> </a>
 				</div>
 				<div style="float: left;line-height:24px;">
-					&nbsp;&gt;&nbsp;<a>论坛</a>&nbsp;&gt;&nbsp;<a>发帖</a>
+					&nbsp;&gt;&nbsp;<a href="NC-JSP/home/index.jsp">论坛</a>&nbsp;&gt;&nbsp;结贴
 				</div>
 			</div>
 			<div class="editMenu">
@@ -317,7 +317,6 @@
 										<c:out value="${comment.floor}" />
 										&nbsp;&nbsp;
 									</div>
-									<c:if test="${topic.topicsUser.id!=comment.commentsUser.id}">
 										<div style="float: right;">
 											&nbsp;&nbsp;给<input value="0" class="giveGrade" type="text"
 												onchange="countGrade();"
@@ -329,7 +328,6 @@
 												value="<c:out value="${topic.integral}" />"> 分
 										</div>
 
-									</c:if>
 									<c:if test="${topic.topicsUser.id==comment.commentsUser.id}"></c:if>
 
 								</div>

@@ -61,4 +61,6 @@ public interface topicsMapper{
 
     public void updateTopicStatus(Topics topic);
 
+    public void updateTopicNice(Topics topic);
+
 }

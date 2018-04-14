@@ -47,9 +47,10 @@
 		var topTitle = $("#tTitle").val().replace(/(&nbsp;)|\s|\u00a0/g, '');
 		var topType = $("#selectType").val();
 		var topCate = $("#selectCate").val();
-		//var topGrade = $("#tGrade").val();
-		//var userGrade = <%=user.getNickname()%>
-		//var allowTopGrade = userGrade *100;
+		var topGrade = $("#tGrade").val();
+		var userGrade = <%=user.getUsersGrade().getId()%>
+		var allowTopGrade = userGrade *100;
+		var nowUserGrade = <c:out value="${sessionScope.userInfo.integral}" />
 		if (topTitle == "" || topTitle == null) {
 			alert("请填写文章标题!");
 			return false;
@@ -66,13 +67,17 @@
 			alert("请选择小版块！");
 			return false;
 		}
-		/*else if (topGrade == "" || topGrade ==null) {
+		else if (topGrade == "" || topGrade ==null) {
 			alert("请填写悬赏积分！");
 			return false;
 		}else if(topGrade <5 || topGrade > allowTopGrade){
 			alert("您的等级限制悬赏分范围：5-"+allowTopGrade+" !");
 			return false;
-		}*/
+		}
+		else if(nowUserGrade < topGrade){
+		    alert("您的积分不足，请充值后重试");
+		    return false;
+		}
 		$("#content").val(editor.getContent());
 		return true;
 	};

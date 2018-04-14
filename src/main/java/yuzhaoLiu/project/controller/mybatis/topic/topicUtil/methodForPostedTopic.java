@@ -23,7 +23,8 @@ public class methodForPostedTopic {
         ty.setCountTopics(ty.getCountTopics() + 1); // 帖子相应的类型里的帖子数加1
         getTypeMapper.getTheTypesMapper().updateTopicsCount(ty);
         getTypeMapper.sqlCommit();
-        Categorys category = ty.getTypesCategory();
+        int categoryId = ty.getTypesCategory().getId();
+        Categorys category = getCategoryMapper.getTheCategorysMapper().getCategoryById(categoryId);
         category.setCountTopics(
                 category.getCountTopics() + 1); // 帖子相应的大类型里的帖子数加1
         getCategoryMapper.getTheCategorysMapper().updateTopicCount(category);

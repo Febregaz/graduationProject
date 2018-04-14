@@ -29,7 +29,7 @@
     </insert>
 
     <select id="getNewsByUserId" parameterType="int" resultMap="newBean">
-        SELECT a.* , b.* , c.* FROM t_new a , t_topic b , t_user c WHERE b.topics_user_id = #{id} AND a.news_topic_id = b.id
+        SELECT a.* , b.* , c.* FROM t_new a , t_topic b , t_user c WHERE b.topics_user_id = #{id} AND a.news_topic_id = b.id AND news_comment_user_id = c.userId
     </select>
     <select id="getNewById" parameterType="int" resultMap="newBean">
         SELECT a.* FROM t_new a WHERE a.newId = #{id}

@@ -238,14 +238,23 @@ public class usersController extends topController {
     @ResponseBody
     public News hadRead(int newStatus , int newId , HttpServletRequest request){
         News news = getNewsMapper.getTheNewsMapper().getNewById(newId);
+        HttpSession session = request.getSession();
+        Users user =(Users) session.getAttribute("userInfo");
         if(newStatus==0){
             news.setStatus(1);
+            user.setClock(user.getClock()-1);
         }
         else if(newStatus==1){
             news.setStatus(0);
+            user.setClock(user.getClock()+1);
         }
+        //将t_new的数据的状态改为已读或者未读
         getNewsMapper.getTheNewsMapper().updateStatus(news);
         getNewsMapper.sqlCommit();
+        getNewsMapper.sqlClose();
+        getPeopleMapper.getTheUsersMapper().updateClock(user);
+        getPeopleMapper.sqlCommit();
+        getPeopleMapper.sqlClose();
         return news;
     }
 
@@ -255,6 +264,25 @@ public class usersController extends topController {
         HttpSession session = request.getSession();
         session.setAttribute("user" , user);
         return "user/user";
+    }
+
+    @RequestMapping("/disabledOrAbleUser")
+    public String disabledOrAbleUser(int userId ,HttpServletRequest request){
+        Users user = getPeopleMapper.getTheUsersMapper().getUserById(userId);
+        if(user.getStatus()==0){
+            user.setStatus(1);
+        }
+        else if(user.getStatus()==1){
+            user.setStatus(0);
+        }
+        getPeopleMapper.getTheUsersMapper().updateUserStatus(user);
+        getPeopleMapper.sqlCommit();
+        getPeopleMapper.sqlClose();
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://"
+                + request.getServerName() + ":" + request.getServerPort()
+                + path + "/";
+        return "redirect:"+basePath+"NC-JSP/admin/manage.jsp";
     }
 
 }

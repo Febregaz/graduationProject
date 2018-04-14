@@ -170,6 +170,8 @@ public class topicsController extends topController {
         }
         request.setAttribute("listComment" , commentsList);
         request.setAttribute("topic" , topic);
+        HttpSession session = request.getSession();
+        session.setAttribute("topicIntegral" , topic.getIntegral());
         return "topic/endTopic";
     }
 
@@ -199,6 +201,25 @@ public class topicsController extends topController {
         getTopicsMapper.getTheTopicsMapper().updateTopicStatus(topic);
         getTopicsMapper.sqlCommit();
         return "redirect:toTheDetailPage?topicId="+topicId+"&&nowPage=1";//toTheDetailPage
+    }
+
+    @RequestMapping("/niceOrNot")
+    public String niceOrNot(int topicId , HttpServletRequest request){
+        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
+        if(topic.getNiceTopic()==0){
+            topic.setNiceTopic(1);
+        }
+        else if(topic.getNiceTopic()==1){
+            topic.setNiceTopic(0);
+        }
+        getTopicsMapper.getTheTopicsMapper().updateTopicNice(topic);
+        getTopicsMapper.sqlCommit();
+        getTopicsMapper.sqlClose();
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://"
+                + request.getServerName() + ":" + request.getServerPort()
+                + path + "/";
+        return "redirect:"+basePath+"NC-JSP/admin/manage.jsp";
     }
 
 }
