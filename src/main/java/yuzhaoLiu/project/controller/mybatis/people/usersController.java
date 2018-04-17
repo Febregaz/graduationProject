@@ -38,7 +38,10 @@ public class usersController extends topController {
         usersMapper usersMapper = sqlUtil.getSql().getMapper(usersMapper.class);
         Users users = usersMapper.userLogin(username);
         HttpSession session = request.getSession();
-        if(users.getPassword().equals(password)){
+        if(users==null){
+            return "home/error";
+        }
+        else if(users.getPassword().equals(password)){
             if(users.getStatus()==1){
                 String message = "该账号目前处于被禁用状态!无法进行此操作！";
                 session.setAttribute("tipMessage", message);

@@ -122,7 +122,7 @@
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
-				location.href = 'login.jsp';
+				location.href = 'NC-JSP/home/login.jsp';
 			}
 		} else {
 			window.location.href = 'category/getAllCategory';

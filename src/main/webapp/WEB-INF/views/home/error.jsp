@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css" href="./CSS/top.css">
 <link rel="stylesheet" type="text/css" href="./CSS/copyRight.css">
 <script type="text/javascript">
- 	var msg=""+'${request.tipMessage}'; 
+ 	var msg=""+'${sessionScope.tipMessage}';
  	if(msg!=""){ 
    		alert(msg); 
  	} 

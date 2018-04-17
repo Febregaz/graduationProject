@@ -78,7 +78,7 @@
 						<div
 							style="width: 960px;height: 35px;background-color: #A2C1DE;line-height: 35px;color:white">
 							&nbsp;&nbsp; <a class="cateTitle"
-								href="category/goCategory?categoryId=<c:out value="#cate.id" />&&nowPage=1"><c:out
+								href="/category/goCategory?categoryId=<c:out value="${cate.id}" />&&nowPage=1"><c:out
 									value="${cate.namee}" /> </a><font style="font-size: 12px;">(共<font
 								style="font-weight: bolder;"><c:out
 										value="${cate.countTopics}" /> </font>主题/<font
