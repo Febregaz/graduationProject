@@ -67,6 +67,11 @@ table {
 					dataType : "json",
 					success : function showContent(data) {
 					    console.log(data);
+					    /*var sumTopic = 0;
+					    for (var i = 0 ; i<data.length ; i++){
+							sumTopic+=data[i].typesCategory.countTopics;
+						}
+						$("#topicCount").text(sumTopic);*/
 						cateStr = data[0].typesCategory;
 						$("#cateTable").empty();//清空列表
 						$("#cateTable")
@@ -75,7 +80,7 @@ table {
 												+ cateStr.namee
 												+ "' name='category.name' /></td></tr><tr  style='background-color: #A2C1DE;height:30px;'><td style='width:60px;'>帖子数</td><td><input type='text'  readonly='readonly' disabled='disabled'  value='"
 												+ cateStr.countTopics
-												+ "' name='category.countTopics' /></td></tr><tr  style='background-color: #A2C1DE;height:30px;'><td style='width:60px;'>评论数</td><td><input type='text'  readonly='readonly' disabled='disabled'  value='"
+												+ "' name='category.countTopics' id='topicCount' /></td></tr><tr  style='background-color: #A2C1DE;height:30px;'><td style='width:60px;'>评论数</td><td><input type='text'  readonly='readonly' disabled='disabled'  value='"
 												+ cateStr.countComments
 												+ "' name='category.countComments' /></td></tr>");
 						var typeStr = "";

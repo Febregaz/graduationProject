@@ -75,7 +75,8 @@ public class methodForToTheDetailPage {
                 getCommentsMapper.getTheCommentsMapper().updateCommentIntegral(listComment.get(i));
                 getCommentsMapper.sqlCommit();
                 System.out.println(listComment.get(i).getCommentsUser().getUsername());
-                Users user = listComment.get(i).getCommentsUser();
+                int userId = listComment.get(i).getCommentsUser().getId();
+                Users user = getPeopleMapper.getTheUsersMapper().getUserById(userId);
                 user.setIntegral(user.getIntegral() + listFloor[i]);
                 getPeopleMapper.getTheUsersMapper().updateUserIntegral(user);
                 getPeopleMapper.sqlCommit();
