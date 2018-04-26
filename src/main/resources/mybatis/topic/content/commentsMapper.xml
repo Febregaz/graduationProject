@@ -10,7 +10,7 @@
         <result column="floor" property="floor"/>
         <result column="comment_time" property="commentTime"/>
         <result column="integral" property="integral"/>
-        <result column="status" property="status"/>
+        <result column="comment_status" property="commentStatus"/>
         <association property="commentsUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
             <id column="userId" property="userId" />
             <result column="username" property="username"></result>
@@ -25,6 +25,7 @@
             <id column="id" property="id" />
             <result column="nice_topic" property="niceTopic" />
             <result column="title" property="title" />
+            <result column="status" property="status" />
             <association property="topicsUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
                 <id column="userId" property="userId" />
                 <result column="nickname" property="nickname" />

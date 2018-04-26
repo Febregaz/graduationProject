@@ -21,7 +21,7 @@
         <result column="come_from" property="comefrom" />
         <result column="introduction" property="introduction" />
         <result column="profession" property="profession" />
-        <result column="status" property="status" />
+        <result column="user_status" property="userStatus" />
         <result column="sex" property="sex" />
         <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades" >
             <id column="gradeId" property="gradeId" />

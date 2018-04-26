@@ -33,7 +33,7 @@ public class Users {
 	private int topCount = 0; // 帖子数
 	private int comCount = 0; // 评论数
 	private Date registerTime;
-	private int status = 0; // 0表示未禁用，1表示禁用
+	private int userStatus = 0; // 0表示未禁用，1表示禁用
 
 	private Grades usersGrade; // 等级
 
@@ -211,11 +211,11 @@ public class Users {
 	}
 
 	public int getStatus() {
-		return status;
+		return userStatus;
 	}
 
 	public void setStatus(int status) {
-		this.status = status;
+		this.userStatus = status;
 	}
 
 }

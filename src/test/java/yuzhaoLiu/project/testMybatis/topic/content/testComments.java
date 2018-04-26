@@ -43,9 +43,9 @@ public class testComments {
     @Test
     public void getCommentsByTopicId(){
         commentsMapper commentsMapper = sqlUtil.getSql().getMapper(commentsMapper.class);
-        List<Comments> commentsList = commentsMapper.getTheCommentsByTopicId(8);
+        List<Comments> commentsList = commentsMapper.getTheCommentsByUserId(2);
         for(Comments c : commentsList){
-            logger.info("comments:"+c.getCommentTime());
+            logger.info("comments:"+c.getCommentsTopic().getTitle()+" "+c.getCommentsTopic().getStatus());
         }
     }
 

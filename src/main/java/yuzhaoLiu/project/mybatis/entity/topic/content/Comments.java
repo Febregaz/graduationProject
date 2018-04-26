@@ -17,7 +17,7 @@ public class Comments {
 	private int floor;
 	private Date commentTime;
 	private int integral;
-	private int status;  //评论的状态，是否被删除，0表示没有，1表示被删除
+	private int commentStatus;  //评论的状态，是否被删除，0表示没有，1表示被删除
 	// 多对一
 	private Topics commentsTopic;
 	private Users commentsUser;
@@ -55,11 +55,11 @@ public class Comments {
 	}
 
 	public int getStatus() {
-		return status;
+		return commentStatus;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatus(int commentStatus) {
+		this.commentStatus = commentStatus;
 	}
 
 	public Date getCommentTime() {
