@@ -38,7 +38,7 @@ public class topicsController extends topController {
         List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNewestTopics();
         //sqlUtil.closeTheSqlSession();
         request.setAttribute("newtopicsList",topicsList);
-        logger.info("I am good and in getTheNewestTopics");
+        //logger.info("I am good and in getTheNewestTopics");
         return "topic/indexFreshTopic";
     }
 

@@ -56,7 +56,7 @@
     </select>
 
     <insert id="addTheComment" parameterType="Comments" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_comment(content , floor , integral , status , comment_time , comments_user_id , comments_topic_id) VALUES (#{content} , #{floor} , #{integral} , #{status} , #{commentTime} , #{commentsUser.userId} , #{commentsTopic.id})
+        INSERT INTO t_comment(content , floor , integral , comment_status , comment_time , comments_user_id , comments_topic_id) VALUES (#{content} , #{floor} , #{integral} , #{commentStatus} , #{commentTime} , #{commentsUser.userId} , #{commentsTopic.id})
     </insert>
 
     <update id="updateCommentIntegral" parameterType="Comments">
