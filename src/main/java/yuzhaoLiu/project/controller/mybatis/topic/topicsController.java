@@ -37,6 +37,7 @@ public class topicsController extends topController {
     public String getTheNewestTopics(HttpServletRequest request){
         List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNewestTopics();
         //sqlUtil.closeTheSqlSession();
+        //getTopicsMapper.sqlClose();
         request.setAttribute("newtopicsList",topicsList);
         //logger.info("I am good and in getTheNewestTopics");
         return "topic/indexFreshTopic";
@@ -49,8 +50,9 @@ public class topicsController extends topController {
     public String getTheHotestTopics(HttpServletRequest request){
         List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheHotestTopics();
         //sqlUtil.closeTheSqlSession();
+        //getTopicsMapper.sqlClose();
         request.setAttribute("hotTopicsList",topicsList);
-        logger.info("I am good and in getTheHotestTopics");
+        //logger.info("I am good and in getTheHotestTopics");
         return "topic/indexHotTopic";
     }
 
@@ -61,8 +63,9 @@ public class topicsController extends topController {
     public String getTheNicestTopics(HttpServletRequest request){
         List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNicestTopics();
         //sqlUtil.closeTheSqlSession();执行关闭的话*Mapper.xml在执行sql操作的时候有时会报错
+        //getTopicsMapper.sqlClose();
         request.setAttribute("niceTopicsList",topicsList);
-        logger.info("I am good and in getTheNicestTopics");
+        //logger.info("I am good and in getTheNicestTopics");
         return "topic/indexNiceTopic";
     }
 

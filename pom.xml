@@ -168,6 +168,12 @@
       <version>2.9.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>1.7.2.RELEASE</version>
+    </dependency>
     <!--redis-->
 
     <!-- https://mvnrepository.com/artifact/cn.songxinqiang/com.baidu.ueditor -->
@@ -196,7 +202,7 @@
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
-      <version>1.10</version>
+      <version>1.4</version>
     </dependency>
 
   </dependencies>

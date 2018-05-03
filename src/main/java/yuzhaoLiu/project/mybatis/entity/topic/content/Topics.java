@@ -7,6 +7,7 @@ import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.News;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,8 @@ import java.util.Set;
  * @author phn
  * 
  */
-public class Topics {
+public class Topics implements Serializable {
+	private static final long serialVersionUID = -1530813282496676263L;
 	private int id;
 	private String title; // 标题
 	private String content; // 内容

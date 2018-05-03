@@ -36,10 +36,10 @@ public class testcategoryControlller {
          * 2.get(这里是controller的请求路径)
          * 3.param(参数传值，key-value形式)
          * 4.andExpect(status().isOk())判断请求状态是否成功，成功返回200
-         * 5..andDo(print())打印信息
+         * 5..andDo(print())打印信息  getTheNewestTopics  getTheNicestTopics  getTheHotestTopics
          */
         String result = this.mockMvc
-                .perform(get("/topics/goEndTopic")
+                .perform(get("/topics/getTheNicestTopics")
                         .param("topicId", "2"))
                 .andExpect(status().isOk())
                 .andDo(print())

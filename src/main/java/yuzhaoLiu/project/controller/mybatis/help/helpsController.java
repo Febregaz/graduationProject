@@ -37,7 +37,7 @@ public class helpsController extends topController {
         request.setAttribute("listHelp",helpsList);
         request.setAttribute("helpSize" , helpsList.size());
         request.setAttribute("helpId" , helpId);
-        logger.info("I am good and in helpsController");
+        //logger.info("I am good and in helpsController");
         return "help/help";
     }
 

@@ -26,7 +26,7 @@ public class AnnouncementController extends topController {
         List<Announces> announcesList = announcementsMapper.getTheAnnouncements();
         //sqlUtil.closeTheSqlSession();
         request.setAttribute("announcementsList",announcesList);
-        logger.info("I am good and in AnnouncementController");
+        //logger.info("I am good and in AnnouncementController");
         return "announcement/indexAnno";
     }
 

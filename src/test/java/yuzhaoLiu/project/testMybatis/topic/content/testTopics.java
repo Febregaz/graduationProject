@@ -67,11 +67,11 @@ public class testTopics {
 
     @Test
     public void getTheHotestTopics(){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheHotestTopics();
+        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNewestTopics();
         for(Topics t : topicsList){
             System.out.println(t.getTitle());
         }
-        sqlUtil.closeTheSqlSession();
+        //sqlUtil.closeTheSqlSession();
     }
 
     /*
