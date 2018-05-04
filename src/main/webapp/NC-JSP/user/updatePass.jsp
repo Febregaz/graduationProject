@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
@@ -46,7 +45,7 @@ table tr {
 	line-height: 40px;
 }
 </style>
-<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
 function warnOPass() {
 	var pts = document.getElementById("oldPassts");

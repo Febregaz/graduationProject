@@ -1,13 +1,17 @@
 package yuzhaoLiu.project.controller.mybatis.people;
 
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import yuzhaoLiu.project.controller.chiefController.topController;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.*;
+import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.CodeUtil;
+import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.MailUtil;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getNewsMapper;
 import yuzhaoLiu.project.mybatis.entity.people.Grades;
 import yuzhaoLiu.project.mybatis.entity.people.User;
@@ -31,6 +35,8 @@ import java.util.*;
 public class usersController extends topController {
 
     Pages pageBean ;
+    String nameFather;
+    String passwordFather;
 
     @RequestMapping("/usersLogin")
     public String usersLogin(String username, String password, HttpServletRequest request){
@@ -44,6 +50,11 @@ public class usersController extends topController {
         else if(users.getPassword().equals(password)){
             if(users.getStatus()==1){
                 String message = "该账号目前处于被禁用状态!无法进行此操作！";
+                session.setAttribute("tipMessage", message);
+                return "home/error";
+            }
+            else if(users.getStatus()==2){
+                String message = "该账号暂未激活!无法进行此操作！";
                 session.setAttribute("tipMessage", message);
                 return "home/error";
             }
@@ -70,14 +81,27 @@ public class usersController extends topController {
         Grades grade = gradesList.get(0);
         Date date = new Date();
         Users user = new Users();
-        user.setNickname(nickname);user.setUsername(username);user.setPassword(password);user.setEmail(email);
+        user.setNickname(nickname);user.setUsername(username);user.setPassword(password);user.setEmail(email);user.setStatus(2);
         user.setRegisterTime(date);
         user.setUsersGrade(grade);
         getPeopleMapper.getTheUsersMapper().registeruser(user);
         getPeopleMapper.sqlCommit();
-        HttpSession session = request.getSession();
-        session.setAttribute("userInfo" , user);
-        return "home/index";
+        nameFather=username;
+        passwordFather=password;
+        String code= CodeUtil.generateUniqueCode();
+        new Thread(new MailUtil(email, code)).start();
+        return "user/index";
+    }
+
+    @RequestMapping("/toTheHomePageAfterActivation")
+    public String toTheHomePageAfterActivation(HttpServletRequest request){
+        String username = nameFather;
+        String password = passwordFather;
+        Users user = getPeopleMapper.getTheUsersMapper().userLogin(username);
+        user.setStatus(0);
+        getPeopleMapper.getTheUsersMapper().updateUserStatus(user);
+        getPeopleMapper.sqlCommit();
+        return "redirect:/users/usersLogin?username="+username+"&&password="+password+"";
     }
 
     @RequestMapping("/getUserTopics")
@@ -141,7 +165,7 @@ public class usersController extends topController {
         return "user/updateInfo";
     }
 
-    @RequestMapping("/uploadUserPic")
+    @RequestMapping("/uploadUserPicNotUseToo")
     public String uploadUserPicTest(HttpServletRequest request){
         String fileName="";
         MultipartHttpServletRequest Murequest = (MultipartHttpServletRequest) request;
@@ -176,6 +200,30 @@ public class usersController extends topController {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("userInfo");
         user.setPicture("upload/"+fileName);
+        getPeopleMapper.getTheUsersMapper().updateUserPic(user);
+        getPeopleMapper.sqlCommit();
+        return "user/updateInfo";
+    }
+
+    @RequestMapping("/uploadUserPic")
+    public String uploadUserPicTestTwo(@RequestParam("file")MultipartFile multipartFile, HttpServletRequest request, HttpServletResponse response){
+        String origFilename = multipartFile.getOriginalFilename(); // 图片名
+        String upaloadUrl = request.getSession().getServletContext().getRealPath("/") + "upload/";// 得到当前工程路径拼接上文件名
+        File dest = new File(upaloadUrl + origFilename); // 保存位置
+        try {
+            // 先尝试压缩并保存图片
+            Thumbnails.of(multipartFile.getInputStream()).scale(0.25f).outputQuality(0.25f).toFile(dest);
+        } catch (IOException e) {
+            try {
+                // 失败了再用springmvc自带的方式
+                multipartFile.transferTo(dest);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("userInfo");
+        user.setPicture("upload/"+origFilename);
         getPeopleMapper.getTheUsersMapper().updateUserPic(user);
         getPeopleMapper.sqlCommit();
         return "user/updateInfo";

@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -50,7 +49,7 @@
 		//window.addEventListener('resize',  iframeAutoFit,  false);
 	}
 </script>
-<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <style type="text/css">
 .background {
 	width: 100%;

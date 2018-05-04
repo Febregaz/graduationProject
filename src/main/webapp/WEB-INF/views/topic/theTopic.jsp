@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*,yuzhaoLiu.project.mybatis.entity.people.Users"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -26,13 +25,14 @@
 <link rel="stylesheet" type="text/css"
 	href="ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
 <script type="text/javascript"
-	src="ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+	src="http://apps.bdimg.com/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js"></script>
 <script type="text/javascript" src="ueditor/Comment-ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
-<script type="text/javascript" src="ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/ueditor/1.4.3.1/ueditor.all.js"></script>
 <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
 <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/lazysizes.min.js"></script>
 <script type="text/javascript" language="javascript">
 	SyntaxHighlighter.all();
 	function iFrameHeight() {
@@ -570,7 +570,7 @@
 								<div style="width:200px;height:180px;" align="center">
 									<img alt="上传图片" width="120px;" height="160px;"
 										style="padding-top: 20px"
-										src="<c:out value="${comment.commentsUser.picture}"/>">
+										data-src="<c:out value="${comment.commentsUser.picture}"/>" class="lazyload" />
 								</div>
 								<div style="width:200px;height:80px;padding-top: 20px"
 									align="center">
@@ -609,7 +609,7 @@
 								<div class="commentEditLeftBlank"></div>
 								<div class="commentEdit" align="right">
 									<c:if
-										test="${sessionScope.userInfo.roleId==6}">
+										test="${sessionScope.userInfo.roleId==14}">
 										<input type="button" value="删除"
 											onclick="deleteComment(<c:out value="${comment.id}" />);" />
 									</c:if>

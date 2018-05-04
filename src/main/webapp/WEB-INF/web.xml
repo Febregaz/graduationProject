@@ -41,7 +41,6 @@
      <url-pattern>*.jsp</url-pattern>
   </filter-mapping>-->
 
-
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -58,4 +57,11 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <listener>
+    <listener-class>yuzhaoLiu.project.peopleOnLine.MySessionListener</listener-class>
+  </listener>
+  <session-config>
+    <session-timeout>5</session-timeout>
+  </session-config>
 </web-app>

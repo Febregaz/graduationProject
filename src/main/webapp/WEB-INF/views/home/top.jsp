@@ -1,6 +1,5 @@
 <%@ page language="java"
          import="java.util.*,yuzhaoLiu.project.neo4j.entity.Actor,java.io.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
@@ -10,7 +9,7 @@
 %>
 
 <base href="<%=basePath%>">
-<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/top.js"></script>
 <head>
 <link rel="SHORTCUT ICON" href="images/logo.jpg">
@@ -201,7 +200,10 @@ a img {
 				onclick="AddFavorite(window.location,document.title)"
 				href="javascript:void(0)">收藏本站</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
 				onClick="toDesktop('http://giun.vxg197.10000net.cn','DS-Java论坛')"
-				name="btn" id="btn" class="font-color">将本站放到桌面</a>
+				name="btn" id="btn" class="font-color" style="cursor:pointer">将本站放到桌面</a>
+			&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
+				name="onLine" id="onLine" class="font-color" style="color: #aa1111;text-decoration:none;/*超链接无下划线*/
+}">当前在线人数为<%=application.getAttribute("onLine")%></a>
 		</div>
 		<c:if test="${sessionScope.userInfo==null}">
 			<div

@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
@@ -45,7 +44,7 @@
 	height: 24px
 }
 </style>
-<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/uploadPic.js"></script>
 <script type="text/javascript">
 	function iFrameHeight(n) {
@@ -233,9 +232,9 @@
 			method="POST" onsubmit="return uploadF();">
 			<div align="right">
 				<input type="text" class="inputText" style="width: 160px;"
-					id="f_file"> <input type="button" value="选择" class="butt" 
+					id="f_file"> <input type="button" value="选择" class="butt"
 					style="width: 50px;" onClick="fu.click()"> <input
-					name="fileUpload" type="file" id="fu"
+					name="file" type="file" id="fu"
 					onchange="f_file.value=this.value" style="display:none">
 			</div>
 			<input type="text" name="userUsername"

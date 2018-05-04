@@ -19,7 +19,7 @@
 <meta http-equiv="description" content="This is my page">
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <script type="text/javascript" src="js/login.js"></script>
-<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
 if(self.location!=top.location) { top.location.href=self.location.href;}
 </script>
@@ -39,9 +39,9 @@ if(self.location!=top.location) { top.location.href=self.location.href;}
 					<br />
 					<table style="font-size: 18px;" align="left">
 						<tr>
-							<td style="text-align: right;width: 220px;">用&nbsp;户&nbsp;名：</td>
-							<td><input type="text" name="username" id="uName"
-								maxlength="8" onfocus="warnName()" onblur="return checkname()" />
+							<td style="text-align: right;width: 220px;">帐&nbsp;号：</td>
+							<td><input type="text" name="username" id="uName" placeholder="用户名，昵称，邮箱"
+							<%--maxlength="8"撤销字符数限制--%> <%--onfocus="warnName()"--%> onblur="return checkname()" />
 							</td>
 							<td id="namets"
 								style="height:20px;line-height:20px;text-align: left;font-size: 12px;"></td>
