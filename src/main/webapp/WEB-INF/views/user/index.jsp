@@ -25,7 +25,7 @@
         <jsp:include page="/WEB-INF/views/home/top.jsp"></jsp:include>
     </div>
     <div style="margin-top: 200px;margin-bottom: 200px;">
-        <a href="/users/toTheHomePageAfterActivation" style="margin: 0 auto;color: #1006F1;font-size: large;">欢迎来到sevenZero，请点击确认成功</a>
+        <p style="margin: 0 auto;color: #1006F1;font-size: large;">欢迎来到sevenZero，已经向您发送一封激活邮件，请注意查收</p>
     </div>
     <div class="copyRight">
         <jsp:include page="/WEB-INF/views/home/copyRight.jsp"></jsp:include>

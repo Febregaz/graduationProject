@@ -39,7 +39,7 @@ public class testcategoryControlller {
          * 5..andDo(print())打印信息  getTheNewestTopics  getTheNicestTopics  getTheHotestTopics
          */
         String result = this.mockMvc
-                .perform(get("/topics/getTheNicestTopics")
+                .perform(get("/users/toTheHomePageAfterActivation")
                         .param("topicId", "2"))
                 .andExpect(status().isOk())
                 .andDo(print())

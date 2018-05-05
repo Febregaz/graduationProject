@@ -45,6 +45,8 @@ public class usersController extends topController {
         Users users = usersMapper.userLogin(username);
         HttpSession session = request.getSession();
         if(users==null){
+            String message = "该账号不存在";
+            session.setAttribute("tipMessage", message);
             return "home/error";
         }
         else if(users.getPassword().equals(password)){
@@ -76,21 +78,29 @@ public class usersController extends topController {
 
     @RequestMapping("/usersRegister")
     public String usersRegister(String username , String nickname , String password , String email , HttpServletRequest request){
-        logger.info(username+" "+nickname+" "+password+" "+email);
-        List<Grades> gradesList = getGradeMapper.getTheGradesMapper().readGrades();
-        Grades grade = gradesList.get(0);
-        Date date = new Date();
-        Users user = new Users();
-        user.setNickname(nickname);user.setUsername(username);user.setPassword(password);user.setEmail(email);user.setStatus(2);
-        user.setRegisterTime(date);
-        user.setUsersGrade(grade);
-        getPeopleMapper.getTheUsersMapper().registeruser(user);
-        getPeopleMapper.sqlCommit();
-        nameFather=username;
-        passwordFather=password;
-        String code= CodeUtil.generateUniqueCode();
-        new Thread(new MailUtil(email, code)).start();
-        return "user/index";
+        //logger.info(username+" "+nickname+" "+password+" "+email);
+        Users users = getPeopleMapper.getTheUsersMapper().userLogin(email);
+        if(users!=null) {
+            String message = "该邮箱已存在，请重新注册！";
+            request.getSession().setAttribute("tipMessage", message);
+            return "home/error";
+        }
+        else{
+            List<Grades> gradesList = getGradeMapper.getTheGradesMapper().readGrades();
+            Grades grade = gradesList.get(0);
+            Date date = new Date();
+            Users user = new Users();
+            user.setNickname(nickname);user.setUsername(username);user.setPassword(password);user.setEmail(email);user.setStatus(2);
+            user.setRegisterTime(date);
+            user.setUsersGrade(grade);
+            getPeopleMapper.getTheUsersMapper().registeruser(user);
+            getPeopleMapper.sqlCommit();
+            nameFather=email;
+            passwordFather=password;
+            String code= CodeUtil.generateUniqueCode();
+            new Thread(new MailUtil(email, code)).start();
+            return "user/index";
+        }
     }
 
     @RequestMapping("/toTheHomePageAfterActivation")
@@ -101,7 +111,7 @@ public class usersController extends topController {
         user.setStatus(0);
         getPeopleMapper.getTheUsersMapper().updateUserStatus(user);
         getPeopleMapper.sqlCommit();
-        return "redirect:/users/usersLogin?username="+username+"&&password="+password+"";
+        return "redirect:usersLogin?username="+username+"&&password="+password+"";
     }
 
     @RequestMapping("/getUserTopics")

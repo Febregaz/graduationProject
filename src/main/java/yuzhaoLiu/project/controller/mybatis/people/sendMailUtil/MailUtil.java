@@ -58,7 +58,7 @@ public class MailUtil implements Runnable {
             message.setSubject("账号激活");
             // 2.4设置邮件内容
             String content = "<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1>" +
-                    "<h3><a href='http://localhost:8080/NC-JSP/user/index.jsp'>点我点我>()<</a></h3>";
+                    "<h3><a href='http://www.617museum.top/NC-JSP/user/index.jsp'>点我点我>()<</a></h3>";
             message.setContent(content, "text/html;charset=UTF-8");
             // 3.发送邮件
             Transport.send(message);
