@@ -63,4 +63,6 @@ public interface topicsMapper{
 
     public void updateTopicNice(Topics topic);
 
+    public void deleteTopic(Topics topics);
+
 }

@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css"
 	href="ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
 <script type="text/javascript"
-	src="http://apps.bdimg.com/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js"></script>
+	src="ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
 <script type="text/javascript" src="ueditor/Comment-ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
 <script type="text/javascript" src="http://apps.bdimg.com/libs/ueditor/1.4.3.1/ueditor.all.js"></script>
@@ -557,12 +557,18 @@
 						style="width: 766px;min-height:270px;background-color: #F8F8F8;float: left;">
 						<div
 							style="text-align: left;width: 728px;float: left;padding:10px 20px 20px 20px;word-break: break-all;">
-							<c:out value="${sessionScope.topic.content}" default="expression" escapeXml="false" />
+							<c:if test="${sessionScope.topic.status==2}">
+								<c:out value="帖子已被删除，请浏览其它内容" />
+							</c:if>
+							<c:if test="${sessionScope.topic.status==0||sessionScope.topic.status==1}">
+								<c:out value="${sessionScope.topic.content}" default="expression" escapeXml="false" />
+							</c:if>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div>
+				<c:if test="${sessionScope.topic.status==1||sessionScope.topic.status==0}">
 				<c:forEach items="${listComment}" var="comment">
 					<div class="commentInfo">
 
@@ -624,6 +630,7 @@
 
 					</div>
 				</c:forEach>
+				</c:if>
 			</div>
 			<div class="editMenu">
 				<c:if test="${sessionScope.topic.status==0}">

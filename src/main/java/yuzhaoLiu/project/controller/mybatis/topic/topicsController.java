@@ -3,11 +3,14 @@ package yuzhaoLiu.project.controller.mybatis.topic;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import yuzhaoLiu.project.controller.chiefController.topController;
+import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getCategoryMapper;
 import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.*;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
+import yuzhaoLiu.project.mybatis.entity.topic.category.Categorys;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
@@ -216,6 +219,45 @@ public class topicsController extends topController {
             topic.setNiceTopic(0);
         }
         getTopicsMapper.getTheTopicsMapper().updateTopicNice(topic);
+        getTopicsMapper.sqlCommit();
+        getTopicsMapper.sqlClose();
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://"
+                + request.getServerName() + ":" + request.getServerPort()
+                + path + "/";
+        return "redirect:"+basePath+"NC-JSP/admin/manage.jsp";
+    }
+
+    @RequestMapping("/deleteTopicOrNot")
+    public String deleteTopicOrNot(int topicId , HttpServletRequest request){
+        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
+        Types type = topic.getTopicsType();
+        int oldTypeCommentCount = type.getCountComments();//获取type的最初总评论数
+        int oldTypeTopicCount = type.getCountTopics();//获取type的最初总帖子数
+        Categorys category = type.getTypesCategory();
+        int oldCateCommentCount = category.getCountComments();//获取category的最初总评论数
+        int oldCateTopicCount = category.getCountTopics();//获取category的最初总帖子数
+        if(topic.getStatus()==2){
+            topic.setStatus(0);
+            type.setCountComments(oldTypeCommentCount+topic.getCountComment());//若是恢复，则类型加上当前帖子的评论数
+            category.setCountComments(oldCateCommentCount+topic.getCountComment());//若是恢复，则范畴加上当前帖子的评论数
+            type.setCountTopics(oldTypeTopicCount+1);
+            category.setCountTopics(oldCateTopicCount+1);
+        }
+        else if(topic.getStatus()==0||topic.getStatus()==1){
+            topic.setStatus(2);
+            type.setCountComments(oldTypeCommentCount-topic.getCountComment());//若是删除，则类型减去当前帖子的评论数
+            category.setCountComments(oldCateCommentCount-topic.getCountComment());//若是删除，则范畴减去当前帖子的评论数
+            type.setCountTopics(oldTypeTopicCount-1);
+            category.setCountTopics(oldCateTopicCount-1);
+        }
+        getTypeMapper.getTheTypesMapper().updateTopicsCountAndCommentCount(type);//更新类型的评论数和帖子数
+        getTypeMapper.sqlCommit();
+        getTypeMapper.sqlClose();
+        getCategoryMapper.getTheCategorysMapper().updateTopicsCountAndCommentCount(category);//更新范畴的评论数和帖子数
+        getCategoryMapper.sqlCommit();
+        getCategoryMapper.sqlClose();
+        getTopicsMapper.getTheTopicsMapper().deleteTopic(topic);//将帖子逻辑删除
         getTopicsMapper.sqlCommit();
         getTopicsMapper.sqlClose();
         String path = request.getContextPath();

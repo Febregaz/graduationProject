@@ -12,8 +12,8 @@
         <association property="typesCategory" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys">
             <id column="categoryId" property="categoryId" />
             <result column="namee" property="namee" />
-            <result column="count_topics" property="countTopics" />
-            <result column="count_comments" property="countComments" />
+            <result column="count_topics_cate" property="countTopicsCate" />
+            <result column="count_comments_cate" property="countCommentsCate" />
         </association>
     </resultMap>
 
@@ -35,6 +35,9 @@
     </update>
     <update id="updateTypeName" parameterType="Types" >
         UPDATE t_type a SET a.name = #{name} WHERE a.idd = #{idd}
+    </update>
+    <update id="updateTopicsCountAndCommentCount" parameterType="Types" >
+        UPDATE t_type a SET a.count_topics = #{countTopics} , a.count_comments = #{countComments} WHERE a.idd = #{idd}
     </update>
 
     <insert id="addType" parameterType="Types" useGeneratedKeys="true" keyProperty="id">

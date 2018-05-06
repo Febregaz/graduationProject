@@ -38,8 +38,8 @@
                 <association property="typesCategory" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys">
                     <id column="categoryId" property="categoryId" />
                     <result column="namee" property="namee" />
-                    <result column="count_topics" property="countTopics" />
-                    <result column="count_comments" property="countComments" />
+                    <result column="count_topics_cate" property="countTopicsCate" />
+                    <result column="count_comments_cate" property="countCommentsCate" />
                 </association>
             </association>
         </association>

@@ -21,4 +21,6 @@ public interface typesMapper {
 
     public void addType(Types type);
 
+    public void updateTopicsCountAndCommentCount(Types type);
+
 }

@@ -14,4 +14,8 @@ public class getTypeMapper {
     public static void sqlCommit(){
         sqlUtil.sqlCommit();
     }
+
+    public static void sqlClose(){
+        sqlUtil.closeTheSqlSession();
+    }
 }

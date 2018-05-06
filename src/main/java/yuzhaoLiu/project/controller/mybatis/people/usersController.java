@@ -346,4 +346,10 @@ public class usersController extends topController {
         return "redirect:"+basePath+"NC-JSP/admin/manage.jsp";
     }
 
+    //TODO:弹幕视频后台弹幕数据的获取
+    @RequestMapping("/barrageGet")
+    @ResponseBody
+    public String barrageGet(){
+        return "{\"code\":1,\"danmaku\":[{\"author\":\"bilibili11b2034b\",\"time\":\"0.43500\",\"text\":\"熟悉的配方\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili71e0f8cf\",\"time\":\"126.82000\",\"text\":\"女神笑的太治愈了（∩△∩）\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili613e4709\",\"time\":\"41.14100\",\"text\":\"尴尬女王\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili6ff6ac4a\",\"time\":\"127.20500\",\"text\":\"回家吧！孩子在家都饿了。。。。\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili55b115e5\",\"time\":\"158.78500\",\"text\":\"素质素质，都哪去了。别拦着我，我也要看\",\"color\":\"#e70012\",\"type\":\"right\"}]}";
+    }
 }

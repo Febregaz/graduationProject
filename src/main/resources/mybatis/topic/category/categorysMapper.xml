@@ -7,8 +7,8 @@
     <resultMap id="categoryBean" type="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys" >
         <id column="categoryId" property="categoryId"></id>
         <result column="namee" property="namee"/>
-        <result column="count_topics" property="countTopics"/>
-        <result column="count_comments" property="countComments"/>
+        <result column="count_topics_cate" property="countTopicsCate"/>
+        <result column="count_comments_cate" property="countCommentsCate"/>
     </resultMap>
 
     <select id="readCategorys" resultMap="categoryBean">
@@ -19,17 +19,20 @@
     </select>
 
     <update id="updateTopicCount" parameterType="Categorys">
-        UPDATE t_category a SET a.count_topics = #{countTopics} WHERE a.categoryId = #{categoryId}
+        UPDATE t_category a SET a.count_topics_cate = #{countTopicsCate} WHERE a.categoryId = #{categoryId}
     </update>
     <update id="updateCommentCount" parameterType="Categorys">
-        UPDATE t_category a SET a.count_comments = #{countComments} WHERE a.categoryId = #{categoryId}
+        UPDATE t_category a SET a.count_comments_cate = #{countCommentsCate} WHERE a.categoryId = #{categoryId}
     </update>
     <update id="updateCategoryName" parameterType="Categorys">
         UPDATE t_category a SET a.namee = #{namee} WHERE a.categoryId = #{categoryId}
     </update>
+    <update id="updateTopicsCountAndCommentCount" parameterType="Types" >
+        UPDATE t_category a SET a.count_topics_cate = #{countTopicsCate} , a.count_comments_cate = #{countCommentsCate} WHERE a.categoryId = #{categoryId}
+    </update>
 
     <insert id="addCategory" parameterType="Categorys" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_category (namee , count_topics , count_comments) VALUE (#{namee} , #{countTopics} , #{countComments})
+        INSERT INTO t_category (namee , count_topics , count_comments_cate) VALUE (#{namee} , #{countTopics} , #{countCommentsCate})
     </insert>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

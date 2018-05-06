@@ -125,9 +125,18 @@ table tr td {
 	}
 	function checkDelete()
 	{
-        alert("帖子删除功能暂时停用");
+        if (confirm("此操作将逻辑删除该帖，你确认要进行操作吗？")) {
+            return true;
+        }
         return false;
 	}
+    function checkRestore()
+    {
+        if (confirm("此操作将逻辑恢复该帖，你确认要进行操作吗？")) {
+            return true;
+        }
+        return false;
+    }
 </script>
 </head>
 <%
@@ -345,8 +354,15 @@ table tr td {
 								<a onclick="return unNice()"
 									href="/topics/niceOrNot?topicId=<c:out
 								value="${topic.id}" />">取消精品</a>
-							</c:if>&nbsp;&nbsp;&nbsp;&nbsp;<a style="color: silver;"
-							onclick="return checkDelete()" href="">删除</a>
+							</c:if>&nbsp;&nbsp;&nbsp;&nbsp;<c:if test="${topic.status==2}"><a style="color: silver;"
+							onclick="return checkRestore()" href="/topics/deleteTopicOrNot?topicId=<c:out
+								value="${topic.id}" />">恢复</a>
+							</c:if>
+							<c:if test="${topic.status==0||topic.status==1}">
+								<a style="color: silver;"
+								   onclick="return checkDelete()" href="/topics/deleteTopicOrNot?topicId=<c:out
+								value="${topic.id}" />">删除</a>
+							</c:if>
 						</td>
 					</tr>
 

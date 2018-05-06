@@ -13,8 +13,8 @@ import java.util.Set;
 public class Categorys {
 	private int categoryId;
 	private String namee;
-	private int countTopics = 0;
-	private int countComments = 0;
+	private int countTopicsCate = 0;
+	private int countCommentsCate = 0;
 	private Set<Types> categoryTypes = new HashSet<Types>();
 
 	public int getId() {
@@ -42,19 +42,19 @@ public class Categorys {
 	}
 
 	public int getCountTopics() {
-		return countTopics;
+		return countTopicsCate;
 	}
 
-	public void setCountTopics(int countTopics) {
-		this.countTopics = countTopics;
+	public void setCountTopics(int countTopicsCate) {
+		this.countTopicsCate = countTopicsCate;
 	}
 
 	public int getCountComments() {
-		return countComments;
+		return countCommentsCate;
 	}
 
-	public void setCountComments(int countComments) {
-		this.countComments = countComments;
+	public void setCountComments(int countCommentsCate) {
+		this.countCommentsCate = countCommentsCate;
 	}
 
 }

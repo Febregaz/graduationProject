@@ -31,6 +31,8 @@
     <mvc:resources mapping="/ueditor/**" location="/ueditor/" />
     <mvc:resources mapping="/home/**" location="/WEB-INF/views/home/" />
     <mvc:resources mapping="/upload/**" location="/upload/" />
+    <mvc:resources mapping="/videos/**" location="/WEB-INF/statics/videos/" />
+    <mvc:resources mapping="/error/**" location="/WEB-INF/views/common/error/" />
 
     <!-- 配置注解驱动 可以将request参数与绑定到controller参数上 -->
     <mvc:annotation-driven/>
@@ -51,6 +53,21 @@
         <property name="maxUploadSize" value="104857600" />
         <property name="maxInMemorySize" value="4096" />
         <property name="defaultEncoding" value="utf-8" />
+    </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <entry key="ResourceNotFoundException" value="common/error/resourceNotFoundError" />
+                <entry key=".DataAccessException" value="common/error/dataAccessError" />
+            </map>
+        </property>
+        <property name="statusCodes">
+            <map>
+                <entry key="common/error/resourceNotFoundError" value="404" />
+                <entry key="common/error/dataAccessError" value="500" />
+            </map>
+        </property>
     </bean>
 
 </beans>
