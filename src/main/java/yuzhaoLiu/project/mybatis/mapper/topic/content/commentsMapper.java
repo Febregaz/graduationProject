@@ -17,4 +17,8 @@ public interface commentsMapper {
 
     public void updateCommentIntegral(Comments comment);
 
+    public Comments deleteComment(int id);
+
+    public void updateCommentStatus(Comments comment);
+
 }

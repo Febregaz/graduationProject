@@ -84,4 +84,38 @@ public class commentController extends topController {
         return true;
     }
 
+    @RequestMapping("/deleteComment")
+    public String deleteComment(int commentId){
+        Comments comment = getCommentsMapper.getTheCommentsMapper().deleteComment(commentId);
+        comment.setStatus(1);//评论状态设为1,逻辑删除
+        Users user = comment.getCommentsUser();
+        int oldUserCommentCount = user.getComCount();
+        user.setComCount(oldUserCommentCount-1);//对应的用户评论数减一
+        Topics topic = comment.getCommentsTopic();
+        int oldTopicCommentCount = topic.getCountComment();
+        topic.setCountComment(oldTopicCommentCount-1);//对应的帖子的评论数减一
+        Types type = comment.getCommentsTopic().getTopicsType();
+        int oldTypeCommentCount = type.getCountComments();
+        type.setCountComments(oldTypeCommentCount-1);//对应的帖子的类型的评论数减一
+        Categorys category = comment.getCommentsTopic().getTopicsType().getTypesCategory();
+        int oldCategoryCommentCount = category.getCountComments();
+        category.setCountComments(oldCategoryCommentCount-1);//对应的帖子的范畴的评论数减一
+        getCommentsMapper.getTheCommentsMapper().updateCommentStatus(comment);
+        getCommentsMapper.sqlCommit();
+        getCommentsMapper.sqlClose();
+        getPeopleMapper.getTheUsersMapper().updateCommentsCount(user);
+        getPeopleMapper.sqlCommit();
+        getPeopleMapper.sqlClose();
+        getTopicsMapper.getTheTopicsMapper().updateTopicCommentCount(topic);
+        getTopicsMapper.sqlCommit();
+        getTopicsMapper.sqlClose();
+        getTypeMapper.getTheTypesMapper().updateCommentsCount(type);
+        getTypeMapper.sqlCommit();
+        getTypeMapper.sqlClose();
+        getCategoryMapper.getTheCategorysMapper().updateCommentCount(category);
+        getCategoryMapper.sqlCommit();
+        getCategoryMapper.sqlClose();
+        return "redirect:topics/toTheDetailPage?topicId="+topic.getId()+"&&nowPage=1";
+    }
+
 }

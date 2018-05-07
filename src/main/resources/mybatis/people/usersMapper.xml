@@ -45,6 +45,9 @@
     <update id="updateTopicsCount" parameterType="Users">
         UPDATE t_user a SET a.topic_count = #{topCount} , a.integral = #{integral} WHERE a.userId = #{userId}
     </update>
+    <update id="updateCommentsCount" parameterType="Users">
+        UPDATE t_user a SET a.comment_count = #{comCount} WHERE a.userId = #{userId}
+    </update>
     <update id="updateUserPic" parameterType="Users">
         UPDATE t_user a SET a.picture = #{picture} WHERE a.userId = #{userId}
     </update>

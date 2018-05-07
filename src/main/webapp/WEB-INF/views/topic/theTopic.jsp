@@ -106,8 +106,8 @@
 	function deleteComment(commentId) {
 		var topic_id = $("#topicId").val();
 		if (confirm("删除是不可恢复的，你确认要删除吗？")) {
-			window.location.href = "comment_Delete.action?comment.id="
-					+ commentId+"&&topic.id="+topic_id;
+			window.location.href = "/deleteComment?commentId="
+					+ commentId;
 			return true;
 		}
 		return false;
@@ -570,6 +570,7 @@
 			<div>
 				<c:if test="${sessionScope.topic.status==1||sessionScope.topic.status==0}">
 				<c:forEach items="${listComment}" var="comment">
+					<c:if test="${comment.status==0}">
 					<div class="commentInfo">
 
 							<div class="commentUserInfo">
@@ -629,6 +630,7 @@
 
 
 					</div>
+					</c:if>
 				</c:forEach>
 				</c:if>
 			</div>

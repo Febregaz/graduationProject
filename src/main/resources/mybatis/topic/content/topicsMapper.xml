@@ -8,7 +8,7 @@
         <id column="id" property="id" />
         <result column="title" property="title" />
         <result column="content" property="content" />
-        <result column="comment_count" property="countComment" />
+        <result column="comment_count_topic" property="countCommentTopic" />
         <result column="nice_topic" property="niceTopic" />
         <result column="topic_time" property="topicTime" />
         <result column="integral" property="integral" />
@@ -43,13 +43,13 @@
         SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId ORDER BY  a.id DESC
     </select>
     <select id="getTheNewestTopics" resultMap="topicsBean">
-        SELECT a.id,a.title,a.integral,a.comment_count,a.status,a.nice_topic,b.idd,b.name,c.namee,c.categoryId,d.userId,d.nickname FROM t_topic a,t_type b,t_category c,t_user d WHERE a.topics_type_id = b.idd AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND a.status != 2 ORDER BY  a.id DESC LIMIT 10
+        SELECT a.id,a.title,a.integral,a.comment_count_topic,a.status,a.nice_topic,b.idd,b.name,c.namee,c.categoryId,d.userId,d.nickname FROM t_topic a,t_type b,t_category c,t_user d WHERE a.topics_type_id = b.idd AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND a.status != 2 ORDER BY  a.id DESC LIMIT 10
     </select>
     <select id="getTheHotestTopics" resultMap="topicsBean">
-        SELECT a.id,a.title,a.integral,a.comment_count,a.status,a.nice_topic,b.idd,b.name,c.namee,c.categoryId,d.userId,d.nickname FROM t_topic a,t_type b,t_category c,t_user d WHERE a.comment_count >= 3 AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND a.status != 2 ORDER BY a.comment_count DESC LIMIT 10
+        SELECT a.id,a.title,a.integral,a.comment_count_topic,a.status,a.nice_topic,b.idd,b.name,c.namee,c.categoryId,d.userId,d.nickname FROM t_topic a,t_type b,t_category c,t_user d WHERE a.comment_count_topic >= 3 AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND a.status != 2 ORDER BY a.comment_count_topic DESC LIMIT 10
     </select>
     <select id="getTheNicestTopics" resultMap="topicsBean">
-        SELECT a.id,a.title,a.integral,a.comment_count,a.status,a.nice_topic,b.idd,b.name,c.namee,c.categoryId,d.userId,d.nickname FROM t_topic a,t_type b,t_category c,t_user d WHERE a.nice_topic = 1 AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND a.status != 2 ORDER BY a.id DESC LIMIT 10
+        SELECT a.id,a.title,a.integral,a.comment_count_topic,a.status,a.nice_topic,b.idd,b.name,c.namee,c.categoryId,d.userId,d.nickname FROM t_topic a,t_type b,t_category c,t_user d WHERE a.nice_topic = 1 AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND a.status != 2 ORDER BY a.id DESC LIMIT 10
     </select>
     <select id="getTheTopicById" parameterType="int" resultMap="topicsBean">
         SELECT a.*,b.*,c.*,d.*,e.* FROM t_topic a,t_type b,t_category c,t_user d,t_grade e WHERE a.id = #{id} AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId
@@ -58,7 +58,7 @@
         SELECT a.*,b.*,c.*,d.*,e.* FROM t_topic a,t_type b,t_category c,t_user d,t_grade e WHERE a.topics_type_id = #{id} AND b.idd = #{id} AND d.userId = a.topics_user_id AND b.types_category_id = c.categoryId AND a.status != 2
     </select>
     <select id="getAllHotTopics" resultMap="topicsBean">
-        SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.comment_count >= 3 AND b.idd = a.topics_type_id AND b.types_category_id = c.categoryId AND a.topics_user_id = d.userId AND a.status != 2 ORDER BY a.comment_count DESC
+        SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE a.comment_count_topic >= 3 AND b.idd = a.topics_type_id AND b.types_category_id = c.categoryId AND a.topics_user_id = d.userId AND a.status != 2 ORDER BY a.comment_count_topic DESC
     </select>
     <select id="getAllFreshTopics" resultMap="topicsBean">
         SELECT a.*,b.*,c.*,d.* FROM t_topic a,t_type b,t_category c,t_user d WHERE b.idd = a.topics_type_id AND b.types_category_id = c.categoryId AND a.topics_user_id = d.userId AND a.status != 2 ORDER BY  a.id DESC
@@ -74,7 +74,7 @@
     </select>
 
     <update id="updateTopicComment">
-        UPDATE t_topic a SET a.comment_count = #{1} WHERE a.id = #{0}
+        UPDATE t_topic a SET a.comment_count_topic = #{1} WHERE a.id = #{0}
     </update>
     <update id="updateTopicStatus">
         UPDATE t_topic a SET a.status = #{status} WHERE a.id = #{id}
@@ -84,6 +84,9 @@
     </update>
     <update id="deleteTopic">
         UPDATE t_topic a SET a.status = #{status} WHERE a.id = #{id}
+    </update>
+    <update id="updateTopicCommentCount" parameterType="Topics">
+        UPDATE t_topic a SET a.comment_count_topic = #{countCommentTopic} WHERE a.id = #{id}
     </update>
 
     <insert id="addTopic" parameterType="Topics" useGeneratedKeys="true" keyProperty="id">

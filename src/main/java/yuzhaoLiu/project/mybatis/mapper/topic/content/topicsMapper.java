@@ -65,4 +65,6 @@ public interface topicsMapper{
 
     public void deleteTopic(Topics topics);
 
+    public void updateTopicCommentCount(Topics topic);
+
 }

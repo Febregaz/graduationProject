@@ -21,7 +21,7 @@ public class Topics implements Serializable {
 	private int id;
 	private String title; // 标题
 	private String content; // 内容
-	private int countComment = 0; // 评论数
+	private int countCommentTopic = 0; // 评论数
 	private Date topicTime; // 发布时间
 	private int niceTopic = 0; // 精品帖：0不是，1是
 	private int status = 0; // 帖子状态：0未结帖，1已结贴
@@ -58,11 +58,11 @@ public class Topics implements Serializable {
 	}
 
 	public int getCountComment() {
-		return countComment;
+		return countCommentTopic;
 	}
 
-	public void setCountComment(int countComment) {
-		this.countComment = countComment;
+	public void setCountComment(int countCommentTopic) {
+		this.countCommentTopic = countCommentTopic;
 	}
 
 	public Types getTopicsType() {

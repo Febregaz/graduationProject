@@ -42,11 +42,8 @@ public class testComments {
 
     @Test
     public void getCommentsByTopicId(){
-        commentsMapper commentsMapper = sqlUtil.getSql().getMapper(commentsMapper.class);
-        List<Comments> commentsList = commentsMapper.getTheCommentsByUserId(2);
-        for(Comments c : commentsList){
-            logger.info("comments:"+c.getCommentsTopic().getTitle()+" "+c.getCommentsTopic().getStatus());
-        }
+        Comments comment = getCommentsMapper.getTheCommentsMapper().deleteComment(28);
+        System.out.println(comment.getCommentsTopic().getTitle());
     }
 
     @Test
