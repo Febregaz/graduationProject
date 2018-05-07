@@ -94,7 +94,7 @@ table {
 													+ typeStr.countTopics
 													+ "</td><td style='width:60px;'>"
 													+ typeStr.countComments
-													+ "</td><td style='width:120px;'><a onclick='showUpdateType("
+													+ "</td><td style='width:120px;'><a style='cursor:pointer' onclick='showUpdateType("
 													+ typeStr.id
 													+ ",\""
 													+ typeStr.name
@@ -104,13 +104,30 @@ table {
 													+ typeStr.countComments
 													+ ",\""
 													+ typeStr.typesCategory.id
-													+ "\")'>更新</a>&nbsp;&nbsp;&nbsp;<a  onclick='return checkDeleteType()'>删除</a></td></tr>");//向清空的列表中增加新值
+													+ "\")'>更新</a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer' onclick='return checkDeleteType("+typeStr.id+","+typeStr.countTopics+")'>删除</a></td></tr>");//向清空的列表中增加新值
 						}
 					}
 				});
 	};
-	function checkDeleteType() {
-		alert("不能进行此操作！");
+	function checkDeleteType(typeId , typeCountTopics) {
+		//alert("typeId:"+typeId+"typeCountTopics:"+typeCountTopics);
+		if(typeCountTopics!=0){
+		    alert("请先将该类型下的所有帖子逻辑删除");
+		    return false;
+		}
+		else{
+            if (confirm("此操作将删除该类型，并且该类型下的所有已被逻辑删除帖子将不可恢复，你确认要进行操作吗？")){
+                $.ajax({
+                    type : "POST",
+                    async : false,
+                    url : "/types/deleteType?typeId="+typeId,
+                    success : function(status) {
+                        window.location.reload();
+                    }
+                });
+			}
+			return false;
+		}
 		return false;
 	}
 	function showUpdateType(typeId, typeName, typeCountTopics,

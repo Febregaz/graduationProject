@@ -53,4 +53,12 @@ public class typesController extends topController {
         return "redirect:/category/manageAll";
     }
 
+    @RequestMapping("/deleteType")
+    public String deleteType(int typeId){
+        getTypeMapper.getTheTypesMapper().deleteType(typeId);
+        getTypeMapper.sqlCommit();
+        getTypeMapper.sqlClose();
+        return "redirect:/category/manageAll";
+    }
+
 }

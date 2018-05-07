@@ -44,5 +44,9 @@
         INSERT INTO t_type (name , count_topics , count_comments , types_category_id) VALUE (#{name} , #{countTopics} , #{countComments} ,#{typesCategory.id})
     </insert>
 
+    <delete id="deleteType" parameterType="int">
+        DELETE FROM t_type WHERE idd = #{id}
+    </delete>
+
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
 </mapper>
