@@ -399,7 +399,8 @@ a:hover {
 							</td>
 
 							<td align="right" width="140px;"><a class="topicTitle"
-								href="" target="_top" style="font-size: 14px;"><c:out
+								href="/users/getUserById?userId=<c:out
+										value="${topic.topicsUser.id}" />" target="_top" style="font-size: 14px;"><c:out
 										value="${topic.topicsUser.nickname}" /> </a>
 							</td>
 							<td align="right" width="60px;" style="font-size: 13px;"><c:out

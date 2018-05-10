@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
+import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.sendAllPeople;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.mapper.people.usersMapper;
 import yuzhaoLiu.project.mybatis.util.MyBatisUtil;
@@ -63,6 +64,13 @@ public class testUsers {
     public void commomTest(){
         Users user = getPeopleMapper.getTheUsersMapper().getUserById(2);
         logger.info(user.getNickname());
+    }
+
+    @Test
+    public void testSendAllPeople(){
+        //new Thread(new sendAllPeople()).start();
+        Users user = getPeopleMapper.getTheUsersMapper().userLogin("少女玲");
+        System.out.println(user.getUsersGrade().getHonor());
     }
 
 }

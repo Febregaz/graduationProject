@@ -410,7 +410,7 @@ a:hover {
 							</td>
 
 							<td align="center" width="140px;"><a class="topicTitle"
-								href="/users/getUserById?userId==<c:out
+								href="/users/getUserById?userId=<c:out
 										value="${topic.topicsUser.id}" />"
 								target="_top" style="font-size: 14px;"><c:out
 										value="${topic.topicsUser.nickname}" /> </a>

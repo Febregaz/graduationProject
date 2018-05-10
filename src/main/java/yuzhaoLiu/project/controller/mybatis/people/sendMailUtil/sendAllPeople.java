@@ -10,17 +10,17 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class MailUtil implements Runnable {
+public class sendAllPeople implements Runnable {
     private String email;// 收件人邮箱
     private String code;// 激活码
-    private String username;
-    private String password;
+    private int topicId;
+    private String topicTitle;
 
-    public MailUtil(String email, String code , String username , String password) {
+    public sendAllPeople(String email, String code , int topicId ,String topicTitle) {
         this.email = email;
         this.code = code;
-        this.username = username;
-        this.password = password;
+        this.topicId = topicId;
+        this.topicTitle = topicTitle;
     }
 
     public void run() {
@@ -59,13 +59,13 @@ public class MailUtil implements Runnable {
             // 2.2设置接收人
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             // 2.3设置邮件主题
-            message.setSubject("账号激活");
+            message.setSubject("新文章更新啦!!!");
             // 2.4设置邮件内容
-            String content = "<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1>" +
-                    "<h3><a href='http://www.617museum.top/users/toTheHomePageAfterActivation?username="+username+"'>点我点我>()<</a></h3></body></html>";
+            String content = "<html><head></head><body><h1>sevenZero有新文章更新啦，赏个脸>_<</h1>" +
+                    "<h3><a href='http://www.617museum.top/topics/toTheDetailPage?topicId="+topicId+"&&nowPage=1'>"+topicTitle+"</a></h3></body></html>";
+            /*"<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1>" +
+                    "<h3><a href='http://www.617museum.top/NC-JSP/user/index.jsp'>点我点我>()<</a></h3>";*/
             message.setContent(content, "text/html;charset=UTF-8");
-            /*www.617museum.top*//*http://www.617museum.top/users/usersLogin?username=77&&password=617572*/
-            /*localhost:8080*/
             // 3.发送邮件
             Transport.send(message);
             System.out.println("邮件成功发送!");

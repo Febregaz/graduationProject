@@ -8,6 +8,9 @@ import yuzhaoLiu.project.controller.chiefController.topController;
 import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getCategoryMapper;
 import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
+import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.CodeUtil;
+import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.MailUtil;
+import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.sendAllPeople;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.*;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Categorys;
@@ -89,15 +92,23 @@ public class topicsController extends topController {
     }
 
     @RequestMapping("/postedTopic")
-    public String postedTopic(int typeId , String topicTitle , String tcontent , int topicIntegral ,HttpServletRequest request ) throws IOException{
+    public String postedTopic(int typeId , String topicTitle , String tcontent , int topicIntegral , int ifOrNot , HttpServletRequest request ) throws IOException{
         //String strTopicContent = new String(tcontent.getBytes("iso-8859-1"),"UTF-8") ;
         //String strTopicTitle = new String(topicTitle.getBytes("iso-8859-1"),"UTF-8") ;
         HttpSession session = request.getSession();
         Users user = (Users)session.getAttribute("userInfo");
         Topics topic = new Topics();
         int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , topicTitle , tcontent);
-        logger.info("topicId:"+id);
+        System.out.println("sendAllOrNot:"+ifOrNot);
+        if(ifOrNot==1){
+            List<Users> usersList = getPeopleMapper.getTheUsersMapper().readUsers();
+            for(Users u : usersList){
+                String code= CodeUtil.generateUniqueCode();
+                new Thread(new sendAllPeople(u.getEmail() , code ,id , topicTitle)).start();
+            }
+        }
         return "redirect:toTheDetailPage?topicId="+id+"&&nowPage=1";
+        /*http://www.617museum.top/topics/toTheDetailPage?topicId=26&&nowPage=1*/
     }
 
     @RequestMapping("/getTopicsByTypeId")

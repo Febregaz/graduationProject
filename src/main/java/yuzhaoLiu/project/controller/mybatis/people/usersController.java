@@ -95,23 +95,20 @@ public class usersController extends topController {
             user.setUsersGrade(grade);
             getPeopleMapper.getTheUsersMapper().registeruser(user);
             getPeopleMapper.sqlCommit();
-            nameFather=email;
-            passwordFather=password;
             String code= CodeUtil.generateUniqueCode();
-            new Thread(new MailUtil(email, code)).start();
+            new Thread(new MailUtil(email, code ,username , password)).start();
             return "user/index";
         }
     }
 
     @RequestMapping("/toTheHomePageAfterActivation")
-    public String toTheHomePageAfterActivation(HttpServletRequest request){
-        String username = nameFather;
-        String password = passwordFather;
+    public String toTheHomePageAfterActivation(HttpServletRequest request , String username){
         Users user = getPeopleMapper.getTheUsersMapper().userLogin(username);
         user.setStatus(0);
         getPeopleMapper.getTheUsersMapper().updateUserStatus(user);
         getPeopleMapper.sqlCommit();
-        return "redirect:usersLogin?username="+username+"&&password="+password+"";
+        request.getSession().setAttribute("userInfo" , user);
+        return "home/index";
     }
 
     @RequestMapping("/getUserTopics")

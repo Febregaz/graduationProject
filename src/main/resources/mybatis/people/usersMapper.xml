@@ -33,7 +33,7 @@
         SELECT a.* , b.* FROM t_user a , t_grade b WHERE a.users_grade_id = b.gradeId
     </select>
     <select id="userLogin" resultMap="userBean" parameterType="String">
-        SELECT * FROM t_user a , t_grade b WHERE a.username = #{username} OR a.email = #{username} OR a.nickname = #{username} AND a.users_grade_id = b.gradeId
+        SELECT a.* , b.* FROM t_user a , t_grade b WHERE a.users_grade_id = b.gradeId AND a.username = #{username} OR a.email = #{username} OR a.nickname = #{username}
     </select>
     <select id="getUserById" parameterType="int" resultMap="userBean">
         SELECT a.* , b.* FROM t_user a , t_grade b WHERE a.userId = #{id} AND a.users_grade_id = b.gradeId

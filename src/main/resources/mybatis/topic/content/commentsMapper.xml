@@ -51,7 +51,7 @@
         SELECT * FROM t_comment
     </select>
     <select id="getTheCommentsByTopicId" parameterType="int" resultMap="commentBean">
-        SELECT a.*,b.*,c.* FROM t_comment a,t_user b,t_grade c WHERE a.comments_topic_id = #{id} AND a.comments_user_id = b.userId
+        SELECT a.*,b.*,c.* FROM t_comment a,t_user b,t_grade c WHERE a.comments_topic_id = #{id} AND a.comments_user_id = b.userId AND b.users_grade_id = c.gradeId
     </select>
     <select id="getTheCommentsByUserId" parameterType="int" resultMap="commentBean">
         SELECT a.*,b.*,c.*,d.*,e.* FROM t_comment a,t_user b,t_topic c,t_type d,t_category e WHERE a.comments_user_id = #{id} AND a.comments_topic_id = c.id AND c.topics_type_id = d.idd AND b.userId = c.topics_user_id AND d.types_category_id = e.categoryId

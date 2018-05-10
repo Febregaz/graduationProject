@@ -174,7 +174,7 @@
 						<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 750px;float: left;">
 							<font style="font-size: 12px;color: #817E7E;">&nbsp;用户&nbsp;</font><a href="/users/getUserById?userId=<c:out
-										value="#tnew.newsCommentUser.id" />" target="_top" style="font-size: 15px;"><c:out
+										value="${tnew.newsCommentUser.id}" />" target="_top" style="font-size: 15px;"><c:out
 									value="${tnew.newsCommentUser.nickname}" />
 							</a><font style="font-size: 12px;color: #817E7E;">&nbsp;评论了您的帖子&nbsp;</font><a
 								href="/topics/toTheDetailPage?topicId=<c:out value="${tnew.newsTopic.id}"></c:out>&&nowPage=1"

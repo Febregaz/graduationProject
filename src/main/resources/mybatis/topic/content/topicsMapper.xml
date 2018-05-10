@@ -52,7 +52,7 @@
         SELECT a.id,a.title,a.integral,a.comment_count_topic,a.status,a.nice_topic,b.idd,b.name,c.namee,c.categoryId,d.userId,d.nickname FROM t_topic a,t_type b,t_category c,t_user d WHERE a.nice_topic = 1 AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND a.status != 2 ORDER BY a.id DESC LIMIT 10
     </select>
     <select id="getTheTopicById" parameterType="int" resultMap="topicsBean">
-        SELECT a.*,b.*,c.*,d.*,e.* FROM t_topic a,t_type b,t_category c,t_user d,t_grade e WHERE a.id = #{id} AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId
+        SELECT a.*,b.*,c.*,d.*,e.* FROM t_topic a,t_type b,t_category c,t_user d,t_grade e WHERE a.id = #{id} AND b.idd = a.topics_type_id AND a.topics_user_id = d.userId AND b.types_category_id = c.categoryId AND d.users_grade_id = e.gradeId
     </select>
     <select id="getTopicsByTypeId" parameterType="int" resultMap="topicsBean">
         SELECT a.*,b.*,c.*,d.*,e.* FROM t_topic a,t_type b,t_category c,t_user d,t_grade e WHERE a.topics_type_id = #{id} AND b.idd = #{id} AND d.userId = a.topics_user_id AND b.types_category_id = c.categoryId AND a.status != 2
@@ -90,7 +90,7 @@
     </update>
 
     <insert id="addTopic" parameterType="Topics" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_topic(title , content , comment_count , nice_topic , topic_time , integral , status ,topics_user_id ,topics_type_id) VALUES (#{title} , #{content} , #{countComment} , #{niceTopic} , #{topicTime} , #{integral} , #{status} ,#{topicsUser.userId} ,#{topicsType.idd})
+        INSERT INTO t_topic(title , content , comment_count_topic , nice_topic , topic_time , integral , status ,topics_user_id ,topics_type_id) VALUES (#{title} , #{content} , #{countCommentTopic} , #{niceTopic} , #{topicTime} , #{integral} , #{status} ,#{topicsUser.userId} ,#{topicsType.idd})
     </insert>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

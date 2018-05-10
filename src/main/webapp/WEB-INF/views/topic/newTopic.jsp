@@ -43,6 +43,7 @@
 <script type="text/javascript">
 	SyntaxHighlighter.all();
 	function validToipc() {
+	    var topSend = $("#sendAllOrNot").val();
 		var topTitle = $("#tTitle").val().replace(/(&nbsp;)|\s|\u00a0/g, '');
 		var topType = $("#selectType").val();
 		var topCate = $("#selectCate").val();
@@ -64,6 +65,10 @@
 			return false;
 		} else if (topType == 0) {
 			alert("请选择小版块！");
+			return false;
+		}
+		else if(topSend == 0){
+			alert("请确认是否通知所有人");
 			return false;
 		}
 		else if (topGrade == "" || topGrade ==null) {
@@ -255,6 +260,14 @@
 											style="height:26px;width: 150px;font-size:14px"
 											id="selectType" name="typeId">
 												<option value="0">--请选择小版块--</option>
+										</select>
+										</td>
+										<td><select
+												style="height:26px;width: 150px;font-size:14px"
+												id="sendAllOrNot" name="ifOrNot">
+											<option value="0">是否通知所有人此文章?</option>
+											<option value="1">是</option>
+											<option value="2">否</option>
 										</select>
 										</td>
 									</tr>
