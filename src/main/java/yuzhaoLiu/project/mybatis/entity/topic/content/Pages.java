@@ -4,6 +4,7 @@
 package yuzhaoLiu.project.mybatis.entity.topic.content;
 
 import yuzhaoLiu.project.mybatis.entity.announcement.Announces;
+import yuzhaoLiu.project.mybatis.entity.download.Resources;
 import yuzhaoLiu.project.mybatis.entity.help.Helps;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.News;
@@ -22,6 +23,15 @@ public class Pages {
 	private List<Users> listUser;
 	private List<Announces> ListAnno;
 	private List<Helps> listHelp;
+	private List<Resources> listResources;
+
+	public List<Resources> getListResources() {
+		return listResources;
+	}
+
+	public void setListResources(List<Resources> listResources) {
+		this.listResources = listResources;
+	}
 
 	private int currentPage; // 当前页数
 	private int pageSize; // 每页显示的记录数

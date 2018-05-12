@@ -34,11 +34,11 @@ body,html {
 	Users user = (Users) session.getAttribute("userInfo");
 	if (user == null) {
 		PrintWriter pw = response.getWriter();
-		pw.println("<script type='text/javascript'>alert('未登录或登录已失效！请登录！');window.location.href = '"+basePath+"login.jsp';</script>");
+		pw.println("<script type='text/javascript'>alert('未登录或登录已失效！请登录！');window.location.href = 'login.jsp';</script>");
 
 	} else if (user.getRoleId() == 0) {
 		PrintWriter pw = response.getWriter();
-		pw.println("<script type='text/javascript'>alert('权限不够！切换账号登录');window.location.href = '"+basePath+"login.jsp';</script>");
+		pw.println("<script type='text/javascript'>alert('权限不够！切换账号登录');window.location.href = 'login.jsp';</script>");
 	} else {
 %>
 <body>

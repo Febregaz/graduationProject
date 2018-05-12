@@ -62,7 +62,7 @@
     <listener-class>yuzhaoLiu.project.peopleOnLine.MySessionListener</listener-class>
   </listener>
   <session-config>
-    <session-timeout>5</session-timeout>
+    <session-timeout>15</session-timeout>
   </session-config>
 
   <error-page>

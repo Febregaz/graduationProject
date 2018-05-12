@@ -48,7 +48,7 @@ public class MailUtil implements Runnable {
             // 1.获取默认session对象 zgkpiofsttqccchc ttdngjvzaxjrbjdj mconzknikqkveiaa
             Session session = Session.getDefaultInstance(properties, new Authenticator() {
                 public PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("1844927304@qq.com", "qqsjuwalpzqhgaae"); // 发件人邮箱账号、授权码
+                    return new PasswordAuthentication("1844927304@qq.com", "dbrrirxtymdcbddc"); // 发件人邮箱账号、授权码
                 }
             });
 

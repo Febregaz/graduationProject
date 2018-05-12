@@ -40,6 +40,10 @@
 			color="white">帮 助 管 理</font> </span> </a>
 </div>
 <div class="links">
+	<a href="resources/manageAll?nowPage=1"><span style="line-height:50px;"><font
+			color="white">资 源 管 理</font> </span> </a>
+</div>
+<div class="links">
 	<a href="NC-JSP/home/index.jsp"><span style=" line-height:50px;"><font
 			color="white">返 回 首 页</font> </span> </a>
 </div>

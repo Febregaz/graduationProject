@@ -73,6 +73,7 @@
 			</div>
 			<div style="float: left;margin-top: 15px;">
 				<c:forEach items="${listCate}" var="cate">
+					<c:if test="${cate.countTopics!=0}">
 					<div style="width: 960px;margin:0px 0px 20px 0px;float: left;">
 						<div
 							style="width: 960px;height: 35px;background-color: #A2C1DE;line-height: 35px;color:white">
@@ -91,6 +92,7 @@
 								scrolling="no" width="100%"></iframe>
 						</div>
 					</div>
+					</c:if>
 				</c:forEach>
 			</div>
 		</div>

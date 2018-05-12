@@ -250,9 +250,11 @@
 											id="selectCate" onchange="whenCateChange();">
 												<option value="0">--请选择大版块--</option>
 												<c:forEach items="${listCate}" var="cate">
+													<c:if test="${cate.countTopics!=0}">
 													<option value='<c:out value="${cate.id}" />'>
 														<c:out value="${cate.namee}" />
 													</option>
+													</c:if>
 												</c:forEach>
 										</select>
 										</td>

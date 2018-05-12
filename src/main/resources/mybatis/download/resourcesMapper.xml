@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yuzhaoLiu.project.mybatis.mapper.download.resourcesMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
+
+    <resultMap id="resourcesBean" type="yuzhaoLiu.project.mybatis.entity.download.Resources">
+        <id column="resourcesId" property="resourcesId"></id>
+        <result column="resourcesURL" property="resourcesURL"></result>
+        <result column="resourcesIntegral" property="resourcesIntegral"></result>
+        <result column="downloadTimes" property="downloadTimes" />
+        <result column="publishTime" property="publishTime" />
+        <result column="niceResources" property="niceResources" />
+        <result column="resourceStatus" property="resourceStatus" />
+        <result column="resourcesName" property="resourcesName" />
+        <association property="resourcesType" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Types">
+            <id column="idd" property="idd" />
+            <result column="name" property="name" />
+            <result column="count_topics" property="countTopics" /><!--资源数量-->
+            <result column="count_comments" property="countComments" /><!--资源下载次数-->
+            <association property="typesCategory" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys">
+                <id column="categoryId" property="categoryId" />
+                <result column="namee" property="namee" />
+                <result column="count_topics_cate" property="countTopicsCate" /><!--资源数量-->
+                <result column="count_comments_cate" property="countCommentsCate" /><!--资源下载次数-->
+            </association>
+        </association>
+        <association property="resourcesUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
+            <result column="userId" property="userId" />
+            <result column="nickname" property="nickname" /><!--需要哪个字段的值就写哪个字段，不用全部写出来-->
+            <result column="picture" property="picture"/>
+            <result column="clock" property="clock" />
+            <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades">
+                <id column="gradeId" property="gradeId" />
+                <result column="honor" property="honor"></result>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="getAllResources" resultMap="resourcesBean">
+        SELECT a.* , b.* , c.* , d.* FROM t_resources a , t_type b , t_category c , t_user d WHERE a.resourcesTypeId = b.idd AND b.types_category_id = c.categoryId AND a.resourcesUserId = d.userId
+    </select>
+    <select id="getResourcesById" parameterType="int" resultMap="resourcesBean">
+        SELECT a.* , b.* , c.* , d.* FROM t_resources a , t_type b , t_category c , t_user d WHERE a.resourcesId = #{id} AND a.resourcesTypeId = b.idd AND b.types_category_id = c.categoryId AND a.resourcesUserId = d.userId
+    </select>
+    <select id="getResourcesByURL" parameterType="String" resultMap="resourcesBean">
+        SELECT a.* , b.* , c.* , d.* FROM t_resources a , t_type b , t_category c , t_user d WHERE a.resourcesURL = #{resourcesURL} AND a.resourcesTypeId = b.idd AND b.types_category_id = c.categoryId AND a.resourcesUserId = d.userId
+    </select>
+
+    <insert id="addResources" parameterType="Resources" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_resources( resourcesURL , resourcesTypeId , resourcesIntegral , downloadTimes , publishTime , niceResources , resourceStatus , resourcesUserId , resourcesName) VALUES ( #{resourcesURL} , #{resourcesType.idd} , #{resourcesIntegral} , #{downloadTimes} , #{publishTime} , #{niceResources} , #{resourceStatus} , #{resourcesUser.userId} , #{resourcesName})
+    </insert>
+
+    <update id="updateResourcesNice" parameterType="Resources">
+        UPDATE t_resources a SET a.niceResources = #{niceResources} WHERE a.resourcesId = #{resourcesId}
+    </update>
+    <update id="updateResourcesStatus" parameterType="Resources">
+        UPDATE t_resources a SET a.resourceStatus = #{resourceStatus} WHERE a.resourcesId = #{resourcesId}
+    </update>
+    <update id="updateResourcesTimes" parameterType="Resources">
+        UPDATE t_resources a SET a.downloadTimes = #{downloadTimes} WHERE a.resourcesId = #{resourcesId}
+    </update>
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+</mapper>

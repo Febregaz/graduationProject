@@ -32,7 +32,7 @@
     </update>
 
     <insert id="addCategory" parameterType="Categorys" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO t_category (namee , count_topics , count_comments_cate) VALUE (#{namee} , #{countTopics} , #{countCommentsCate})
+        INSERT INTO t_category (namee , count_topics_cate , count_comments_cate) VALUE (#{namee} , #{countTopicsCate} , #{countCommentsCate})
     </insert>
 
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />

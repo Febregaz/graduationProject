@@ -244,7 +244,7 @@ a img {
 		<li><a href="category/getAllCategoryAndGoTypeJsp">版块</a>
 		</li>
 
-		<li><a onfocus="this.blur()" href="helps/getAllHelps?helpId=1">帮助</a></li>
+		<li><a onfocus="this.blur()" href="/resources/getAllResources?nowPage=1">资源下载</a></li>
 	</ul>
 </div>
 <div class="search" align="left">

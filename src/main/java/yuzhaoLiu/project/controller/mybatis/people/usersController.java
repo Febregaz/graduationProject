@@ -9,14 +9,20 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import yuzhaoLiu.project.controller.chiefController.topController;
+import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getCategoryMapper;
+import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
+import yuzhaoLiu.project.controller.mybatis.download.getResourcesMapper;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.*;
 import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.CodeUtil;
 import yuzhaoLiu.project.controller.mybatis.people.sendMailUtil.MailUtil;
 import yuzhaoLiu.project.controller.mybatis.topic.topicUtil.getNewsMapper;
+import yuzhaoLiu.project.mybatis.entity.download.Resources;
 import yuzhaoLiu.project.mybatis.entity.people.Grades;
 import yuzhaoLiu.project.mybatis.entity.people.User;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.News;
+import yuzhaoLiu.project.mybatis.entity.topic.category.Categorys;
+import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
@@ -348,5 +354,36 @@ public class usersController extends topController {
     @ResponseBody
     public String barrageGet(){
         return "{\"code\":1,\"danmaku\":[{\"author\":\"bilibili11b2034b\",\"time\":\"0.43500\",\"text\":\"熟悉的配方\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili71e0f8cf\",\"time\":\"126.82000\",\"text\":\"女神笑的太治愈了（∩△∩）\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili613e4709\",\"time\":\"41.14100\",\"text\":\"尴尬女王\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili6ff6ac4a\",\"time\":\"127.20500\",\"text\":\"回家吧！孩子在家都饿了。。。。\",\"color\":\"#ffffff\",\"type\":\"right\"},{\"author\":\"bilibili55b115e5\",\"time\":\"158.78500\",\"text\":\"素质素质，都哪去了。别拦着我，我也要看\",\"color\":\"#e70012\",\"type\":\"right\"}]}";
+    }
+
+    @RequestMapping("/uploadResources")
+    public String uploadResources(@RequestParam("file")MultipartFile multipartFile, HttpServletRequest request, int typeId , String resourceName){
+        String origFilename = multipartFile.getOriginalFilename(); // 资源名
+        String upaloadUrl = request.getSession().getServletContext().getRealPath("/") + "uploadResource/";// 得到当前工程路径拼接上文件名
+        File dest = new File(upaloadUrl + origFilename); // 保存位置
+        try {
+            multipartFile.transferTo(dest); //上传资源
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("userInfo");
+        Types type = getTypeMapper.getTheTypesMapper().getTypeById(typeId);
+        Resources resource = new Resources();
+        resource.setResourcesURL(origFilename);
+        resource.setResourcesType(type);
+        resource.setDownloadTimes(0);
+        resource.setNiceResources(0);
+        resource.setPublishTime(new Date());
+        resource.setResourcesIntegral(0);
+        resource.setResourcesUser(user);
+        resource.setResourcesName(resourceName);
+        getResourcesMapper.getTheResourcesMapper().addResources(resource);
+        getResourcesMapper.sqlCommit();
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://"
+                + request.getServerName() + ":" + request.getServerPort()
+                + path + "/";
+        return "redirect:"+basePath+"NC-JSP/admin/manage.jsp";
     }
 }

@@ -87,7 +87,7 @@
 							<td style="text-align: right;width: 220px;">邮&nbsp;&nbsp;&nbsp;&nbsp;箱<font
 								color="red">*</font>：</td>
 							<td><input type="text" name="email" id="uEmail" onfocus="warnEmail()"
-								onblur="return checkemail();" />
+								onblur="return checkemail();" placeholder="请填写您的qq邮箱" />
 							</td>
 							<td id="emailts"
 								style="height:20px;line-height:20px;text-align: left;font-size: 12px;"></td>
