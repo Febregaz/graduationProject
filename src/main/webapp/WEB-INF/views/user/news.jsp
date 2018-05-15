@@ -185,7 +185,7 @@
 			</table>
 		</c:forEach>
 	</div>
-	<c:if test="listNews.size()!=0">
+	<c:if test="${listNews.size()!=0}">
 		<div class="pageNav" align="right">
 			<c:if test="${pageBean.totalPages == 1}">
 				<button disabled="disabled" style="width: 80px;">上一页</button>

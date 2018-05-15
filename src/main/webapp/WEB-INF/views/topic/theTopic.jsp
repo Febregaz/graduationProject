@@ -777,6 +777,7 @@
                 </c:if>
 
 			</div>
+			<c:if test="${sessionScope.topic.status==1||sessionScope.topic.status==0}">
 			<div class="newComment" id="newComment">
 
 				<form action="postedComment" method="post"
@@ -831,6 +832,7 @@
 					</div>
 				</form>
 			</div>
+			</c:if>
 		</div>
 		<div class="copyRight">
 			<jsp:include page="/WEB-INF/views/home/copyRight.jsp"></jsp:include>
@@ -860,5 +862,19 @@
 		</button>
 	</div>
 </body>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 
 </html>
