@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%--<%@ taglib prefix="s" uri="/struts-tags"%>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -92,19 +93,19 @@
             </div>
         </div>
         <div class="leftBody">
-            <div class="hot">
+            <div class="classics">
                 <div class="ltitle">
                     <div style="float: left;width: 660px;">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热帖榜&nbsp;&nbsp;&nbsp;&nbsp;<font
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;精帖榜&nbsp;&nbsp;&nbsp;&nbsp;<font
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;color: #6699CC">
-                        <a href="topics/getAllHotTopics?nowPage=1">More&gt;&gt;</a>
+                        <a href="/617/Ashe1.617museum">More&gt;&gt;</a>
                     </div>
                 </div>
-                <div class="hotContent">
-                    <iframe width="740px" height="335px" frameborder="0" scrolling="no"
-                            src="topics/getTheHotestTopics" ></iframe>
+                <div class="classicsContent">
+                    <iframe width="740px" height="335px" frameborder=0 scrolling="no"
+                            src="topics/getTheNicestTopics"></iframe>
                 </div>
             </div>
             <div class="fresh">
@@ -114,7 +115,7 @@
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;">
-                        <a href="topics/getAllFreshTopics?nowPage=1">More&gt;&gt;</a>
+                        <a href="/617/Blitzcrank1.617museum">More&gt;&gt;</a>
                     </div>
                 </div>
                 <div class="freshContent">
@@ -122,19 +123,19 @@
                             src="topics/getTheNewestTopics"></iframe>
                 </div>
             </div>
-            <div class="classics">
+            <div class="hot">
                 <div class="ltitle">
                     <div style="float: left;width: 660px;">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;精帖榜&nbsp;&nbsp;&nbsp;&nbsp;<font
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热帖榜&nbsp;&nbsp;&nbsp;&nbsp;<font
                             style="font-style: italic;">TOP 10 </font>
                     </div>
                     <div align="center" style="float: left;width: 80px;color: #6699CC">
-                        <a href="topics/getAllNiceTopics?nowPage=1">More&gt;&gt;</a>
+                        <a href="/617/Caitlyn1.617museum">More&gt;&gt;</a>
                     </div>
                 </div>
-                <div class="classicsContent">
-                    <iframe width="740px" height="335px" frameborder=0 scrolling="no"
-                            src="topics/getTheNicestTopics"></iframe>
+                <div class="hotContent">
+                    <iframe width="740px" height="335px" frameborder="0" scrolling="no"
+                            src="topics/getTheHotestTopics" ></iframe>
                 </div>
             </div>
         </div>
@@ -183,4 +184,18 @@
     </div>
 </div>
 </body>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 </html>

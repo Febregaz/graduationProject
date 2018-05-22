@@ -217,8 +217,8 @@ a:hover {
 				style="border: 1px solid #C2D5E3;float: left;width: 958px;margin-top: 15px">
 				<c:forEach items="${listType}" var="type">
 					<a target="_top"
-						href="topics/getTopicsByTypeId?typeId=<c:out
-								value="${type.id}" />&&nowPage=1">
+						href="/617/Janna<c:out
+								value="${type.id}" />_1.617museum">
 						<div class="typeStyle" align="left"
 							style="margin: 10px 10px 10px 17px;background-color: white;height: 60px;width: 160px;float: left;border: 1px solid #D8E6F0">
 							<div style="width: 30px;height: 60px;float: left;"></div>
@@ -243,7 +243,7 @@ a:hover {
 				<div class="editMenu">
 					<input type="button" value="发帖" class="butt" style="width: 80px;"
 						onclick="checkNewTop()" /> <input type="button" value="刷新"
-						onclick="window.location.href = 'cate_goCate.action?category.id=<c:out value="${category.id}" />'"
+						onclick="window.location.href = '/617/Thresh<c:out value="${category.id}" />_1.617museum'"
 						class="butt" style="width: 80px;" />
 				</div>
 				<div class="pageNav" align="right">
@@ -258,18 +258,18 @@ a:hover {
 								<button disabled="disabled" style="width: 80px;">上一页</button>
 								<button disabled="disabled">1</button>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=2"><button>2</button>
+									href="/617/Thresh<c:out value="${category.id}" />_2.617museum"><button>2</button>
 								</a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage+1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage+1}"/>.617museum"><button
 										style="width: 80px;">下一页</button> </a>
 							</c:if>
 							<c:if test="${pageBean.currentPage==2}">
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage-1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage-1}"/>.617museum"><button
 										style="width: 80px;">上一页</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=1"><button>1</button>
+									href="/617/Thresh<c:out value="${category.id}" />_1.617museum"><button>1</button>
 								</a>
 								<button disabled="disabled">2</button>
 								<button disabled="disabled" style="width: 80px;">下一页</button>
@@ -280,39 +280,39 @@ a:hover {
 								<button disabled="disabled" style="width: 80px;">上一页</button>
 								<button disabled="disabled">1</button>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=2"><button>2</button>
+									href="/617/Thresh<c:out value="${category.id}" />_2.617museum"><button>2</button>
 								</a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=3"><button>3</button>
+									href="/617/Thresh<c:out value="${category.id}" />_3.617museum"><button>3</button>
 								</a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage+1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage+1}"/>.617museum"><button
 										style="width: 80px;">下一页</button> </a>
 							</c:if>
 							<c:if test="${pageBean.currentPage==2}">
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage-1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage-1}"/>.617museum"><button
 										style="width: 80px;">上一页</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=1"><button>1</button>
+									href="/617/Thresh<c:out value="${category.id}" />_1.617museum"><button>1</button>
 								</a>
 								<button disabled="disabled">2</button>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=3"><button>3</button>
+									href="/617/Thresh<c:out value="${category.id}" />_3.617museum"><button>3</button>
 								</a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage+1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage+1}"/>.617museum"><button
 										style="width: 80px;">下一页</button> </a>
 							</c:if>
 							<c:if test="${pageBean.currentPage==3}">
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage-1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage-1}"/>.617museum"><button
 										style="width: 80px;">上一页</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=1"><button>1</button>
+									href="/617/Thresh<c:out value="${category.id}" />_1.617museum"><button>1</button>
 								</a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=2"><button>2</button>
+									href="/617/Thresh<c:out value="${category.id}" />_2.617museum"><button>2</button>
 								</a>
 								<button disabled="disabled">3</button>
 								<button disabled="disabled" style="width: 80px;">下一页</button>
@@ -323,23 +323,23 @@ a:hover {
 								<button disabled="disabled" style="width: 80px;">上一页</button>
 								<button disabled="disabled">1</button>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=2"><button>2</button>
+									href="/617/Thresh<c:out value="${category.id}" />_2.617museum"><button>2</button>
 								</a>
 								<a><button disabled="disabled">...</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.totalPages}" />"><button>
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.totalPages}" />.617museum"><button>
 										<c:out value="${pageBean.totalPages}" />
 									</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage+1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage+1}"/>.617museum"><button
 										style="width: 80px;">下一页</button> </a>
 							</c:if>
 							<c:if test="${pageBean.currentPage<pageBean.totalPages}">
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage-1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage-1}"/>.617museum"><button
 										style="width: 80px;">上一页</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=1"><button>1</button>
+									href="/617/Thresh<c:out value="${category.id}" />_1.617museum"><button>1</button>
 								</a>
 								<c:if test="${pageBean.currentPage>2}">
 									<a><button disabled="disabled">...</button> </a>
@@ -351,23 +351,23 @@ a:hover {
 									<a><button disabled="disabled">...</button> </a>
 								</c:if>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.totalPages}" />"><button>
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.totalPages}" />.617museum"><button>
 										<c:out value="${pageBean.totalPages}" />
 									</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage+1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage+1}"/>.617museum"><button
 										style="width: 80px;" style="width: 80px;">下一页</button> </a>
 							</c:if>
 							<c:if test="${pageBean.currentPage==pageBean.totalPages}">
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.currentPage-1}"/>"><button
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.currentPage-1}"/>.617museum"><button
 										style="width: 80px;">上一页</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=1"><button>1</button>
+									href="/617/Thresh<c:out value="${category.id}" />_1.617museum"><button>1</button>
 								</a>
 								<a><button disabled="disabled">...</button> </a>
 								<a
-									href="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=<c:out value="${pageBean.totalPages-1}" />"><button>
+									href="/617/Thresh<c:out value="${category.id}" />_<c:out value="${pageBean.totalPages-1}" />.617museum"><button>
 										<c:out value="${pageBean.totalPages-1}" />
 									</button> </a>
 								<button disabled="disabled">
@@ -382,15 +382,15 @@ a:hover {
 						var currentPage = parseInt($("#currentPage").val());
 						var selectedPage = parseInt($("#selectPage").val());
 						if (selectedPage != 0 && selectedPage != currentPage) {
-							document.goPageForm.action = "category/goCategory?categoryId=<c:out value='${category.id}' />&&nowPage="
-									+ selectedPage;
+							document.goPageForm.action = "/617/Thresh<c:out value='${category.id}' />_"
+									+ selectedPage+".617museum";
 							goPageForm.submit();
 						}
 
 					}
 				</script>
 				<div class="pageGo" align="right">
-					<form action="category/goCategory?categoryId=<c:out value="${category.id}" />&&nowPage=1" method="post" name="goPageForm">
+					<form action="/617/Thresh<c:out value="${category.id}" />_1.617museum" method="post" name="goPageForm">
 						<input type="text" id="currentPage"
 							value="<c:out value="${pageBean.currentPage}" />"
 							style="display: none"> 第 <select onchange="goPage();"
@@ -435,14 +435,14 @@ a:hover {
 											test="${topic.niceTopic==1}">[<font color="red">精品</font>]</c:if>
 										<c:if test="${topic.niceTopic==1}"></c:if>[<c:if test="${topic.status==0}">未结帖</c:if> <c:if test="${topic.status==1}">已结帖</c:if>]</font>
 									<a
-										href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}"></c:out>&&nowPage=1"
+										href="/617/Ahri<c:out value="${topic.id}"></c:out>_1.617museum"
 										target="_top" class="topicTitle"><c:out
 											value="${topic.title}" /> </a>
 								</div></td>
 
 							<td align="right" width="140px;"><a class="topicTitle"
-								href="/users/getUserById?userId=<c:out
-										value="${topic.topicsUser.id}" />" target="_top" style="font-size: 14px;"><c:out
+								href="/617/Morgana<c:out
+										value="${topic.topicsUser.id}" />.617museum" target="_top" style="font-size: 14px;"><c:out
 										value="${topic.topicsUser.nickname}" /> </a></td>
 							<td align="right" width="60px;" style="font-size: 13px;"><c:out
 									value="${topic.integral}" /></td>

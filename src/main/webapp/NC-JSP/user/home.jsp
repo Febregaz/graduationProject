@@ -153,6 +153,10 @@
 	};
 	function checkULogin() {
 		var msg = '<c:out value="${sessionScope.userInfo.nickname}"/>';
+		var num = '<c:out value="${sessionScope.userInfo.clock}" />';
+		if(num>=1){
+		    alert("消息太多的话可以设置为已读哦");
+        }
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
@@ -279,4 +283,19 @@
 		</div>
 	</div>
 </body>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
 </html>

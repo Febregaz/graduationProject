@@ -118,7 +118,7 @@
 			<c:forEach items="${listAnno}" var="anno">
 				<ul>
 					<li><a id="title<c:out value="${anno.id}" />"
-						   href="announcements/getAllAnnouncements?annoId=<c:out value="${anno.id}" />"
+						   href="/617/Azir<c:out value="${anno.id}" />.617museum"
 						   target="_top"><c:out value="${anno.title}" /> </a></li>
 				</ul>
 			</c:forEach>

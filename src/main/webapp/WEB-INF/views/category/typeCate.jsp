@@ -68,8 +68,8 @@ a:hover {
 <div style="background-color: #FAFAFA;font-family: 微软雅黑;">
 	<c:forEach items="${listType}" var="type">
 		<a target="_top"
-			href="topics/getTopicsByTypeId?typeId=<c:out
-								value="${type.id}" />&&nowPage=1">
+			href="/617/Janna<c:out
+								value="${type.id}" />_1.617museum">
 			<div class="typeStyle"
 				style="margin: 10px 10px 10px 17px;background-color: white;height: 60px;width: 160px;float: left;border: 1px solid #D8E6F0">
 				<div style="width: 30px;height: 60px;float: left;"></div>

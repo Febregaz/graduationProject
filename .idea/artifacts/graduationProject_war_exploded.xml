@@ -159,6 +159,7 @@
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.2" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
+          <element id="library" level="project" name="Maven: org.tuckey:urlrewritefilter:4.0.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">

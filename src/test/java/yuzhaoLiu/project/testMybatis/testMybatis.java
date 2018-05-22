@@ -174,4 +174,10 @@ public class testMybatis {
         System.out.println(resources.getDownloadTimes());
     }
 
+    @Test
+    public void sengMail(){
+        String from = "1844927304@qq.com";//发件人的电子邮箱
+        String host = "smtp.qq.com";//指定发送邮件的主机
+    }
+
 }

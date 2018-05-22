@@ -54,6 +54,7 @@
         <property name="defaultEncoding" value="utf-8" />
     </bean>
 
+    <!--404，500-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <map>

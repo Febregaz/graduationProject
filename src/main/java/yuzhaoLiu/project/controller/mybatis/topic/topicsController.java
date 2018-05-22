@@ -107,7 +107,7 @@ public class topicsController extends topController {
                 new Thread(new sendAllPeople(u.getEmail() , code ,id , topicTitle)).start();
             }
         }
-        return "redirect:toTheDetailPage?topicId="+id+"&&nowPage=1";
+        return "redirect:/617/Ahri"+id+"_1.617museum";
         /*http://www.617museum.top/topics/toTheDetailPage?topicId=26&&nowPage=1*/
     }
 
@@ -217,7 +217,7 @@ public class topicsController extends topController {
         topic.setStatus(1);
         getTopicsMapper.getTheTopicsMapper().updateTopicStatus(topic);
         getTopicsMapper.sqlCommit();
-        return "redirect:toTheDetailPage?topicId="+topicId+"&&nowPage=1";//toTheDetailPage
+        return "redirect:/617/Ahri"+topicId+"_1.617museum";//toTheDetailPage
     }
 
     @RequestMapping("/niceOrNot")

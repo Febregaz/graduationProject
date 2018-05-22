@@ -98,7 +98,7 @@
 				location.href = 'NC-JSP/home/login.jsp';
 			}
 		} else if (topic_user_id == current_user_id) {
-			window.location.href = "/topics/goEndTopic?topicId=" + topic_id;
+			window.location.href = "/617/Brand" + topic_id+".617museum";
 		} else if (topic_user_id != current_user_id) {
 			alert("您的账号不对，请切换账号登录!");
 		}
@@ -359,9 +359,9 @@
 				</div>
 				<div style="float: left;line-height:24px;">
 					&nbsp;&gt;&nbsp;<a href="NC-JSP/home/index.jsp">论坛</a>&nbsp;&gt;&nbsp;<a
-						href="category/goCategory?categoryId=<c:out value="${sessionScope.topic.topicsType.typesCategory.id}" />&&nowPage=1"><c:out value="${sessionScope.topic.topicsType.typesCategory.namee}"></c:out> </a>&nbsp;&gt;&nbsp;<a
-						href="topics/getTopicsByTypeId?typeId=<c:out
-								value="${sessionScope.topic.topicsType.id}" />&&nowPage=1"><c:out value="${sessionScope.topic.topicsType.name}"></c:out> </a>&nbsp;&gt;&nbsp;
+						href="/617/Thresh<c:out value="${sessionScope.topic.topicsType.typesCategory.id}" />_1.617museum"><c:out value="${sessionScope.topic.topicsType.typesCategory.namee}"></c:out> </a>&nbsp;&gt;&nbsp;<a
+						href="/617/Janna<c:out
+								value="${sessionScope.topic.topicsType.id}" />_1.617museum"><c:out value="${sessionScope.topic.topicsType.name}"></c:out> </a>&nbsp;&gt;&nbsp;
 					<c:out value="${sessionScope.topic.title}"></c:out>
 				</div>
 			</div>
@@ -388,18 +388,18 @@
 							<button disabled="disabled" style="width: 80px;">上一页</button>
 							<button disabled="disabled">1</button>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=2"><button>2</button>
+								href="/617/Ahri<c:out value="${sessionScope.topic.id}" />_2.617museum"><button>2</button>
 							</a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
+								href="/617/Ahri<c:out value="${sessionScope.topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
 									style="width: 80px;">下一页</button> </a>
 						</c:if>
 						<c:if test="${page.currentPage==2}">
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
 									style="width: 80px;">上一页</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
 							</a>
 							<button disabled="disabled">2</button>
 							<button disabled="disabled" style="width: 80px;">下一页</button>
@@ -410,39 +410,39 @@
 							<button disabled="disabled" style="width: 80px;">上一页</button>
 							<button disabled="disabled">1</button>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=2"><button>2</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_2.617museum"><button>2</button>
 							</a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=3"><button>3</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_3.617museum"><button>3</button>
 							</a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
 									style="width: 80px;">下一页</button> </a>
 						</c:if>
 						<c:if test="${page.currentPage==2}">
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
 									style="width: 80px;">上一页</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
 							</a>
 							<button disabled="disabled">2</button>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=3"><button>3</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_3.617museum"><button>3</button>
 							</a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
 									style="width: 80px;">下一页</button> </a>
 						</c:if>
 						<c:if test="${page.currentPage==3}">
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
 									style="width: 80px;">上一页</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
 							</a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=2"><button>2</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_2.617museum"><button>2</button>
 							</a>
 							<button disabled="disabled">3</button>
 							<button disabled="disabled" style="width: 80px;">下一页</button>
@@ -453,23 +453,23 @@
 							<button disabled="disabled" style="width: 80px;">上一页</button>
 							<button disabled="disabled">1</button>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=2"><button>2</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_2.617museum"><button>2</button>
 							</a>
 							<a><button disabled="disabled">...</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.totalPages}" />"><button>
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.totalPages}" />.617museum"><button>
 									<c:out value="${page.totalPages}"></c:out>
 								</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
 									style="width: 80px;">下一页</button> </a>
 						</c:if>
 						<c:if test="${page.currentPage<page.totalPages&&page.currentPage!=1}">
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
 									style="width: 80px;">上一页</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
 							</a>
 							<c:if test="${page.currentPage>2}">
 								<a><button disabled="disabled">...</button> </a>
@@ -481,23 +481,23 @@
 								<a><button disabled="disabled">...</button> </a>
 							</c:if>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.totalPages}" />"><button>
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.totalPages}" />.617museum"><button>
 								<c:out value="${page.totalPages}"></c:out>
 								</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
 									style="width: 80px;" style="width: 80px;">下一页</button> </a>
 						</c:if>
 						<c:if test="${page.currentPage==page.totalPages}">
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
 									style="width: 80px;">上一页</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
 							</a>
 							<a><button disabled="disabled">...</button> </a>
 							<a
-								href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button>
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button>
 									<c:out value="${page.totalPages-1}"/>
 								</button> </a>
 							<button disabled="disabled">
@@ -533,7 +533,7 @@
 					</div>
 					<div style="height:80px;padding-top: 20px" align="center">
 						<a
-							href="/users/getUserById?userId=${sessionScope.topic.topicsUser.id}"><c:out
+							href="/617/Morgana${sessionScope.topic.topicsUser.id}.617museum"><c:out
 								value="${sessionScope.topic.topicsUser.nickname}" /> </a> <br />
 						<c:out value="${sessionScope.topic.topicsUser.usersGrade.id}" />
 						:
@@ -582,7 +582,7 @@
 								<div style="width:200px;height:80px;padding-top: 20px"
 									align="center">
 									<a
-										href="/users/getUserById?userId=${comment.commentsUser.id}"><c:out
+										href="/617/Morgana${comment.commentsUser.id}.617museum"><c:out
 											value="${comment.commentsUser.nickname}" /> </a> <br />
 									<c:out value="${comment.commentsUser.usersGrade.id}" />
 									:
@@ -646,135 +646,135 @@
 			</div>
 			<div class="pageNav" align="right">
 
-                <c:if test="${page.totalPages == 1}">
-                    <button disabled="disabled" style="width: 80px;">上一页</button>
-                    <button disabled="disabled">1</button>
-                    <button disabled="disabled" style="width: 80px;">下一页</button>
-                </c:if>
+				<c:if test="${page.totalPages == 1}">
+					<button disabled="disabled" style="width: 80px;">上一页</button>
+					<button disabled="disabled">1</button>
+					<button disabled="disabled" style="width: 80px;">下一页</button>
+				</c:if>
 
-                <c:if test="${page.totalPages == 2}">
-                    <c:if test="${page.currentPage==1}">
-                        <button disabled="disabled" style="width: 80px;">上一页</button>
-                        <button disabled="disabled">1</button>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=2"><button>2</button>
-                        </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${sessionScope.topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
-                                style="width: 80px;">下一页</button> </a>
-                    </c:if>
-                    <c:if test="${page.currentPage==2}">
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
-                                style="width: 80px;">上一页</button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
-                        </a>
-                        <button disabled="disabled">2</button>
-                        <button disabled="disabled" style="width: 80px;">下一页</button>
-                    </c:if>
-                </c:if>
-                <c:if test="${page.totalPages == 3}">
-                    <c:if test="${page.currentPage==1}">
-                        <button disabled="disabled" style="width: 80px;">上一页</button>
-                        <button disabled="disabled">1</button>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=2"><button>2</button>
-                        </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=3"><button>3</button>
-                        </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
-                                style="width: 80px;">下一页</button> </a>
-                    </c:if>
-                    <c:if test="${page.currentPage==2}">
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
-                                style="width: 80px;">上一页</button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
-                        </a>
-                        <button disabled="disabled">2</button>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=3"><button>3</button>
-                        </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
-                                style="width: 80px;">下一页</button> </a>
-                    </c:if>
-                    <c:if test="${page.currentPage==3}">
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
-                                style="width: 80px;">上一页</button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
-                        </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=2"><button>2</button>
-                        </a>
-                        <button disabled="disabled">3</button>
-                        <button disabled="disabled" style="width: 80px;">下一页</button>
-                    </c:if>
-                </c:if>
-                <c:if test="${page.totalPages > 3}">
-                    <c:if test="${page.currentPage==1}">
-                        <button disabled="disabled" style="width: 80px;">上一页</button>
-                        <button disabled="disabled">1</button>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=2"><button>2</button>
-                        </a>
-                        <a><button disabled="disabled">...</button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.totalPages}" />"><button>
-                            <c:out value="${page.totalPages}"></c:out>
-                        </button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
-                                style="width: 80px;">下一页</button> </a>
-                    </c:if>
-                    <c:if test="${page.currentPage<page.totalPages&&page.currentPage!=1}">
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
-                                style="width: 80px;">上一页</button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
-                        </a>
-                        <c:if test="${page.currentPage>2}">
-                            <a><button disabled="disabled">...</button> </a>
-                        </c:if>
-                        <button disabled="disabled">
-                            <c:out value="${page.currentPage}"></c:out>
-                        </button>
-                        <c:if test="${page.currentPage<page.totalPages-1}">
-                            <a><button disabled="disabled">...</button> </a>
-                        </c:if>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.totalPages}" />"><button>
-                            <c:out value="${page.totalPages}"></c:out>
-                        </button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage+1}" />"><button
-                                style="width: 80px;" style="width: 80px;">下一页</button> </a>
-                    </c:if>
-                    <c:if test="${page.currentPage==page.totalPages}">
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button
-                                style="width: 80px;">上一页</button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=1"><button>1</button>
-                        </a>
-                        <a><button disabled="disabled">...</button> </a>
-                        <a
-                                href="topics/toTheDetailPage?topicId=<c:out value="${topic.id}" />&&nowPage=<c:out value="${page.currentPage-1}" />"><button>
-                            <c:out value="${page.totalPages-1}"/>
-                        </button> </a>
-                        <button disabled="disabled">
-                            <c:out value="${page.totalPages}"/>
-                        </button>
-                        <button disabled="disabled" style="width: 80px;">下一页</button>
-                    </c:if>
-                </c:if>
+				<c:if test="${page.totalPages == 2}">
+					<c:if test="${page.currentPage==1}">
+						<button disabled="disabled" style="width: 80px;">上一页</button>
+						<button disabled="disabled">1</button>
+						<a
+								href="/617/Ahri<c:out value="${sessionScope.topic.id}" />_2.617museum"><button>2</button>
+						</a>
+						<a
+								href="/617/Ahri<c:out value="${sessionScope.topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
+								style="width: 80px;">下一页</button> </a>
+					</c:if>
+					<c:if test="${page.currentPage==2}">
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
+								style="width: 80px;">上一页</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
+						</a>
+						<button disabled="disabled">2</button>
+						<button disabled="disabled" style="width: 80px;">下一页</button>
+					</c:if>
+				</c:if>
+				<c:if test="${page.totalPages == 3}">
+					<c:if test="${page.currentPage==1}">
+						<button disabled="disabled" style="width: 80px;">上一页</button>
+						<button disabled="disabled">1</button>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_2.617museum"><button>2</button>
+						</a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_3.617museum"><button>3</button>
+						</a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
+								style="width: 80px;">下一页</button> </a>
+					</c:if>
+					<c:if test="${page.currentPage==2}">
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
+								style="width: 80px;">上一页</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
+						</a>
+						<button disabled="disabled">2</button>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_3.617museum"><button>3</button>
+						</a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
+								style="width: 80px;">下一页</button> </a>
+					</c:if>
+					<c:if test="${page.currentPage==3}">
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
+								style="width: 80px;">上一页</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
+						</a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_2.617museum"><button>2</button>
+						</a>
+						<button disabled="disabled">3</button>
+						<button disabled="disabled" style="width: 80px;">下一页</button>
+					</c:if>
+				</c:if>
+				<c:if test="${page.totalPages > 3}">
+					<c:if test="${page.currentPage==1}">
+						<button disabled="disabled" style="width: 80px;">上一页</button>
+						<button disabled="disabled">1</button>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_2.617museum"><button>2</button>
+						</a>
+						<a><button disabled="disabled">...</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.totalPages}" />.617museum"><button>
+							<c:out value="${page.totalPages}"></c:out>
+						</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
+								style="width: 80px;">下一页</button> </a>
+					</c:if>
+					<c:if test="${page.currentPage<page.totalPages&&page.currentPage!=1}">
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
+								style="width: 80px;">上一页</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
+						</a>
+						<c:if test="${page.currentPage>2}">
+							<a><button disabled="disabled">...</button> </a>
+						</c:if>
+						<button disabled="disabled">
+							<c:out value="${page.currentPage}"></c:out>
+						</button>
+						<c:if test="${page.currentPage<page.totalPages-1}">
+							<a><button disabled="disabled">...</button> </a>
+						</c:if>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.totalPages}" />.617museum"><button>
+							<c:out value="${page.totalPages}"></c:out>
+						</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage+1}" />.617museum"><button
+								style="width: 80px;" style="width: 80px;">下一页</button> </a>
+					</c:if>
+					<c:if test="${page.currentPage==page.totalPages}">
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button
+								style="width: 80px;">上一页</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_1.617museum"><button>1</button>
+						</a>
+						<a><button disabled="disabled">...</button> </a>
+						<a
+								href="/617/Ahri<c:out value="${topic.id}" />_<c:out value="${page.currentPage-1}" />.617museum"><button>
+							<c:out value="${page.totalPages-1}"/>
+						</button> </a>
+						<button disabled="disabled">
+							<c:out value="${page.totalPages}"/>
+						</button>
+						<button disabled="disabled" style="width: 80px;">下一页</button>
+					</c:if>
+				</c:if>
 
 			</div>
 			<c:if test="${sessionScope.topic.status==1||sessionScope.topic.status==0}">

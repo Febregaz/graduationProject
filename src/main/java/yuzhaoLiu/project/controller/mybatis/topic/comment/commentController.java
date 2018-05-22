@@ -36,7 +36,7 @@ public class commentController extends topController {
         comment.setContent(commentContent);
         Boolean flag = newComment(comment , user , topic);
         int id = topic.getId();
-        return "redirect:topics/toTheDetailPage?topicId="+id+"&&nowPage=1";
+        return "redirect:/617/Ahri"+id+"_1.617museum";
     }
 
     public boolean newComment(Comments comment, Users user, Topics tpc) {
@@ -115,7 +115,7 @@ public class commentController extends topController {
         getCategoryMapper.getTheCategorysMapper().updateCommentCount(category);
         getCategoryMapper.sqlCommit();
         getCategoryMapper.sqlClose();
-        return "redirect:topics/toTheDetailPage?topicId="+topic.getId()+"&&nowPage=1";
+        return "redirect:/617/Ahri"+topic.getId()+"_1.617museum";
     }
 
 }

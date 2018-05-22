@@ -62,7 +62,7 @@ public class sendAllPeople implements Runnable {
             message.setSubject("新文章更新啦!!!");
             // 2.4设置邮件内容
             String content = "<html><head></head><body><h1>sevenZero有新文章更新啦，赏个脸>_<</h1>" +
-                    "<h3><a href='http://www.617museum.top/topics/toTheDetailPage?topicId="+topicId+"&&nowPage=1'>"+topicTitle+"</a></h3></body></html>";
+                    "<h3><a href='http://www.617museum.top/617/Ahri"+topicId+"_1.617museum'>"+topicTitle+"</a></h3></body></html>";
             /*"<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1>" +
                     "<h3><a href='http://www.617museum.top/NC-JSP/user/index.jsp'>点我点我>()<</a></h3>";*/
             message.setContent(content, "text/html;charset=UTF-8");

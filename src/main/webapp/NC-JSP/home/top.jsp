@@ -206,7 +206,7 @@ a img {
 			<div
 				style="width: 300px;height: 30px;line-height: 30px;float: left;text-align: right;font-weight: bold;font-size: 16px;font-family: 微软雅黑 /* background-color: red; */"
 				id="loginRegisterText">
-				<a href="NC-JSP/home/login.jsp">登录</a>&nbsp;&nbsp;<a href="register.jsp">注册</a>
+				<a href="NC-JSP/home/login.jsp">登录</a>&nbsp;&nbsp;<a href="NC-JSP/home/register.jsp">注册</a>
 			</div>
 		</c:if>
 		<c:if test="${sessionScope.userInfo!=null}">
@@ -223,7 +223,7 @@ a img {
 		</c:if>
 		<div
 			style="width: 120px;height: 30px;line-height: 30px;float: left;font-weight: bold;text-align: center;font-size: 16px;font-family: 微软雅黑">
-			<a href="user_GoHome.action" onclick="return checkLogin()">个人中心</a>
+			<a href="NC-JSP/user/home.jsp" onclick="return checkLogin()">个人中心</a>
 		</div>
 	</div>
 	<div>
@@ -234,17 +234,17 @@ a img {
 	<ul id="menuNav">
 		<li><a href="NC-JSP/home/index.jsp">首页</a>
 		</li>
-		<li><a href="topics/getAllFreshTopics?nowPage=1">帖子</a>
+		<li><a href="/617/Vayne1.617museum">帖子</a>
 			<ul>
-				<li><a href="topics/getAllHotTopics?nowPage=1" target="_top">热门帖子</a></li>
-				<li><a href="topics/getAllNiceTopics?nowPage=1" target="_top">精品帖子</a>
+				<li><a href="/617/Alistar1.617museum" target="_top">热门帖子</a></li>
+				<li><a href="/617/Amumu1.617museum" target="_top">精品帖子</a>
 				</li>
 			</ul>
 		</li>
 		<li><a href="category/getAllCategoryAndGoTypeJsp">版块</a>
 		</li>
 
-		<li><a onfocus="this.blur()" href="/resources/getAllResources?nowPage=1">资源下载</a></li>
+		<li><a onfocus="this.blur()" href="/617/Bard1.617museum">资源下载</a></li>
 	</ul>
 </div>
 <div class="search" align="left">

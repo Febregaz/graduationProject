@@ -48,12 +48,12 @@
 					<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 400px;float: left;">
 						<a
-								href="/category/goCategory?categoryId=<c:out value="${hot.topicsType.typesCategory.id}" />&&nowPage=1"
+								href="/617/Thresh<c:out value="${hot.topicsType.typesCategory.id}" />_1.617museum"
 								target="_top" style="font-size: 14px;"><c:out value="${hot.topicsType.typesCategory.namee}"></c:out> </a>-<a
-							href="getTopicsByTypeId?typeId=<c:out
-								value="${hot.topicsType.id}" />&&nowPage=1"
+							href="/617/Janna<c:out
+								value="${hot.topicsType.id}" />_1.617museum"
 							target="_top" style="font-size: 14px;"><c:out value="${hot.topicsType.name}"></c:out> </a>||&nbsp;<a
-							href="toTheDetailPage?topicId=<c:out value="${hot.id}"></c:out>&&nowPage=1"
+							href="/617/Ahri<c:out value="${hot.id}"></c:out>_1.617museum"
 							target="_top" class="topicTitle"><c:out value="${hot.title}"></c:out> </a>
 					</div>
 					<div style="float: left;font-size: 12px;color: #4C9ED9">
@@ -73,7 +73,7 @@
 				<td align="right" width="80px;"><div
 						style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 80px;">
 					<a class="topicTitle"
-					   href="/users/getUserById?userId=<c:out value="${hot.topicsUser.id}"></c:out>"
+					   href="/617/Morgana<c:out value="${hot.topicsUser.id}"></c:out>.617museum"
 					   target="_top" style="font-size: 14px;"><c:out value="${hot.topicsUser.nickname}"></c:out> </a>&nbsp;&nbsp;
 				</div></td>
 			</tr>

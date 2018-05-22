@@ -37,6 +37,7 @@ public class MailUtil implements Runnable {
 
         try {
             //QQ邮箱需要下面这段代码，163邮箱不需要
+            /**SSL认证，注意腾讯邮箱是基于SSL加密的，所有需要开启才可以使用**/
             MailSSLSocketFactory sf = new MailSSLSocketFactory();
             sf.setTrustAllHosts(true);
             properties.put("mail.smtp.ssl.enable", "true");
@@ -48,7 +49,7 @@ public class MailUtil implements Runnable {
             // 1.获取默认session对象 zgkpiofsttqccchc ttdngjvzaxjrbjdj mconzknikqkveiaa
             Session session = Session.getDefaultInstance(properties, new Authenticator() {
                 public PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("1844927304@qq.com", "dbrrirxtymdcbddc"); // 发件人邮箱账号、授权码
+                    return new PasswordAuthentication("1844927304@qq.com", "qqsjuwalpzqhgaae"); // 发件人邮箱账号、授权码
                 }
             });
 
@@ -62,7 +63,7 @@ public class MailUtil implements Runnable {
             message.setSubject("账号激活");
             // 2.4设置邮件内容
             String content = "<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1>" +
-                    "<h3><a href='http://www.617museum.top/users/toTheHomePageAfterActivation?username="+username+"'>点我点我>()<</a></h3></body></html>";
+                    "<h3><a href='http://www.617museum.top/617/Zed"+username+".617museum'>点我点我>()<</a></h3></body></html>";
             message.setContent(content, "text/html;charset=UTF-8");
             /*www.617museum.top*//*http://www.617museum.top/users/usersLogin?username=77&&password=617572*/
             /*localhost:8080*/

@@ -32,7 +32,7 @@ a:hover {
 				<td width="110px" height="30px" style="font-size: 14px;"><div
 						style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 100px;float: left;">
 						<a
-							href="getAllHelps?helpId=<c:out value="${help.id}" />" target="_top"><c:out value="${help.title}"></c:out> </a>
+							href="/617/Akali<c:out value="${help.id}" />.617museum" target="_top"><c:out value="${help.title}"></c:out> </a>
 					</div>
 				</td>
 				<td style="font-size: 10px;">

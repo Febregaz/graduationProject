@@ -7,6 +7,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <style type="text/css">
 	table td {
 		height: 30px;
@@ -48,12 +49,13 @@
 					<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 400px;float: left;">
 						<a
-								href="/category/goCategory?categoryId=<c:out value="${nice.topicsType.typesCategory.id}" />&&nowPage=1"
+								href="/617/Thresh<c:out value="${nice.topicsType.typesCategory.id}" />_1.617museum"
 								target="_top" style="font-size: 14px;"><c:out value="${nice.topicsType.typesCategory.namee}"></c:out> </a>-<a
-							href="getTopicsByTypeId?typeId=<c:out
-								value="${nice.topicsType.id}" />&&nowPage=1"
+							href="/617/Janna<c:out
+								value="${nice.topicsType.id}" />_1.617museum"
 							target="_top" style="font-size: 14px;"><c:out value="${nice.topicsType.name}"></c:out> </a>||&nbsp;<a
-							href="toTheDetailPage?topicId=<c:out value="${nice.id}"></c:out>&&nowPage=1"
+							class="toDetail"
+							href="/617/Ahri<c:out value="${nice.id}"></c:out>_1.617museum"
 							target="_top" class="topicTitle"><c:out value="${nice.title}"></c:out> </a>
 					</div>
 					<div style="float: left;font-size: 12px;color: #4C9ED9">
@@ -73,7 +75,7 @@
 				<td align="right" width="80px;"><div
 						style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 80px;">
 					<a class="topicTitle"
-					   href="/users/getUserById?userId=<c:out value="${nice.topicsUser.id}"></c:out>"
+					   href="/617/Morgana<c:out value="${nice.topicsUser.id}"></c:out>.617museum"
 					   target="_top" style="font-size: 14px;"><c:out value="${nice.topicsUser.nickname}"></c:out> </a>&nbsp;&nbsp;
 				</div></td>
 			</tr>

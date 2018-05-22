@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="graduationProject">
-    <output-path>$PROJECT_DIR$/out/artifacts/graduationProject</output-path>
-    <root id="archive" name="graduationProject.war" />
-  </artifact>
-</component>

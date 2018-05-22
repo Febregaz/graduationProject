@@ -78,7 +78,7 @@
 						<div
 							style="width: 960px;height: 35px;background-color: #A2C1DE;line-height: 35px;color:white">
 							&nbsp;&nbsp; <a class="cateTitle"
-								href="/category/goCategory?categoryId=<c:out value="${cate.id}" />&&nowPage=1"><c:out
+								href="/617/Thresh<c:out value="${cate.id}" />_1.617museum"><c:out
 									value="${cate.namee}" /> </a><font style="font-size: 12px;">(共<font
 								style="font-weight: bolder;"><c:out
 										value="${cate.countTopics}" /> </font>主题/<font
@@ -87,7 +87,7 @@
 						</div>
 						<div style="width: 958px;border: 1px solid #C2D5E3;">
 							<iframe
-								src="types/getAllTypesByCategoryIdAndToTypeCate?categoryId=<c:out value="${cate.id}" />"
+								src="/617/Annie<c:out value="${cate.id}" />.617museum"
 								marginwidth="0" marginheight="0px" frameborder="0"
 								scrolling="no" width="100%"></iframe>
 						</div>
