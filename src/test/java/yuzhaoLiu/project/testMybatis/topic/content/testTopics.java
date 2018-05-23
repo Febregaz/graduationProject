@@ -39,7 +39,7 @@ public class testTopics {
             List<Topics> topicsList = topicsMapper.readTopics();
             for(Topics t : topicsList){
                 t.setContent(methodForToTheDetailPage.ignoreTopicHtml(t.getContent()));
-                System.out.println("topic:"+t.getContent());
+                System.out.println("topic:"+t.getTitle());
             }
             logger.info("display successfully !");
         } finally {
