@@ -114,7 +114,7 @@
 						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:&#39;宋体&#39;">电话：</span><span
 						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:&#39;宋体&#39;">18818429769&nbsp;&nbsp;</span><span
 						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:&#39;宋体&#39;">&nbsp;Email:</span><span
-						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:&#39;宋体&#39;">febregazz.gmail.com</span>
+						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:&#39;宋体&#39;">febregazz@gmail.com</span>
 				</p>
 				<p>
 					<br />

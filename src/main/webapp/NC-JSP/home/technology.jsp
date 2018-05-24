@@ -69,7 +69,7 @@
 					<span style=";font-size:14px;font-family:'宋体'">&nbsp;&nbsp;&nbsp;
 						sevenZero论坛由<a href="http://www.dreamstation.cn" style="color: red"
 						target="_blank">70</a>团队（英文名<a href="http://www.dreamstation.cn"
-						style="color: red" target="_blank">sevenZero</a>，缩写DS）提供技术支持。</span>
+						style="color: red" target="_blank">sevenZero</a>，缩写SZ）提供技术支持。</span>
 				</p>
 				<p style="line-height: 2em;">
 					<span style=";font-size:14px;font-family:'宋体'">&nbsp;&nbsp;&nbsp;

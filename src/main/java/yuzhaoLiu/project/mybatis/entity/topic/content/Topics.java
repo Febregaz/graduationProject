@@ -26,6 +26,8 @@ public class Topics implements Serializable {
 	private int niceTopic = 0; // 精品帖：0不是，1是
 	private int status = 0; // 帖子状态：0未结帖，1已结贴
 	private int integral = 10; // 默认帖子发布所耗积分
+
+	private int onlyUserCanSee;//用户的秘密花园（私密帖子）
 	// 多对一
 	private Users topicsUser;
 	private Types topicsType;
@@ -127,6 +129,14 @@ public class Topics implements Serializable {
 
 	public void setIntegral(int integral) {
 		this.integral = integral;
+	}
+
+	public int getOnlyUserCanSee() {
+		return onlyUserCanSee;
+	}
+
+	public void setOnlyUserCanSee(int onlyUserCanSee) {
+		this.onlyUserCanSee = onlyUserCanSee;
 	}
 
 }

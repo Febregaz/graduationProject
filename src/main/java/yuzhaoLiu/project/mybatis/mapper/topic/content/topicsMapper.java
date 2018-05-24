@@ -67,4 +67,8 @@ public interface topicsMapper{
 
     public void updateTopicCommentCount(Topics topic);
 
+    public List<Topics> getThePrivateTopic(int id);
+
+    public Topics getPrivateTopic(int id , int userId);
+
 }

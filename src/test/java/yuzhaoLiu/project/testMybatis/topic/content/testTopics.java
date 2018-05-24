@@ -80,10 +80,9 @@ public class testTopics {
     @Test
     public void testTheToolForMybatis(){
         topicsMapper = sqlUtil.getSql().getMapper(topicsMapper.class);
-        List<Topics> topicsList = topicsMapper.searchTopics("国");
-        System.out.println(topicsList.size());
-        for(Topics t : topicsList){
-            System.out.println("topic:"+t.getTitle());
+        List<Topics> topicsList = topicsMapper.getThePrivateTopic(2);
+        for (Topics topics : topicsList){
+            System.out.println(topics.getTitle());
         }
         sqlUtil.closeTheSqlSession();
     }

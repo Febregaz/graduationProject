@@ -160,15 +160,15 @@
 						<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 750px;float: left;">
 							<a
-								href="/category/goCategory?categoryId=<c:out value="${topic.topicsType.typesCategory.id}" />&&nowPage=1"
+								href="/617/Thresh<c:out value="${topic.topicsType.typesCategory.id}" />_1.617museum"
 								target="_top" style="font-size: 14px;">[<c:out
 									value="${topic.topicsType.typesCategory.namee}" />]</a><a
-								href="topics/getTopicsByTypeId?typeId=<c:out
-								value="${topic.topicsType.id}" />&&nowPage=1"
+								href="/617/Janna<c:out
+								value="${topic.topicsType.id}" />_1.617museum"
 								target="_top" style="font-size: 13px;">[<c:out
 									value="${topic.topicsType.name}" />]</a>&nbsp;&nbsp;<a
-								href="topics/toTheDetailPage?topicId=<c:out
-								value="${topic.id}" />&&nowPage=1"
+								href="/617/Ahri<c:out
+								value="${topic.id}" />_1.617museum"
 								target="_top" class="topicTitle"><font
 								style="font-size: 16px;font-weight: bold;"><c:out
 										value="${topic.title}" /> </font> </a>

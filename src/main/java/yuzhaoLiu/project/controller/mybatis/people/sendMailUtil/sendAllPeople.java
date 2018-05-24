@@ -15,12 +15,16 @@ public class sendAllPeople implements Runnable {
     private String code;// 激活码
     private int topicId;
     private String topicTitle;
+    private int priOrPub;
+    private int userId;
 
-    public sendAllPeople(String email, String code , int topicId ,String topicTitle) {
+    public sendAllPeople(String email, String code , int topicId ,String topicTitle , int priOrPub , int userId) {
         this.email = email;
         this.code = code;
         this.topicId = topicId;
         this.topicTitle = topicTitle;
+        this.priOrPub = priOrPub;
+        this.userId = userId;
     }
 
     public void run() {
@@ -29,6 +33,7 @@ public class sendAllPeople implements Runnable {
         // 3.发送一封激活邮件
         String from = "1844927304@qq.com";// 发件人电子邮箱
         String host = "smtp.qq.com"; // 指定发送邮件的主机smtp.qq.com(QQ)|smtp.163.com(网易)
+        String content="";
 
         Properties properties = System.getProperties();// 获取系统属性
 
@@ -61,8 +66,14 @@ public class sendAllPeople implements Runnable {
             // 2.3设置邮件主题
             message.setSubject("新文章更新啦!!!");
             // 2.4设置邮件内容
-            String content = "<html><head></head><body><h1>sevenZero有新文章更新啦，赏个脸>_<</h1>" +
-                    "<h3><a href='http://www.617museum.top/617/Ahri"+topicId+"_1.617museum'>"+topicTitle+"</a></h3></body></html>";
+            if(priOrPub>0){
+                content = "<html><head></head><body><h1>sevenZero有新文章更新啦，赏个脸,私密贴哦>_<</h1>" +
+                        "<h3><a href='http://www.617museum.top/617/12139"+topicId+"_"+userId+".617museum'>"+topicTitle+"</a></h3></body></html>";
+            }
+            else{
+                content = "<html><head></head><body><h1>sevenZero有新文章更新啦，赏个脸>_<</h1>" +
+                        "<h3><a href='http://www.617museum.top/617/Ahri"+topicId+"_1.617museum'>"+topicTitle+"</a></h3></body></html>";
+            }
             /*"<html><head></head><body><h1>这是一封激活邮件,激活请点击以下链接</h1>" +
                     "<h3><a href='http://www.617museum.top/NC-JSP/user/index.jsp'>点我点我>()<</a></h3>";*/
             message.setContent(content, "text/html;charset=UTF-8");

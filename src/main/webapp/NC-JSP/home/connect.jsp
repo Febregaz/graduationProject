@@ -78,7 +78,7 @@
 					style=";text-autospace:ideograph-other;text-align:left;line-height:22px">
 					<span
 						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:'宋体'">Email:</span><span
-						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:'宋体'">febregazz.gmail.com</span>
+						style=";color:rgb(0,0,0);font-weight:normal;font-style:normal;font-size:14px;font-family:'宋体'">febregazz@gmail.com</span>
 				</p>
 				<p
 					style=";text-autospace:ideograph-other;text-align:left;line-height:22px">

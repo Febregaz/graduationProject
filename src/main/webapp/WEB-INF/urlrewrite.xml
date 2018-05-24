@@ -111,6 +111,18 @@
         <from>/617/Zed([\s\S]*).617museum</from>
         <to>/users/toTheHomePageAfterActivation?username=$1</to>
     </rule>
+    <!--用户私密帖子-->
+    <rule>
+        <name>topics/getThePrivateTopics</name>
+        <from>/617/12138([0-9]+)_([0-9]+).617museum</from>
+        <to>/topics/getThePrivateTopics?userId=$1&amp;nowPage=$2</to>
+    </rule>
+    <!--私密帖子详情-->
+    <rule>
+        <name>topics/toPrivateTopic</name>
+        <from>/617/12139([0-9]+)_([0-9]+).617museum</from>
+        <to>/topics/toPrivateTopic?topicId=$1&amp;userId=$2</to>
+    </rule>
     <outbound-rule>
         <note>
             The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url) the url /rewrite-status will be rewritten to /test/status/. The above rule and this outbound-rule means that end users should never see the url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks in your pages.

@@ -161,20 +161,21 @@
 						<div
 							style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width: 750px;float: left;font-size: 13px;color:#817E7E;">
 							&nbsp;我评论了<a
-								href="NC-JSP/user/home.jsp"
+								href="/617/Morgana<c:out
+									value="${comment.commentsTopic.topicsUser.id}" />.617museum"
 								target="_top" style="font-size: 15px;">“<c:out
 									value="${comment.commentsTopic.topicsUser.nickname}" />”</a>的帖子<a
 								style="font-size: 16px;font-weight: bold;"
-								href="topics/toTheDetailPage?topicId=<c:out
-								value="${comment.commentsTopic.id}" />&&nowPage=1"
+								href="/617/Ahri<c:out
+								value="${comment.commentsTopic.id}" />_1.617museum"
 								target="_top" class="topicTitle">“<c:out
 									value="${comment.commentsTopic.title}" />”</a> [<a
-								href="category/goCategory?categoryId=<c:out value="${comment.commentsTopic.topicsType.typesCategory.id}" />&&nowPage=1"
+								href="/617/Thresh<c:out value="${comment.commentsTopic.topicsType.typesCategory.id}" />_1.617museum"
 								target="_top" style="font-size: 13px;"><c:out
 									value="${comment.commentsTopic.topicsType.typesCategory.namee}" />
 							</a>-<a
-								href="topics/getTopicsByTypeId?typeId=<c:out
-								value="${comment.commentsTopic.topicsType.id}" />&&nowPage=1"
+								href="/617/Janna<c:out
+								value="${comment.commentsTopic.topicsType.id}" />_1.617museum"
 								target="_top" style="font-size: 13px;"><c:out
 									value="${comment.commentsTopic.topicsType.name}" /> </a>]
 							<c:if test="${comment.commentsTopic.niceTopic==1}">[<font

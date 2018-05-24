@@ -272,6 +272,14 @@
 											<option value="2">否</option>
 										</select>
 										</td>
+										<td><select
+												style="height:26px;width: 150px;font-size:14px"
+												id="privateOrPublic" name="priOrPub">
+											<option value="-1">是否设置为私密文章?</option>
+											<option value="${sessionScope.userInfo.id}">是</option>
+											<option value="0">否</option>
+										</select>
+										</td>
 									</tr>
 								</table></td>
 						</tr>

@@ -92,20 +92,23 @@ public class topicsController extends topController {
     }
 
     @RequestMapping("/postedTopic")
-    public String postedTopic(int typeId , String topicTitle , String tcontent , int topicIntegral , int ifOrNot , HttpServletRequest request ) throws IOException{
+    public String postedTopic(int typeId , String topicTitle , String tcontent , int topicIntegral , int ifOrNot , int priOrPub , HttpServletRequest request ) throws IOException{
         //String strTopicContent = new String(tcontent.getBytes("iso-8859-1"),"UTF-8") ;
         //String strTopicTitle = new String(topicTitle.getBytes("iso-8859-1"),"UTF-8") ;
         HttpSession session = request.getSession();
         Users user = (Users)session.getAttribute("userInfo");
         Topics topic = new Topics();
-        int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , topicTitle , tcontent);
+        int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , topicTitle , tcontent , priOrPub);
         System.out.println("sendAllOrNot:"+ifOrNot);
         if(ifOrNot==1){
             List<Users> usersList = getPeopleMapper.getTheUsersMapper().readUsers();
             for(Users u : usersList){
                 String code= CodeUtil.generateUniqueCode();
-                new Thread(new sendAllPeople(u.getEmail() , code ,id , topicTitle)).start();
+                new Thread(new sendAllPeople(u.getEmail() , code ,id , topicTitle , priOrPub , user.getId())).start();
             }
+        }
+        if(priOrPub>0){
+            return "redirect:/617/12139"+id+"_"+priOrPub+".617museum";
         }
         return "redirect:/617/Ahri"+id+"_1.617museum";
         /*http://www.617museum.top/topics/toTheDetailPage?topicId=26&&nowPage=1*/
@@ -276,6 +279,23 @@ public class topicsController extends topController {
                 + request.getServerName() + ":" + request.getServerPort()
                 + path + "/";
         return "redirect:"+basePath+"NC-JSP/admin/manage.jsp";
+    }
+
+    @RequestMapping("/getThePrivateTopics")
+    public String getThePrivateTopics(int userId , int nowPage , HttpServletRequest request){
+        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getThePrivateTopic(userId);
+        this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage ,topicsList);
+        request.setAttribute("priTopics" , pageBean.getListTopics());
+        request.setAttribute("pageBean" , pageBean);
+        return "user/pri";
+    }
+
+    @RequestMapping("/toPrivateTopic")
+    public String toPrivateTopic(int topicId , int userId , HttpServletRequest request){
+        Topics topic = getTopicsMapper.getTheTopicsMapper().getPrivateTopic(topicId , userId);
+        HttpSession session = request.getSession();
+        session.setAttribute("topic" , topic);
+        return "topic/thePrivateTopics";
     }
 
 }

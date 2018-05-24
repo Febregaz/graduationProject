@@ -153,10 +153,6 @@
 	};
 	function checkULogin() {
 		var msg = '<c:out value="${sessionScope.userInfo.nickname}"/>';
-		var num = '<c:out value="${sessionScope.userInfo.clock}" />';
-		if(num>=1){
-		    alert("消息太多的话可以设置为已读哦");
-        }
 		if (!msg) {
 			var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
 			if (returnVal) {
@@ -166,6 +162,21 @@
 		}
 		return true;
 	}
+	function checkULoginAndAlert() {
+        var msg = '<c:out value="${sessionScope.userInfo.nickname}"/>';
+        var num = '<c:out value="${sessionScope.userInfo.clock}" />';
+        if(num>=1){
+            alert("消息太多的话可以设置为已读哦");
+        }
+        if (!msg) {
+            var returnVal = window.confirm("未登录或登录已失效！请登录！", "提示");
+            if (returnVal) {
+                location.href = 'NC-JSP/home/login.jsp';
+            }
+            return false;
+        }
+        return true;
+    }
 	
 </script>
 <script type="text/javascript">
@@ -197,7 +208,7 @@
 			<div class="userStyle">
 				<div class="leftBodyNav" id="leftBodyNav">
 					<a href="users/getUserNews?nowPage=1" target="test1"
-						onclick="return checkULogin()"><div class="leftBodyNavStyle"
+						onclick="return checkULoginAndAlert()"><div class="leftBodyNavStyle"
 							id="leftBodyNavStyle_1" onclick="javascript:test_item(1);">
 							我的消息
 							<c:if test="${sessionScope.userInfo.clock==0}"></c:if>
@@ -217,7 +228,11 @@
 					</a> <a href="NC-JSP/user/updatePass.jsp" target="test1"
 						onclick="return checkULogin()"><div class="leftBodyNavStyle"
 							id="leftBodyNavStyle_6" onclick="javascript:test_item(5);">修改密码</div>
-					</a> <a href="users/usersLogout" target="_top"
+					</a> <a href="/617/12138<c:out value="${sessionScope.userInfo.id}" />_1.617museum" target="test1"
+							onclick="return checkULogin()"><div class="leftBodyNavStyle"
+							id="leftBodyNavStyle_7" onclick="javascript:test_item(6);">秘密花园</div>
+					</a>
+					<a href="users/usersLogout" target="_top"
 						onclick="return checkULogin()"><div class="leftBodyNavStyle"
 							style="color: red">安全退出</div> </a>
 				</div>
