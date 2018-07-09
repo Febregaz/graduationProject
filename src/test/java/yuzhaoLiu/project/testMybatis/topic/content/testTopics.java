@@ -55,9 +55,9 @@ public class testTopics {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
             topicsMapper topicsMapper = sqlSession.getMapper(topicsMapper.class);
-            List<Topics> topicsList = topicsMapper.getTheNewestTopics();
+            List<Topics> topicsList = topicsMapper.getAllFreshTopics();
             for(Topics t : topicsList){
-                System.out.println("topic:"+t.getTopicsType().getName());
+                System.out.println("topic:"+t.getTopicTime());
             }
             logger.info("display successfully !");
         } finally {

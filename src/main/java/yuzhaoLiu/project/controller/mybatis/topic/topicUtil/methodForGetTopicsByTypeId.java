@@ -1,14 +1,19 @@
 package yuzhaoLiu.project.controller.mybatis.topic.topicUtil;
 
+import org.apache.ibatis.session.SqlSession;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
+import yuzhaoLiu.project.mybatis.mapper.topic.content.topicsMapper;
+import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import java.util.List;
 
 public class methodForGetTopicsByTypeId {
 
     public static Pages getAllForPages(int pageSize, int nowPage, int typeId) {
-        List<Topics> listTopics = getTopicsMapper.getTheTopicsMapper().getTopicsByTypeId(typeId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> listTopics = sqlSession.getMapper(topicsMapper.class).getTopicsByTypeId(typeId);
+        sqlUtil.sqlClose(sqlSession);
         int allRecords = listTopics.size();
         int totalPage = Pages.calculateTotalPage(pageSize, allRecords);// 总页数
         final int currentoffset = Pages.currentPage_startRecord(pageSize,

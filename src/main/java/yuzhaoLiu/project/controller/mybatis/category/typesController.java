@@ -1,5 +1,6 @@
 package yuzhaoLiu.project.controller.mybatis.category;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -8,6 +9,9 @@ import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getCategoryMap
 import yuzhaoLiu.project.controller.mybatis.category.categoryUtil.getTypeMapper;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Categorys;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
+import yuzhaoLiu.project.mybatis.mapper.topic.category.categorysMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.category.typesMapper;
+import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -20,14 +24,18 @@ public class typesController extends topController {
     @ResponseBody
     public List<Types> getAllTypesByCategoryId(int categoryId){
         logger.info("I am good and in getAllTypesByCategoryId");
-        List<Types> listType = getTypeMapper.getTheTypesMapper().getAllTypesByCategoryId(categoryId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Types> listType = sqlSession.getMapper(typesMapper.class).getAllTypesByCategoryId(categoryId);
+        sqlUtil.sqlClose(sqlSession);
         return listType;
     }
 
     @RequestMapping("/getAllTypesByCategoryIdAndToTypeCate")
     public String getAllTypesByCategoryIdAndToTypeCate(int categoryId , HttpServletRequest request){
         logger.info("I am good and in getAllTypesByCategoryIdAndToTypeCate");
-        List<Types> listType = getTypeMapper.getTheTypesMapper().getAllTypesByCategoryId(categoryId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Types> listType = sqlSession.getMapper(typesMapper.class).getAllTypesByCategoryId(categoryId);
+        sqlUtil.sqlClose(sqlSession);
         request.setAttribute("listType" , listType);
         return "category/typeCate";
     }
@@ -35,29 +43,38 @@ public class typesController extends topController {
     @RequestMapping("/updateTypeName")
     public String updateTypeName(String typeName , int typeId){
         logger.info(typeId);
-        Types type = getTypeMapper.getTheTypesMapper().getTypeById(typeId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Types type = sqlSession.getMapper(typesMapper.class).getTypeById(typeId);
+        sqlUtil.sqlClose(sqlSession);
         type.setName(typeName);
-        getTypeMapper.getTheTypesMapper().updateTypeName(type);
-        getTypeMapper.sqlCommit();
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(typesMapper.class).updateTypeName(type);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);
         return "redirect:/category/manageAll";
     }
 
     @RequestMapping("/addType")
     public String addType(String typeName , int cateId){
         logger.info(typeName+" "+cateId);
-        Categorys category = getCategoryMapper.getTheCategorysMapper().getCategoryById(cateId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Categorys category = sqlSession.getMapper(categorysMapper.class).getCategoryById(cateId);
+        sqlUtil.sqlClose(sqlSession);
         Types type = new Types();
         type.setName(typeName);type.setTypesCategory(category);
-        getTypeMapper.getTheTypesMapper().addType(type);
-        getTypeMapper.sqlCommit();
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(typesMapper.class).addType(type);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);
         return "redirect:/category/manageAll";
     }
 
     @RequestMapping("/deleteType")
     public String deleteType(int typeId){
-        getTypeMapper.getTheTypesMapper().deleteType(typeId);
-        getTypeMapper.sqlCommit();
-        getTypeMapper.sqlClose();
+        SqlSession sqlSession = sqlUtil.getSql();
+        sqlSession.getMapper(typesMapper.class).deleteType(typeId);
+        sqlUtil.commit(sqlSession);
+        sqlUtil.sqlClose(sqlSession);
         return "redirect:/category/manageAll";
     }
 

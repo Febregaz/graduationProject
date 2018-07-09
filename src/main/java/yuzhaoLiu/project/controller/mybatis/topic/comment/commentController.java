@@ -1,5 +1,7 @@
 package yuzhaoLiu.project.controller.mybatis.topic.comment;
 
+import com.mchange.v2.sql.SqlUtils;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yuzhaoLiu.project.controller.chiefController.topController;
@@ -15,6 +17,13 @@ import yuzhaoLiu.project.mybatis.entity.topic.category.Categorys;
 import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
+import yuzhaoLiu.project.mybatis.mapper.people.usersMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.category.categorysMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.category.typesMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.content.topicsMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.newsMapper;
+import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,7 +39,10 @@ public class commentController extends topController {
     public String postedComment (String commentContent , HttpServletRequest request) throws IOException {
         //String strComment = new String(commentContent.getBytes("iso-8859-1"),"UTF-8") ;//将前台传进来的数据进行常规转码
         HttpSession session = request.getSession();
-        Users user = (Users) session.getAttribute("userInfo");
+        //Users user = (Users) session.getAttribute("userInfo");
+        Users user = new Users();
+        user.setNickname("peopleUnknown");
+        user.setId(2);
         Topics topic = (Topics) session.getAttribute("topic");
         logger.info("cateName:"+topic.getTopicsType().getTypesCategory().getNamee());
         comment.setContent(commentContent);
@@ -39,48 +51,83 @@ public class commentController extends topController {
         return "redirect:/617/Ahri"+id+"_1.617museum";
     }
 
+    @RequestMapping("/newPostedComment")
+    public String newPostedComment (String commentContent , HttpServletRequest request) throws IOException {
+        //String strComment = new String(commentContent.getBytes("iso-8859-1"),"UTF-8") ;//将前台传进来的数据进行常规转码
+        HttpSession session = request.getSession();
+        //Users user = (Users) session.getAttribute("userInfo");
+        Users user = new Users();
+        user.setNickname("peopleUnknown");
+        user.setId(2);
+        Topics topic = (Topics) session.getAttribute("topic");
+        logger.info("cateName:"+topic.getTopicsType().getTypesCategory().getNamee());
+        comment.setContent(commentContent);
+        Boolean flag = newComment(comment , user , topic);
+        int id = topic.getId();
+        return "redirect:/617/newDetail"+id+".617museum";
+    }
+
     public boolean newComment(Comments comment, Users user, Topics tpc) {
         Date cTime = new Date();
         comment.setCommentTime(cTime);//设置评论的时间
         //Topics tpc = this.topicDao.find(topic.getId());
-        tpc.setCountComment(tpc.getCountComment() + 1); // 帖子评论数加1
+        /*tpc.setCountComment(tpc.getCountComment() + 1); // 帖子评论数加1
         Types type = tpc.getTopicsType();
         logger.info("type前:"+type.getCountComments());
         type.setCountComments(type.getCountComments() + 1); // 帖子小类型评论数加1
         logger.info("type后:"+type.getCountComments());
-        getTypeMapper.getTheTypesMapper().updateCommentsCount(type);
-        getTypeMapper.sqlCommit();
-        Categorys category = tpc.getTopicsType().getTypesCategory();
+        SqlSession sqlSession = sqlUtil.getSql();
+        sqlSession.getMapper(typesMapper.class).updateCommentsCount(type);
+        //getTypeMapper.getTheTypesMapper().updateCommentsCount(type);
+        sqlUtil.commit(sqlSession);
+        sqlUtil.sqlClose(sqlSession);*/
+
+        /*Categorys category = tpc.getTopicsType().getTypesCategory();
         logger.info("category前:"+category.getCountComments());
         category.setCountComments(category.getCountComments() + 1); // 帖子大类型评论数加1
         logger.info("category后:"+category.getCountComments());
-        getCategoryMapper.getTheCategorysMapper().updateCommentCount(category);
-        getCategoryMapper.sqlCommit();
-        user.setIntegral(user.getIntegral()+1);  //回复帖子，用户积分加1
-        user.setComCount(user.getComCount()+1);  //用户总评论数加1
-        getPeopleMapper.getTheUsersMapper().updateIntegralAndComment(user);
-        getPeopleMapper.sqlCommit();
-        if (tpc.getTopicsUser().getId() != user.getId()) {
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(categorysMapper.class).updateCommentCount(category);
+        //getCategoryMapper.getTheCategorysMapper().updateCommentCount(category);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);*/
+        //user.setIntegral(user.getIntegral()+1);  //回复帖子，用户积分加1
+        //user.setComCount(user.getComCount()+1);  //用户总评论数加1
+        //getPeopleMapper.getTheUsersMapper().updateIntegralAndComment(user);
+        //getPeopleMapper.sqlCommit();
+        /*if (tpc.getTopicsUser().getId() != user.getId()) {*/
             tpc.getTopicsUser().setClock(tpc.getTopicsUser().getClock() + 1);//如果评论者不是帖子作者本人，则通知帖子作者有新评论
-            getPeopleMapper.getTheUsersMapper().updateClock(tpc.getTopicsUser());
-            getPeopleMapper.sqlCommit();
+            SqlSession sqlSession2 = sqlUtil.getSql();
+            sqlSession2.getMapper(usersMapper.class).updateClock(tpc.getTopicsUser());
+            //getPeopleMapper.getTheUsersMapper().updateClock(tpc.getTopicsUser());
+            sqlUtil.commit(sqlSession2);
+            sqlUtil.sqlClose(sqlSession2);
             //TODO:未读信息功能
             News tnew = new News();
             tnew.setNewsCommentUser(user);
             tnew.setNewsTopic(tpc);
             tnew.setStatus(0); // 将消息设为未读
             tnew.setNewTime(cTime);
-            getNewsMapper.getTheNewsMapper().addNew(tnew);
-            getNewsMapper.sqlCommit();
-        }
+            SqlSession sqlSession3 = sqlUtil.getSql();
+            sqlSession3.getMapper(newsMapper.class).addNew(tnew);
+            //getNewsMapper.getTheNewsMapper().addNew(tnew);
+            sqlUtil.commit(sqlSession3);
+            sqlUtil.sqlClose(sqlSession3);
+        /*}*/
         /*更新topic的comment数目并且提交事务*/
-        getTopicsMapper.getTheTopicsMapper().updateTopicComment(tpc.getId() , tpc.getCountComment());
-        getTopicsMapper.sqlCommit();
+        /*SqlSession sqlSession4 = sqlUtil.getSql();
+        sqlSession4.getMapper(topicsMapper.class).updateTopicComment(tpc.getId() , tpc.getCountComment());
+        //getTopicsMapper.getTheTopicsMapper().updateTopicComment(tpc.getId() , tpc.getCountComment());
+        sqlUtil.commit(sqlSession4);
+        sqlUtil.sqlClose(sqlSession4);*/
         comment.setCommentsTopic(tpc);
         comment.setFloor(tpc.getCountComment()); // 设置此评论所在楼层
         comment.setCommentsUser(user);
-        getCommentsMapper.getTheCommentsMapper().addTheComment(comment);
-        getCommentsMapper.sqlCommit();
+        SqlSession sqlSession5 = sqlUtil.getSql();
+        sqlSession5.getMapper(commentsMapper.class).addTheComment(comment);
+        //getCommentsMapper.getTheCommentsMapper().addTheComment(comment);
+        sqlUtil.commit(sqlSession5);
+        sqlUtil.sqlClose(sqlSession5);
         return true;
     }
 

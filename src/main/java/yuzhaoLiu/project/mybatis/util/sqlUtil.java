@@ -28,4 +28,12 @@ public class sqlUtil {
         sqlSession.close();
     }
 
+    public static void sqlClose(SqlSession sqlSession){
+        sqlSession.close();
+    }
+
+    public static void commit(SqlSession sqlSession){
+        sqlSession.commit();
+    }
+
 }

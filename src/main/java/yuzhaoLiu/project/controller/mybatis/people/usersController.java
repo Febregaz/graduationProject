@@ -1,6 +1,7 @@
 package yuzhaoLiu.project.controller.mybatis.people;
 
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,9 @@ import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
+import yuzhaoLiu.project.mybatis.mapper.people.gradesMapper;
 import yuzhaoLiu.project.mybatis.mapper.people.usersMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.newsMapper;
 import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +50,10 @@ public class usersController extends topController {
     @RequestMapping("/usersLogin")
     public String usersLogin(String username, String password, HttpServletRequest request){
         logger.info("Logining..."+username+" "+password);
-        usersMapper usersMapper = sqlUtil.getSql().getMapper(usersMapper.class);
+        SqlSession sqlSession = sqlUtil.getSql();
+        usersMapper usersMapper = sqlSession.getMapper(usersMapper.class);
         Users users = usersMapper.userLogin(username);
+        sqlUtil.sqlClose(sqlSession);
         HttpSession session = request.getSession();
         if(users==null){
             String message = "该账号不存在";
@@ -68,7 +73,8 @@ public class usersController extends topController {
             }
             session.setAttribute("userInfo",users);
             logger.info("Where");
-            return "home/index";
+            //return "home/index";
+            return "redirect:http://www.617museum.top/NC-JSP/admin/manage.jsp";
         }
         String message = "用户名或密码错误！";
         session.setAttribute("tipMessage", message);
@@ -85,22 +91,28 @@ public class usersController extends topController {
     @RequestMapping("/usersRegister")
     public String usersRegister(String username , String nickname , String password , String email , HttpServletRequest request){
         //logger.info(username+" "+nickname+" "+password+" "+email);
-        Users users = getPeopleMapper.getTheUsersMapper().userLogin(email);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Users users = sqlSession.getMapper(usersMapper.class).userLogin(email);
+        sqlUtil.sqlClose(sqlSession);
         if(users!=null) {
             String message = "该邮箱已存在，请重新注册！";
             request.getSession().setAttribute("tipMessage", message);
             return "home/error";
         }
         else{
-            List<Grades> gradesList = getGradeMapper.getTheGradesMapper().readGrades();
+            SqlSession sqlSession1 = sqlUtil.getSql();
+            List<Grades> gradesList = sqlSession1.getMapper(gradesMapper.class).readGrades();
+            sqlUtil.sqlClose(sqlSession1);
             Grades grade = gradesList.get(0);
             Date date = new Date();
             Users user = new Users();
             user.setNickname(nickname);user.setUsername(username);user.setPassword(password);user.setEmail(email);user.setStatus(2);
             user.setRegisterTime(date);
             user.setUsersGrade(grade);
-            getPeopleMapper.getTheUsersMapper().registeruser(user);
-            getPeopleMapper.sqlCommit();
+            SqlSession sqlSession2 = sqlUtil.getSql();
+            sqlSession2.getMapper(usersMapper.class).registeruser(user);
+            sqlUtil.commit(sqlSession2);
+            sqlUtil.sqlClose(sqlSession2);
             String code= CodeUtil.generateUniqueCode();
             new Thread(new MailUtil(email, code ,username , password)).start();
             return "user/index";
@@ -109,10 +121,14 @@ public class usersController extends topController {
 
     @RequestMapping("/toTheHomePageAfterActivation")
     public String toTheHomePageAfterActivation(HttpServletRequest request , String username){
-        Users user = getPeopleMapper.getTheUsersMapper().userLogin(username);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Users user = sqlSession.getMapper(usersMapper.class).userLogin(username);
+        sqlUtil.sqlClose(sqlSession);
         user.setStatus(0);
-        getPeopleMapper.getTheUsersMapper().updateUserStatus(user);
-        getPeopleMapper.sqlCommit();
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(usersMapper.class).updateUserStatus(user);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);
         request.getSession().setAttribute("userInfo" , user);
         return "home/index";
     }
@@ -237,8 +253,10 @@ public class usersController extends topController {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("userInfo");
         user.setPicture("upload/"+origFilename);
-        getPeopleMapper.getTheUsersMapper().updateUserPic(user);
-        getPeopleMapper.sqlCommit();
+        SqlSession sqlSession = sqlUtil.getSql();
+        sqlSession.getMapper(usersMapper.class).updateUserPic(user);
+        sqlUtil.commit(sqlSession);
+        sqlUtil.sqlClose(sqlSession);
         return "user/updateInfo";
     }
 
@@ -249,8 +267,10 @@ public class usersController extends topController {
         Users user = (Users) session.getAttribute("userInfo");
         user.setNickname(userNic);user.setSex(userSex);user.setEmail(userEmail);user.setProfession(userProfe);
         user.setComefrom(userFrom);user.setIntroduction(userIntro);
-        getPeopleMapper.getTheUsersMapper().updateUserInfo(user);
-        getPeopleMapper.sqlCommit();
+        SqlSession sqlSession = sqlUtil.getSql();
+        sqlSession.getMapper(usersMapper.class).updateUserInfo(user);
+        sqlUtil.commit(sqlSession);
+        sqlUtil.sqlClose(sqlSession);
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://"
                 + request.getServerName() + ":" + request.getServerPort()
@@ -266,8 +286,10 @@ public class usersController extends topController {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("userInfo");
         user.setPassword(userPass);
-        getPeopleMapper.getTheUsersMapper().updateUserPass(user);
-        getPeopleMapper.sqlCommit();
+        SqlSession sqlSession = sqlUtil.getSql();
+        sqlSession.getMapper(usersMapper.class).updateUserPass(user);
+        sqlUtil.commit(sqlSession);
+        sqlUtil.sqlClose(sqlSession);
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://"
                 + request.getServerName() + ":" + request.getServerPort()
@@ -278,7 +300,9 @@ public class usersController extends topController {
 
     @RequestMapping("/manageAll")
     public String manageAll(HttpServletRequest request , int nowPage){
-        List<Users> usersList = getPeopleMapper.getTheUsersMapper().readUsers();
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Users> usersList = sqlSession.getMapper(usersMapper.class).readUsers();
+        sqlUtil.sqlClose(sqlSession);
         this.pageBean = methodForManageAll.ManageUsersForPage(12 , nowPage , usersList);
         request.setAttribute("listUser" , pageBean.getListUser());
         request.setAttribute("pageBean"  , pageBean);
@@ -289,7 +313,9 @@ public class usersController extends topController {
     public String getUserNews(HttpServletRequest request , int nowPage){
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("userInfo");
-        List<News> newsList = getNewsMapper.getTheNewsMapper().getNewsByUserId(user.getId());
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<News> newsList = sqlSession.getMapper(newsMapper.class).getNewsByUserId(user.getId());
+        sqlUtil.sqlClose(sqlSession);
         logger.info("size:"+newsList.size());
         this.pageBean = methodForGetNews.ManageNewsForPage(5 , nowPage , newsList);
         logger.info(pageBean.getListNews().size());
@@ -301,7 +327,9 @@ public class usersController extends topController {
     @RequestMapping("/hadRead")
     @ResponseBody
     public News hadRead(int newStatus , int newId , HttpServletRequest request){
-        News news = getNewsMapper.getTheNewsMapper().getNewById(newId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        News news = sqlSession.getMapper(newsMapper.class).getNewById(newId);
+        sqlUtil.sqlClose(sqlSession);
         HttpSession session = request.getSession();
         Users user =(Users) session.getAttribute("userInfo");
         if(newStatus==0){
@@ -313,18 +341,22 @@ public class usersController extends topController {
             user.setClock(user.getClock()+1);
         }
         //将t_new的数据的状态改为已读或者未读
-        getNewsMapper.getTheNewsMapper().updateStatus(news);
-        getNewsMapper.sqlCommit();
-        getNewsMapper.sqlClose();
-        getPeopleMapper.getTheUsersMapper().updateClock(user);
-        getPeopleMapper.sqlCommit();
-        getPeopleMapper.sqlClose();
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(newsMapper.class).updateStatus(news);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);
+        SqlSession sqlSession2 = sqlUtil.getSql();
+        sqlSession2.getMapper(usersMapper.class).updateClock(user);
+        sqlUtil.commit(sqlSession2);
+        sqlUtil.sqlClose(sqlSession2);
         return news;
     }
 
     @RequestMapping("/getUserById")
     public String getUserById(int userId , HttpServletRequest request){
-        Users user = getPeopleMapper.getTheUsersMapper().getUserById(userId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Users user = sqlSession.getMapper(usersMapper.class).getUserById(userId);
+        sqlUtil.sqlClose(sqlSession);
         HttpSession session = request.getSession();
         session.setAttribute("user" , user);
         return "user/user";
@@ -332,16 +364,19 @@ public class usersController extends topController {
 
     @RequestMapping("/disabledOrAbleUser")
     public String disabledOrAbleUser(int userId ,HttpServletRequest request){
-        Users user = getPeopleMapper.getTheUsersMapper().getUserById(userId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Users user = sqlSession.getMapper(usersMapper.class).getUserById(userId);
+        sqlUtil.sqlClose(sqlSession);
         if(user.getStatus()==0){
             user.setStatus(1);
         }
         else if(user.getStatus()==1){
             user.setStatus(0);
         }
-        getPeopleMapper.getTheUsersMapper().updateUserStatus(user);
-        getPeopleMapper.sqlCommit();
-        getPeopleMapper.sqlClose();
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(usersMapper.class).updateUserStatus(user);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://"
                 + request.getServerName() + ":" + request.getServerPort()

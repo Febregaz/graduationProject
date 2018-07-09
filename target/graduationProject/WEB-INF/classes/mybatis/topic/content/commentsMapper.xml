@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
+
+    <resultMap id="commentBean" type="yuzhaoLiu.project.mybatis.entity.topic.content.Comments">
+        <id column="commentId" property="commentId" />
+        <result column="content" property="content"/>
+        <result column="floor" property="floor"/>
+        <result column="comment_time" property="commentTime"/>
+        <result column="integral" property="integral"/>
+        <result column="comment_status" property="commentStatus"/>
+        <association property="commentsUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
+            <id column="userId" property="userId" />
+            <result column="username" property="username"></result>
+            <result column="nickname" property="nickname"></result>
+            <result column="picture" property="picture"></result>
+            <result column="comment_count" property="comCount"></result>
+            <association property="usersGrade" javaType="yuzhaoLiu.project.mybatis.entity.people.Grades">
+                <id column="gradeId" property="gradeId" />
+                <result column="honor" property="honor"></result>
+            </association>
+        </association>
+        <association property="commentsTopic" javaType="yuzhaoLiu.project.mybatis.entity.topic.content.Topics">
+            <id column="id" property="id" />
+            <result column="nice_topic" property="niceTopic" />
+            <result column="title" property="title" />
+            <result column="status" property="status" />
+            <result column="comment_count_topic" property="countCommentTopic" />
+            <association property="topicsUser" javaType="yuzhaoLiu.project.mybatis.entity.people.Users">
+                <id column="userId" property="userId" />
+                <result column="nickname" property="nickname" />
+            </association>
+            <association property="topicsType" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Types">
+                <id column="idd" property="idd" />
+                <result column="name" property="name" />
+                <result column="count_topics" property="countTopics" />
+                <result column="count_comments" property="countComments" />
+                <association property="typesCategory" javaType="yuzhaoLiu.project.mybatis.entity.topic.category.Categorys">
+                    <id column="categoryId" property="categoryId" />
+                    <result column="namee" property="namee" />
+                    <result column="count_topics_cate" property="countTopicsCate" />
+                    <result column="count_comments_cate" property="countCommentsCate" />
+                </association>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="readComments" resultType="Comments">
+        SELECT a.* FROM t_comment a WHERE a.comment_status!=1
+    </select>
+    <select id="getTheCommentsByTopicId" parameterType="int" resultMap="commentBean">
+        SELECT a.*,b.*,c.* FROM t_comment a,t_user b,t_grade c WHERE a.comments_topic_id = #{id} AND a.comments_user_id = b.userId AND b.users_grade_id = c.gradeId AND a.comment_status!=1
+    </select>
+    <select id="getTheCommentsByUserId" parameterType="int" resultMap="commentBean">
+        SELECT a.*,b.*,c.*,d.*,e.* FROM t_comment a,t_user b,t_topic c,t_type d,t_category e WHERE a.comments_user_id = #{id} AND a.comments_topic_id = c.id AND c.topics_type_id = d.idd AND b.userId = c.topics_user_id AND d.types_category_id = e.categoryId AND a.comment_status!=1
+    </select>
+    <select id="deleteComment" parameterType="int" resultMap="commentBean">
+        SELECT a.* ,b.* ,c.*,d.*,e.* FROM t_comment a,t_topic b,t_user c,t_type d,t_category e WHERE a.commentId = #{id} AND a.comments_topic_id = b.id AND a.comments_user_id = c.userId AND b.topics_type_id = d.idd AND types_category_id = e.categoryId AND a.comment_status!=1
+    </select>
+
+    <insert id="addTheComment" parameterType="Comments" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_comment(content , floor , integral , comment_status , comment_time , comments_user_id , comments_topic_id) VALUES (#{content} , #{floor} , #{integral} , #{commentStatus} , #{commentTime} , #{commentsUser.userId} , #{commentsTopic.id})
+    </insert>
+
+    <update id="updateCommentIntegral" parameterType="Comments">
+        UPDATE t_comment a SET a.integral = #{integral} WHERE a.commentId = #{commentId}
+    </update>
+    <update id="updateCommentStatus" parameterType="Comments">
+        UPDATE t_comment a SET a.comment_status = #{commentStatus} WHERE a.commentId = #{commentId}
+    </update>
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+</mapper>

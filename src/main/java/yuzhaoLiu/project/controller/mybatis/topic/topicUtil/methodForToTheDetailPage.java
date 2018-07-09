@@ -1,9 +1,13 @@
 package yuzhaoLiu.project.controller.mybatis.topic.topicUtil;
 
+import org.apache.ibatis.session.SqlSession;
 import yuzhaoLiu.project.controller.mybatis.people.peopleUtil.getPeopleMapper;
 import yuzhaoLiu.project.mybatis.entity.people.Users;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
+import yuzhaoLiu.project.mybatis.mapper.people.usersMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
+import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import java.util.List;
 
@@ -72,14 +76,20 @@ public class methodForToTheDetailPage {
         for (int i = 0; i < listComment.size(); i++) {
             if (listFloor[i]!=0){
                 listComment.get(i).setIntegral(listFloor[i]);
-                getCommentsMapper.getTheCommentsMapper().updateCommentIntegral(listComment.get(i));
-                getCommentsMapper.sqlCommit();
+                SqlSession sqlSession = sqlUtil.getSql();
+                sqlSession.getMapper(commentsMapper.class).updateCommentIntegral(listComment.get(i));
+                sqlUtil.commit(sqlSession);
+                sqlUtil.sqlClose(sqlSession);
                 System.out.println(listComment.get(i).getCommentsUser().getUsername());
                 int userId = listComment.get(i).getCommentsUser().getId();
-                Users user = getPeopleMapper.getTheUsersMapper().getUserById(userId);
+                SqlSession sqlSession1 = sqlUtil.getSql();
+                Users user = sqlSession1.getMapper(usersMapper.class).getUserById(userId);
+                sqlUtil.sqlClose(sqlSession1);
                 user.setIntegral(user.getIntegral() + listFloor[i]);
-                getPeopleMapper.getTheUsersMapper().updateUserIntegral(user);
-                getPeopleMapper.sqlCommit();
+                SqlSession sqlSession2 = sqlUtil.getSql();
+                sqlSession2.getMapper(usersMapper.class).updateUserIntegral(user);
+                sqlUtil.commit(sqlSession2);
+                sqlUtil.sqlClose(sqlSession2);
             }
         }
     }

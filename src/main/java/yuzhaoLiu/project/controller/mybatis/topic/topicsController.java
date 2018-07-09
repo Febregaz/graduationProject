@@ -1,6 +1,7 @@
 package yuzhaoLiu.project.controller.mybatis.topic;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,11 @@ import yuzhaoLiu.project.mybatis.entity.topic.category.Types;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Comments;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Pages;
 import yuzhaoLiu.project.mybatis.entity.topic.content.Topics;
+import yuzhaoLiu.project.mybatis.mapper.people.usersMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.category.categorysMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.category.typesMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.content.commentsMapper;
+import yuzhaoLiu.project.mybatis.mapper.topic.content.topicsMapper;
 import yuzhaoLiu.project.mybatis.util.sqlUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,13 +46,32 @@ public class topicsController extends topController {
     obtain the 10 newest result from t_topic
     */
     @RequestMapping("/getTheNewestTopics")
-    public String getTheNewestTopics(HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNewestTopics();
+    @ResponseBody
+    public List<Topics> getTheNewestTopics(HttpServletRequest request){
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getTheNewestTopics();
+        //List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNewestTopics();
         //sqlUtil.closeTheSqlSession();
         //getTopicsMapper.sqlClose();
         request.setAttribute("newtopicsList",topicsList);
         //logger.info("I am good and in getTheNewestTopics");
+        sqlUtil.sqlClose(sqlSession);
+        return topicsList;
+        //return /*"redirect:"+basePath+"/NC-JSP/home/index.jsp"*/"home/index";
+    }
+
+    @RequestMapping("/oldGetTheNewestTopics")
+    public String oldGetTheNewestTopics(HttpServletRequest request){
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getTheNewestTopics();
+        //List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNewestTopics();
+        //sqlUtil.closeTheSqlSession();
+        //getTopicsMapper.sqlClose();
+        request.setAttribute("newtopicsList",topicsList);
+        //logger.info("I am good and in getTheNewestTopics");
+        sqlUtil.sqlClose(sqlSession);
         return "topic/indexFreshTopic";
+        //return /*"redirect:"+basePath+"/NC-JSP/home/index.jsp"*/"home/index";
     }
 
     /*
@@ -54,11 +79,13 @@ public class topicsController extends topController {
     */
     @RequestMapping("/getTheHotestTopics")
     public String getTheHotestTopics(HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheHotestTopics();
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getTheHotestTopics();
         //sqlUtil.closeTheSqlSession();
         //getTopicsMapper.sqlClose();
         request.setAttribute("hotTopicsList",topicsList);
         //logger.info("I am good and in getTheHotestTopics");
+        sqlUtil.sqlClose(sqlSession);
         return "topic/indexHotTopic";
     }
 
@@ -66,20 +93,39 @@ public class topicsController extends topController {
     obtain the 10 nicest result from t_topic
     */
     @RequestMapping("/getTheNicestTopics")
-    public String getTheNicestTopics(HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTheNicestTopics();
+    @ResponseBody
+    public List<Topics> getTheNicestTopics(HttpServletRequest request){
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getTheNicestTopics();
         //sqlUtil.closeTheSqlSession();执行关闭的话*Mapper.xml在执行sql操作的时候有时会报错
         //getTopicsMapper.sqlClose();
         request.setAttribute("niceTopicsList",topicsList);
         //logger.info("I am good and in getTheNicestTopics");
+        sqlUtil.sqlClose(sqlSession);
+        return topicsList;
+    }
+
+    @RequestMapping("/oldGetTheNicestTopics")
+    public String oldGetTheNicestTopics(HttpServletRequest request){
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getTheNicestTopics();
+        //sqlUtil.closeTheSqlSession();执行关闭的话*Mapper.xml在执行sql操作的时候有时会报错
+        //getTopicsMapper.sqlClose();
+        request.setAttribute("niceTopicsList",topicsList);
+        //logger.info("I am good and in getTheNicestTopics");
+        sqlUtil.sqlClose(sqlSession);
         return "topic/indexNiceTopic";
     }
 
     @RequestMapping("/toTheDetailPage")
     public String toTheDetailPage(int topicId , int nowPage , HttpServletRequest request){
         logger.info("id+nowpage:"+topicId+" "+nowPage);
-        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
-        List<Comments> commentsList = getCommentsMapper.getTheCommentsMapper().getTheCommentsByTopicId(topicId);
+        SqlSession tSqlSession = sqlUtil.getSql();
+        Topics topic = tSqlSession.getMapper(topicsMapper.class).getTheTopicById(topicId);
+        sqlUtil.sqlClose(tSqlSession);
+        SqlSession cSqlSession = sqlUtil.getSql();
+        List<Comments> commentsList = cSqlSession.getMapper(commentsMapper.class).getTheCommentsByTopicId(topicId);
+        sqlUtil.sqlClose(cSqlSession);
         nowPage = (nowPage == 0) ? 1 : nowPage;
         this.pageBean = methodForToTheDetailPage.QueryCommentsForPage(10, nowPage, commentsList);
         this.listComment = pageBean.getListComments();
@@ -89,6 +135,20 @@ public class topicsController extends topController {
         request.setAttribute("page" , pageBean);
         request.setAttribute("listComment" , listComment);
         return "topic/theTopic";
+    }
+
+    @RequestMapping("/newToTheDetailPage")
+    public String newToTheDetailPage(int topicId , HttpServletRequest request){
+        SqlSession tSqlSession = sqlUtil.getSql();
+        Topics topic = tSqlSession.getMapper(topicsMapper.class).getTheTopicById(topicId);
+        sqlUtil.sqlClose(tSqlSession);
+        HttpSession session = request.getSession();
+        session.setAttribute("topic" , topic);
+        SqlSession cSqlSession = sqlUtil.getSql();
+        List<Comments> commentsList = cSqlSession.getMapper(commentsMapper.class).getTheCommentsByTopicId(topicId);
+        sqlUtil.sqlClose(cSqlSession);
+        request.setAttribute("listComment" , commentsList);
+        return "gp2.0Frontend/single";
     }
 
     @RequestMapping("/postedTopic")
@@ -101,7 +161,9 @@ public class topicsController extends topController {
         int id = methodForPostedTopic.addTopic(topic , user , typeId , topicIntegral , topicTitle , tcontent , priOrPub);
         System.out.println("sendAllOrNot:"+ifOrNot);
         if(ifOrNot==1){
-            List<Users> usersList = getPeopleMapper.getTheUsersMapper().readUsers();
+            SqlSession uSqlSession = sqlUtil.getSql();
+            List<Users> usersList = uSqlSession.getMapper(usersMapper.class).readUsers();
+            sqlUtil.sqlClose(uSqlSession);
             for(Users u : usersList){
                 String code= CodeUtil.generateUniqueCode();
                 new Thread(new sendAllPeople(u.getEmail() , code ,id , topicTitle , priOrPub , user.getId())).start();
@@ -110,13 +172,15 @@ public class topicsController extends topController {
         if(priOrPub>0){
             return "redirect:/617/12139"+id+"_"+priOrPub+".617museum";
         }
-        return "redirect:/617/Ahri"+id+"_1.617museum";
+        return "redirect:/617/newDetail"+id+".617museum";
         /*http://www.617museum.top/topics/toTheDetailPage?topicId=26&&nowPage=1*/
     }
 
     @RequestMapping("/getTopicsByTypeId")
     public String getTopicsByTypeId(int typeId , int nowPage , HttpServletRequest request){
-        Types type = getTypeMapper.getTheTypesMapper().getTypeById(typeId);
+        SqlSession typeSession = sqlUtil.getSql();
+        Types type = typeSession.getMapper(typesMapper.class).getTypeById(typeId);
+        sqlUtil.sqlClose(typeSession);
         this.pageBean = methodForGetTopicsByTypeId.getAllForPages(10 , nowPage , typeId);
         listTopic = pageBean.getListTopics();
         request.setAttribute("type" , type);
@@ -125,9 +189,20 @@ public class topicsController extends topController {
         return "type/theType";
     }
 
+    @RequestMapping("/newGetTopicsByTypeId")
+    public String newGetTopicsByTypeId(int typeId , HttpServletRequest request){
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getTopicsByTypeId(typeId);
+        sqlUtil.sqlClose(sqlSession);
+        request.setAttribute("listTopic" , topicsList);
+        return "gp2.0Frontend/typeDetail";
+    }
+
     @RequestMapping("/getAllHotTopics")
     public String getAllHotTopics(int nowPage , HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getAllHotTopics();
+        SqlSession tSqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = tSqlSession.getMapper(topicsMapper.class).getAllHotTopics();
+        sqlUtil.sqlClose(tSqlSession);
         this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
@@ -136,7 +211,9 @@ public class topicsController extends topController {
 
     @RequestMapping("/getAllFreshTopics")
     public String getAllFreshTopics(int nowPage , HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getAllFreshTopics();
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getAllFreshTopics();
+        sqlUtil.sqlClose(sqlSession);
         this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
@@ -145,7 +222,9 @@ public class topicsController extends topController {
 
     @RequestMapping("/getAllNiceTopics")
     public String getAllNiceTopics(int nowPage , HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getAllNiceTopics();
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getAllNiceTopics();
+        sqlUtil.sqlClose(sqlSession);
         this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
@@ -163,9 +242,20 @@ public class topicsController extends topController {
         return "topic/searchResult";
     }
 
+    @RequestMapping("/newSearchTopics")
+    public String newSearchTopics(String content , HttpServletRequest request) throws IOException{
+        //String strContent = new String(content.getBytes("iso-8859-1"),"UTF-8") ;
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).searchTopics(content);
+        request.setAttribute("listTopic" , topicsList);
+        return "gp2.0Frontend/search";
+    }
+
     @RequestMapping("/manageAll")
     public String manageAll(HttpServletRequest request , int nowPage){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().readTopics();
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).readTopics();
+        sqlUtil.sqlClose(sqlSession);
         this.pageBean = methodForGetAllHotTopics.getHotForPages(12 , nowPage , topicsList);
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
@@ -174,7 +264,9 @@ public class topicsController extends topController {
 
     @RequestMapping("/getTopicsByUserId")
     public String getTopicsByUserId(int userId , int nowPage , HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getTopicsByUserId(userId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getTopicsByUserId(userId);
+        sqlUtil.sqlClose(sqlSession);
         this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage , topicsList);
         request.setAttribute("listTopic" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
@@ -183,8 +275,12 @@ public class topicsController extends topController {
 
     @RequestMapping("/goEndTopic")
     public String goEndTopic(int topicId , HttpServletRequest request){
-        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
-        List<Comments> commentsList = getCommentsMapper.getTheCommentsMapper().getTheCommentsByTopicId(topicId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Topics topic = sqlSession.getMapper(topicsMapper.class).getTheTopicById(topicId);
+        sqlUtil.sqlClose(sqlSession);
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        List<Comments> commentsList = sqlSession1.getMapper(commentsMapper.class).getTheCommentsByTopicId(topicId);
+        sqlUtil.sqlClose(sqlSession1);
         if (commentsList.size() > 1) {
             methodForToTheDetailPage.QuickSort(commentsList , 0 , commentsList.size()-1);
         }
@@ -202,10 +298,14 @@ public class topicsController extends topController {
         for (int i = 0; i < listFloor.length; i++) {
             listFloor[i] = Integer.parseInt(str[i]);
         }
-        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Topics topic = sqlSession.getMapper(topicsMapper.class).getTheTopicById(topicId);
+        sqlUtil.sqlClose(sqlSession);
         List<Comments> list = new ArrayList<Comments>();
         List<Comments> listTemp = new ArrayList<Comments>();
-        listTemp = getCommentsMapper.getTheCommentsMapper().getTheCommentsByTopicId(topicId);
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        listTemp = sqlSession1.getMapper(commentsMapper.class).getTheCommentsByTopicId(topicId);
+        sqlUtil.sqlClose(sqlSession1);
         for (int i = 0; i < listTemp.size(); i++) {
             int m = listTemp.get(i).getCommentsUser().getId();
             int n = topic.getTopicsUser().getId();
@@ -218,23 +318,28 @@ public class topicsController extends topController {
         }
         methodForToTheDetailPage.endTopic(listFloor, list);
         topic.setStatus(1);
-        getTopicsMapper.getTheTopicsMapper().updateTopicStatus(topic);
-        getTopicsMapper.sqlCommit();
+        SqlSession sqlSession2 = sqlUtil.getSql();
+        sqlSession2.getMapper(topicsMapper.class).updateTopicStatus(topic);
+        sqlUtil.commit(sqlSession2);
+        sqlUtil.sqlClose(sqlSession2);
         return "redirect:/617/Ahri"+topicId+"_1.617museum";//toTheDetailPage
     }
 
     @RequestMapping("/niceOrNot")
     public String niceOrNot(int topicId , HttpServletRequest request){
-        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Topics topic = sqlSession.getMapper(topicsMapper.class).getTheTopicById(topicId);
+        sqlUtil.sqlClose(sqlSession);
         if(topic.getNiceTopic()==0){
             topic.setNiceTopic(1);
         }
         else if(topic.getNiceTopic()==1){
             topic.setNiceTopic(0);
         }
-        getTopicsMapper.getTheTopicsMapper().updateTopicNice(topic);
-        getTopicsMapper.sqlCommit();
-        getTopicsMapper.sqlClose();
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(topicsMapper.class).updateTopicNice(topic);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://"
                 + request.getServerName() + ":" + request.getServerPort()
@@ -244,36 +349,48 @@ public class topicsController extends topController {
 
     @RequestMapping("/deleteTopicOrNot")
     public String deleteTopicOrNot(int topicId , HttpServletRequest request){
-        Topics topic = getTopicsMapper.getTheTopicsMapper().getTheTopicById(topicId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Topics topic = sqlSession.getMapper(topicsMapper.class).getTheTopicById(topicId);
+        sqlUtil.sqlClose(sqlSession);
         Types type = topic.getTopicsType();
-        int oldTypeCommentCount = type.getCountComments();//获取type的最初总评论数
+        int oldTypeTopicCount = type.getCountTopics();
+        /*int oldTypeCommentCount = type.getCountComments();//获取type的最初总评论数
         int oldTypeTopicCount = type.getCountTopics();//获取type的最初总帖子数
         Categorys category = type.getTypesCategory();
         int oldCateCommentCount = category.getCountComments();//获取category的最初总评论数
-        int oldCateTopicCount = category.getCountTopics();//获取category的最初总帖子数
+        int oldCateTopicCount = category.getCountTopics();//获取category的最初总帖子数*/
         if(topic.getStatus()==2){
             topic.setStatus(0);
-            type.setCountComments(oldTypeCommentCount+topic.getCountComment());//若是恢复，则类型加上当前帖子的评论数
+            /*type.setCountComments(oldTypeCommentCount+topic.getCountComment());//若是恢复，则类型加上当前帖子的评论数
             category.setCountComments(oldCateCommentCount+topic.getCountComment());//若是恢复，则范畴加上当前帖子的评论数
             type.setCountTopics(oldTypeTopicCount+1);
-            category.setCountTopics(oldCateTopicCount+1);
+            category.setCountTopics(oldCateTopicCount+1);*/
+            type.setCountTopics(oldTypeTopicCount+1);
         }
         else if(topic.getStatus()==0||topic.getStatus()==1){
             topic.setStatus(2);
-            type.setCountComments(oldTypeCommentCount-topic.getCountComment());//若是删除，则类型减去当前帖子的评论数
+            /*type.setCountComments(oldTypeCommentCount-topic.getCountComment());//若是删除，则类型减去当前帖子的评论数
             category.setCountComments(oldCateCommentCount-topic.getCountComment());//若是删除，则范畴减去当前帖子的评论数
             type.setCountTopics(oldTypeTopicCount-1);
-            category.setCountTopics(oldCateTopicCount-1);
+            category.setCountTopics(oldCateTopicCount-1);*/
+            type.setCountTopics(oldTypeTopicCount-1);
         }
-        getTypeMapper.getTheTypesMapper().updateTopicsCountAndCommentCount(type);//更新类型的评论数和帖子数
-        getTypeMapper.sqlCommit();
-        getTypeMapper.sqlClose();
-        getCategoryMapper.getTheCategorysMapper().updateTopicsCountAndCommentCount(category);//更新范畴的评论数和帖子数
-        getCategoryMapper.sqlCommit();
-        getCategoryMapper.sqlClose();
-        getTopicsMapper.getTheTopicsMapper().deleteTopic(topic);//将帖子逻辑删除
-        getTopicsMapper.sqlCommit();
-        getTopicsMapper.sqlClose();
+        /*SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(typesMapper.class).updateTopicsCountAndCommentCount(type);//更新类型的评论数和帖子数
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);*/
+        /*SqlSession sqlSession2 = sqlUtil.getSql();
+        sqlSession2.getMapper(categorysMapper.class).updateTopicsCountAndCommentCount(category);//更新范畴的评论数和帖子数
+        sqlUtil.commit(sqlSession2);
+        sqlUtil.sqlClose(sqlSession2);*/
+        SqlSession sqlSession1 = sqlUtil.getSql();
+        sqlSession1.getMapper(typesMapper.class).updateTopicsCount(type);
+        sqlUtil.commit(sqlSession1);
+        sqlUtil.sqlClose(sqlSession1);//更新类型帖子数
+        SqlSession sqlSession3 = sqlUtil.getSql();
+        sqlSession3.getMapper(topicsMapper.class).deleteTopic(topic);//将帖子逻辑删除或恢复
+        sqlUtil.commit(sqlSession3);
+        sqlUtil.sqlClose(sqlSession3);
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://"
                 + request.getServerName() + ":" + request.getServerPort()
@@ -283,7 +400,9 @@ public class topicsController extends topController {
 
     @RequestMapping("/getThePrivateTopics")
     public String getThePrivateTopics(int userId , int nowPage , HttpServletRequest request){
-        List<Topics> topicsList = getTopicsMapper.getTheTopicsMapper().getThePrivateTopic(userId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Topics> topicsList = sqlSession.getMapper(topicsMapper.class).getThePrivateTopic(userId);
+        sqlUtil.sqlClose(sqlSession);
         this.pageBean = methodForGetAllHotTopics.getHotForPages(10 , nowPage ,topicsList);
         request.setAttribute("priTopics" , pageBean.getListTopics());
         request.setAttribute("pageBean" , pageBean);
@@ -292,10 +411,31 @@ public class topicsController extends topController {
 
     @RequestMapping("/toPrivateTopic")
     public String toPrivateTopic(int topicId , int userId , HttpServletRequest request){
-        Topics topic = getTopicsMapper.getTheTopicsMapper().getPrivateTopic(topicId , userId);
+        SqlSession sqlSession = sqlUtil.getSql();
+        Topics topic = sqlSession.getMapper(topicsMapper.class).getPrivateTopic(topicId , userId);
+        sqlUtil.sqlClose(sqlSession);
         HttpSession session = request.getSession();
         session.setAttribute("topic" , topic);
         return "topic/thePrivateTopics";
     }
+
+    @RequestMapping("/toOldHome")
+    public String toOldHome(){
+        return "home/index";
+    }
+
+    @RequestMapping("/toNewHome")
+    public String toNewHome(){
+        return "gp2.0Frontend/index";
+    }
+
+    @RequestMapping("/getTheLabel")
+    @ResponseBody
+    public List<Types> getTheLabel(){
+        SqlSession sqlSession = sqlUtil.getSql();
+        List<Types> typesList = sqlSession.getMapper(typesMapper.class).readTypes();
+        return typesList;
+    }
+
 
 }
