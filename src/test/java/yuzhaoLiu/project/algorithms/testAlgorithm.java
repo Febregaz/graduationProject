@@ -13,13 +13,9 @@ public class testAlgorithm {
     * 数值范围0~999,数据类型为int
     * */
     @Test
-    public void testDichotomy(){
-        final int range = 1000;
-        int robotA , robotB;
-        int times = 0;
-        robotA = new Random().nextInt(range);//随机生成0~999的int类型数值
-        robotB = new Random().nextInt(range);
-        dichotomy(robotA , robotB , 1000 , 0 , times);
+    public void testEnter(){
+        int A[]={4,-3,5,-2,-1,2,6,-2};
+        System.out.println(MaxSubSum(A,0,7));
     }
 
     public int dichotomy(int robotA , int robotB , int max , int min , int times){
@@ -44,6 +40,48 @@ public class testAlgorithm {
             return robotB;
         }
         return 0;
+    }
+
+    public int MaxSubSum(int A[] , int Left , int Right){
+        int MaxLeftSum,MaxRightSum;
+        int MaxLeftBorderSum,MaxRightBorderSum;
+        int LeftBorderSum,RightBorderSum;
+        int Center,i;
+        if(Left == Right){
+            if(A[Left] > 0){
+                return A[Left];
+            }
+            else {
+                return 0;
+            }
+        }
+        Center = (Left + Right)/2;
+        MaxLeftSum = MaxSubSum(A , Left , Center);
+        MaxRightSum = MaxSubSum(A , Center+1 , Right);
+        MaxLeftBorderSum = 0; LeftBorderSum = 0;
+        for(i = Center ; i>=Left ; i--){
+            LeftBorderSum+=A[i];
+            if(LeftBorderSum > MaxLeftBorderSum){
+                MaxLeftBorderSum = LeftBorderSum;
+            }
+        }
+        MaxRightBorderSum = 0; RightBorderSum = 0;
+        for(i = Center+1 ; i<=Right ; i++){
+            RightBorderSum+=A[i];
+            if(RightBorderSum>MaxRightBorderSum){
+                MaxRightBorderSum = RightBorderSum;
+            }
+        }
+        if(MaxLeftSum>=MaxRightSum&&MaxLeftSum>=(MaxLeftBorderSum+MaxRightBorderSum)){
+            return MaxLeftSum;
+        }
+        else if(MaxRightSum>=MaxLeftSum&&MaxRightSum>=(MaxLeftBorderSum+MaxRightBorderSum)){
+            return MaxRightSum;
+        }
+        else if((MaxLeftBorderSum+MaxRightBorderSum)>=MaxLeftSum&&(MaxLeftBorderSum+MaxRightBorderSum)>=MaxRightSum){
+            return MaxLeftBorderSum+MaxRightBorderSum;
+        }
+        return -1;
     }
 
 }
