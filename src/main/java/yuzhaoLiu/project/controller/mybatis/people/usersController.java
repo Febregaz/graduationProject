@@ -73,7 +73,7 @@ public class usersController extends topController {
             }
             session.setAttribute("userInfo",users);
             logger.info("Where");
-            //return "home/index";/*localhost:8080*/
+            //return "home/index";/*localhost:8080/www.617museum.top*/
             return "redirect:http://www.617museum.top/NC-JSP/admin/manage.jsp";
         }
         String message = "用户名或密码错误！";

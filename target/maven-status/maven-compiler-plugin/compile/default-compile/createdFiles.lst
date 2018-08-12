@@ -9,6 +9,7 @@ yuzhaoLiu\project\controller\mybatis\category\CategorysController.class
 yuzhaoLiu\project\controller\mybatis\people\sendMailUtil\CodeUtil.class
 yuzhaoLiu\project\controller\mybatis\people\sendMailUtil\sendAllPeople.class
 yuzhaoLiu\project\mybatis\entity\people\Grades.class
+yuzhaoLiu\project\mybatis\entity\calendar\Plan.class
 yuzhaoLiu\project\mybatis\mapper\UserMapper.class
 yuzhaoLiu\project\controller\methodForMany\theMethodForPage.class
 yuzhaoLiu\project\controller\mybatis\people\sendMailUtil\sendAllPeople$1.class
@@ -30,6 +31,7 @@ yuzhaoLiu\project\controller\mybatis\topic\topicUtil\methodForToTheDetailPage.cl
 yuzhaoLiu\project\mybatis\mapper\topic\content\topicsMapper.class
 yuzhaoLiu\project\controller\mybatis\topic\topicUtil\methodForGetAllHotTopics.class
 yuzhaoLiu\project\neo4j\repository\ActorRepository.class
+yuzhaoLiu\project\controller\mybatis\calendar\planController.class
 yuzhaoLiu\project\controller\mybatis\topic\topicUtil\methodForGetTopicsByTypeId.class
 yuzhaoLiu\project\redis\RedisCacheTransfer.class
 yuzhaoLiu\project\controller\mybatis\help\helpsController.class
@@ -60,6 +62,7 @@ yuzhaoLiu\project\controller\mybatis\people\peopleUtil\methodForGetNews.class
 yuzhaoLiu\project\mybatis\entity\announcement\Announces.class
 yuzhaoLiu\project\controller\mybatis\people\peopleUtil\methodForManageAll.class
 yuzhaoLiu\project\redis\RedisCache.class
+yuzhaoLiu\project\mybatis\mapper\calendar\planMapper.class
 yuzhaoLiu\project\mybatis\entity\download\Resources.class
 yuzhaoLiu\project\controller\mybatis\topic\topicUtil\getCommentsMapper.class
 yuzhaoLiu\project\controller\mybatis\announcement\announcementUtil\getAnnounceMapper.class

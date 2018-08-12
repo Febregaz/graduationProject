@@ -22,6 +22,7 @@
         <typeAlias alias="Helps" type="yuzhaoLiu.project.mybatis.entity.help.Helps"/>
         <typeAlias alias="News" type="yuzhaoLiu.project.mybatis.entity.topic.News"/>
         <typeAlias alias="Resources" type="yuzhaoLiu.project.mybatis.entity.download.Resources"/>
+        <typeAlias alias="Plan" type="yuzhaoLiu.project.mybatis.entity.calendar.Plan"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -48,5 +49,6 @@
         <mapper resource="mybatis/help/helpsMapper.xml" />
         <mapper resource="mybatis/topic/newsMapper.xml" />
         <mapper resource="mybatis/download/resourcesMapper.xml" />
+        <mapper resource="mybatis/calendar/planMapper.xml" />
     </mappers>
 </configuration>

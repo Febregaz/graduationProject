@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
     String path = request.getContextPath();
@@ -30,6 +31,62 @@
     <script src="newJs/bootstrap.min.js"></script>
     <script src="newJs/pace.min.js"></script>
     <script src="newJs/modernizr.custom.js"></script>
+    <link href='NC-JSP/calender/fullcalendar.min.css' rel='stylesheet' />
+    <link href='NC-JSP/calender/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <script src='NC-JSP/calender/moment.min.js'></script>
+    <script src='NC-JSP/calender/jquery.min.js'></script>
+    <script src='NC-JSP/calender/fullcalendar.min.js'></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events:function(start,end,timezone, callback) {
+                    var date = this.getDate().format('YYYY-MM');
+                    $.ajax({
+                        url: 'plans/getAll',
+                        dataType: 'json',
+                        success: function(data) {
+                            var events = [];
+                            for(var i=0;i<data.length;i++){
+                                events.push({
+                                    url: 'plans/toPlan?planId='+data[i].planId,
+                                    title: data[i].planTitle,
+                                    start: data[i].startDate,
+                                    end:data[i].endDate,
+                                    color: data[i].status,
+                                });
+                            }
+                            callback(events);
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+    <style>
+
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -51,7 +108,7 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="cl-effect-11"><a href="http://localhost:8080/NC-JSP/home/login.jsp" target="_blank" data-hover="禁止入内">禁止入内</a></li>
+                            <li class="cl-effect-11"><a href="http://www.617museum.top/NC-JSP/home/login.jsp" target="_blank" data-hover="禁止入内">禁止入内</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -87,6 +144,10 @@
                     <ul class="typeCateLabel">
 
                     </ul>
+                </div>
+                <div class="widget widget-tag-cloud">
+                    <h3 class="widget-title">日志</h3>
+                    <div id='calendar'></div>
                 </div>
             </aside>
         </div>

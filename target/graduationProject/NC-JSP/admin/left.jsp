@@ -47,3 +47,7 @@
 	<a href="category/getAllCategory"><span style="line-height:50px;"><font
 			color="white">发新文章</font> </span> </a>
 </div>
+<div class="links">
+	<a href="NC-JSP/calender/newPlan.jsp"><span style="line-height:50px;"><font
+			color="white">发新任务</font> </span> </a>
+</div>

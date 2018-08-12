@@ -448,7 +448,7 @@ public class topicsController extends topController {
         String basePath = request.getScheme() + "://"
                 + request.getServerName() + ":" + request.getServerPort()
                 + path + "/";
-        return "redirect:"+basePath+"NC-JSP/user/newTopic.jsp";
+        return "redirect:"+basePath+"NC-JSP/user/newPlan.jsp";
     }
 
     @RequestMapping("/updateTopicContent")

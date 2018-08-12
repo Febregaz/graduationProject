@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yuzhaoLiu.project.mybatis.mapper.calendar.planMapper"><!-- 这里namespace必须是UserMapper接口的路径” -->
+
+    <resultMap id="planBean" type="yuzhaoLiu.project.mybatis.entity.calendar.Plan">
+        <id column="planId" property="planId"></id>
+        <result column="planTitle" property="planTitle" />
+        <result column="planContent" property="planContent" />
+        <result column="startDate" property="startDate" />
+        <result column="endDate" property="endDate" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <select id="getAll" resultMap="planBean">
+        SELECT * FROM t_plan
+    </select>
+    <select id="byID" resultMap="planBean">
+        SELECT * FROM t_plan WHERE planId = #{0}
+    </select>
+
+    <insert id="addPlan" parameterType="Plan" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_plan (planTitle , planContent , startDate , endDate ,status) VALUE (#{planTitle} , #{planContent} ,#{startDate},#{endDate},#{status})
+    </insert>
+
+    <update id="updateStatus" parameterType="Plan">
+        UPDATE t_plan a SET a.status = #{status} WHERE a.planId = #{planId}
+    </update>
+
+    <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true" />
+</mapper>
