@@ -437,5 +437,27 @@ public class topicsController extends topController {
         return typesList;
     }
 
+    @RequestMapping("/editTopic")
+    public String editTopic(int topicId , HttpServletRequest request){
+        SqlSession sqlSession = sqlUtil.getSql();
+        Topics topic = sqlSession.getMapper(topicsMapper.class).getTheTopicById(topicId);
+        sqlUtil.sqlClose(sqlSession);
+        HttpSession session = request.getSession();
+        session.setAttribute("topic" , topic);
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://"
+                + request.getServerName() + ":" + request.getServerPort()
+                + path + "/";
+        return "redirect:"+basePath+"NC-JSP/user/newTopic.jsp";
+    }
+
+    @RequestMapping("/updateTopicContent")
+    public void updateTopicContent(String tcontent , String tId){
+        SqlSession sqlSession = sqlUtil.getSql();
+        sqlSession.getMapper(topicsMapper.class).updateTopicContent(tId , tcontent);
+        sqlUtil.commit(sqlSession);
+        sqlUtil.sqlClose(sqlSession);
+    }
+
 
 }

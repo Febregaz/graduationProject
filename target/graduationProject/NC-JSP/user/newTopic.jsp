@@ -20,7 +20,7 @@
 
 	} else {
 %>
-<title>发表帖子</title>
+<title>编辑帖子</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -209,83 +209,36 @@
 					<a href="NC-JSP/home/index.jsp" title="论坛首页"><img
 						src="images/homepage_24.png"></img> </a>
 				</div>
-				<div style="float: left;line-height:24px;">
-					&nbsp;&gt;&nbsp;<a>论坛</a>&nbsp;&gt;&nbsp;发帖
-				</div>
 			</div>
 			<form id="newT" method="post" onsubmit="return validToipc()"
-				action="topics/postedTopic">
-				<div class="titleStyle" align="left">发布帖子</div>
+				action="topics/updateTopicContent">
+				<div class="titleStyle" align="left">编辑帖子</div>
 				<div class="newStyle">
 					<table border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<th width="150px" align="center">文章标题</th>
-							<td><input type="text" name="topicTitle" id="tTitle"
-								onkeyup="showLen(this);"
-								style="width: 600px;height: 26px;line-height: 24px;font-size: 14px;padding-left: 6px;"
-								maxlength="50" /><span id="span"
-								style="color:red;font-size:14px"> 您还可以输入50个字符</span></td>
-						</tr>
-						<tr>
-							<th align="center">文章内容</th>
+							<th align="center">编辑内容</th>
 							<td width="700px" id="help">
 								<textarea id="content" style="display: none;"
 										  name="tcontent">
 								</textarea>
-								<script id="container" type="text/plain"><c:out value="${sessionScope.content}" default="expression" escapeXml="false"/></script>
+								<script id="container" name="tcontent" type="text/plain"><c:out value="${sessionScope.topic.content}" default="expression" escapeXml="false"/></script>
 							</td>
 							<script type="text/javascript">
 							var editor = UE.getEditor('container');
 						</script>
 						</tr>
 						<tr>
-							<th align="center" style="height: 50px">选择版块</th>
 							<td>
 								<table>
 									<tr>
 										<td><select
-											style="height:26px;width: 200px;font-size:14px"
-											id="selectCate" onchange="whenCateChange();">
-												<option value="0">--请选择大版块--</option>
-												<c:forEach items="${listCate}" var="cate">
-													<option value='<c:out value="${cate.id}" />'>
-														<c:out value="${cate.namee}" />
-													</option>
-												</c:forEach>
-										</select>
-										</td>
-										<td><select
-											style="height:26px;width: 150px;font-size:14px"
-											id="selectType" name="typeId">
-												<option value="0">--请选择小版块--</option>
-										</select>
-										</td>
-										<td><select
-												style="height:26px;width: 150px;font-size:14px"
-												id="sendAllOrNot" name="ifOrNot">
-											<option value="0">是否通知所有人此文章?</option>
-											<option value="1">是</option>
-											<option value="2">否</option>
-										</select>
-										</td>
-										<td><select
-												style="height:26px;width: 150px;font-size:14px"
-												id="privateOrPublic" name="priOrPub">
-											<option value="-1">是否设置为私密文章?</option>
-											<option value="${sessionScope.userInfo.id}">是</option>
-											<option value="0">否</option>
+												style="display: none"
+												id="privateOrPublic" name="tId">
+											<option value="<c:out value="${sessionScope.topic.id}"/>">是否设置为私密文章?</option>
 										</select>
 										</td>
 									</tr>
 								</table></td>
-						</tr>
-						<tr>
-							<th align="center" style="height: 40px;">帖子分数</th>
-							<td>&nbsp;给分<input type="text" id="tGrade"
-								name="topicIntegral"
-								style="width: 40px;height: 30px;padding-left: 6px;" />&nbsp;(5-<%=user.getUsersGrade().getId() * 100%>)&nbsp;&nbsp;当前可用分:
-								<c:out value="${sessionScope.userInfo.integral}" />&nbsp;&nbsp;<span
-								style="margin-left: 5px;color:red">结帖后系统返还本帖50%的可用分！</span></td>
 						</tr>
 						<tr>
 							<th style="height: 180px;">&nbsp;</th>

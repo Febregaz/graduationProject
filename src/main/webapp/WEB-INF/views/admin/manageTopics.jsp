@@ -343,8 +343,8 @@ table tr td {
 						<td><c:if test="${topic.niceTopic==0}">否</c:if> <c:if test="${topic.niceTopic==1}">是</c:if>
 						</td>
 						<td style="font-size: 12px;color: blue;"><a
-							href="topics/toTheDetailPage?topicId=<c:out
-								value="${topic.id}" />&&nowPage=1">查看详细&gt;&gt;</a>
+							href="topics/editTopic?topicId=<c:out
+								value="${topic.id}" />">编辑&gt;&gt;</a>
 						</td>
 						<td style="color: blue;"><c:if test="${topic.niceTopic==0}">
 								<a style="color: red" onclick="return nice()"

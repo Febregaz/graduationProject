@@ -101,8 +101,7 @@
         </div>
     </div>
 </footer>
-<a href="#" id="back-top">Top</a>
-<a href="#" id="back-bottom">Bottom</a>
+
 <script src="newJs/script.js"></script>
 </body>
 <script src="newJs/homeRequest/getTheNewestTopics.js"></script>

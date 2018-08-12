@@ -51,7 +51,7 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="cl-effect-11"><a href="http://www.617museum.top/NC-JSP/home/login.jsp" target="_blank" data-hover="禁止入内">禁止入内</a></li>
+                            <li class="cl-effect-11"><a href="http://localhost:8080/NC-JSP/home/login.jsp" target="_blank" data-hover="禁止入内">禁止入内</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -101,7 +101,8 @@
         </div>
     </div>
 </footer>
-
+<a href="#" id="back-top">Top</a>
+<a href="#" id="back-bottom">Bottom</a>
 <script src="newJs/script.js"></script>
 </body>
 <script src="newJs/homeRequest/getTheNewestTopics.js"></script>

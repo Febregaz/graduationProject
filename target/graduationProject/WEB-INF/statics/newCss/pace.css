@@ -11,3 +11,28 @@
 .pace-inactive {
   display: none;
 }
+
+#back-top {
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:30px;
+  right:30px;
+  background:#ccc;
+  text-align:center;
+  line-height:60px;
+  text-decoration:none;
+}
+
+#back-bottom {
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:30px;
+  right:30px;
+  background:#ccc;
+  text-align:center;
+  line-height:60px;
+  text-decoration:none;
+  margin-bottom: 60px;
+}

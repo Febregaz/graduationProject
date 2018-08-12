@@ -94,6 +94,9 @@
     <update id="updateTopicCommentCount" parameterType="Topics">
         UPDATE t_topic a SET a.comment_count_topic = #{countCommentTopic} WHERE a.id = #{id}
     </update>
+    <update id="updateTopicContent">
+        UPDATE t_topic a SET a.content = #{1} WHERE a.id = #{0}
+    </update>
 
     <insert id="addTopic" parameterType="Topics" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_topic(title , content , comment_count_topic , nice_topic , topic_time , integral , status ,topics_user_id ,topics_type_id , only_user_can_see) VALUES (#{title} , #{content} , #{countCommentTopic} , #{niceTopic} , #{topicTime} , #{integral} , #{status} ,#{topicsUser.userId} ,#{topicsType.idd} , #{onlyUserCanSee})

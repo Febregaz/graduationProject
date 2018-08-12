@@ -17,15 +17,20 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" href="newCss/bootstrap.min.css">
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="newJs/bootstrap.min.js"></script>
 <script type="text/javascript">
 if(self.location!=top.location) { top.location.href=self.location.href;}
 </script>
 </head>
 
 <body>
+<div class="content-body">
+	<div class="container">
 	<div class="background">
 		<%--<div class="top_nav">
 			<jsp:include page="/WEB-INF/views/home/top.jsp"></jsp:include>
@@ -77,5 +82,7 @@ if(self.location!=top.location) { top.location.href=self.location.href;}
 			<jsp:include page="/WEB-INF/views/home/copyRight.jsp"></jsp:include>
 		</div>
 	</div>
+	</div>
+</div>
 </body>
 </html>

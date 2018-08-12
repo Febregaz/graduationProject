@@ -230,8 +230,9 @@
 							<th align="center">文章内容</th>
 							<td width="700px" id="help">
 								<textarea id="content" style="display: none;"
-										  name="tcontent"></textarea>
-								<script id="container" type="text/plain"></script>
+										  name="tcontent">
+								</textarea>
+								<script id="container" type="text/plain"><c:out value="${sessionScope.content}" default="expression" escapeXml="false"/></script>
 							</td>
 							<script type="text/javascript">
 							var editor = UE.getEditor('container');

@@ -36,6 +36,8 @@ public interface topicsMapper{
     * */
     public void updateTopicComment(int id , int commentCount);
 
+    public void updateTopicContent(String id , String content);
+
     /*
     * add a topic data
     * */

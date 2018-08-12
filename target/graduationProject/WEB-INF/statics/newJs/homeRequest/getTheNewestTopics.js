@@ -42,4 +42,32 @@ $(document).ready(function () {
             $(".newest").html(d);
         }
     });
+    $('#back-top').hide();
+    $('#back-bottom').hide();
+
+    //当滚动条的垂直位置距顶部100像素一下时，跳转链接出现，否则消失
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 100) {
+            $('#back-top').fadeIn(1000);
+            $('#back-bottom').fadeIn(1000);
+        } else {
+            $("#back-top").fadeOut(1000);
+            $("#back-bottom").fadeOut(1000);
+        }
+    });
+
+    //点击跳转链接，滚动条跳到0的位置，页面移动速度是1000
+    $("#back-top").click(function() {
+        $("html,body").animate({
+            scrollTop: '0'
+        }, 1000);
+        return false; //防止默认事件行为
+    })
+
+    $("#back-bottom").click(function() {
+        $("html,body").animate({
+            scrollTop: document.body.clientHeight
+        }, 1000);
+        return false; //防止默认事件行为
+    })
 })
